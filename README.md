@@ -30,6 +30,10 @@ Agents help with steps 1, 2 and with reading FDA error acknowledgments. They nev
   - product listing, chapter 36 (`cosmetic_spl.py`, `cosmetic_validation.py`): initial and
     update. `examples/sample_cosmetic_listing.xml`
 
+  - ingredients from a fragrance-reg-core `FinishedProduct` (`ingredients.py`, needs the
+    `[core]` extra): the US label list in label order, colorants marked as color additives,
+    fragrance-reg-core errors passed through as blocking findings.
+
   Order in practice: register each facility first (FDA's registration number and the FEI
   come from that), then list products against those facilities.
 - **Phase 2: ESG NextGen API** submission and acknowledgments.
@@ -47,7 +51,7 @@ spl = build_cosmetic_listing(CosmeticListing(
     products=[CosmeticProduct(
         name="Moon Dust Eau de Parfum",
         categories=[Category(code, display_name)],      # from FDA's category list
-        ingredients=[Ingredient("Alcohol Denat."), Ingredient("Fragrance"), Ingredient("Water")],
+        ingredients=ingredients_from_product(finished_product).ingredients,  # or [Ingredient("..."), ...]
         facilities=[Facility(fei="1234567")],
     )],
     signer=Signer("Full Name", signature="F. Name"),
@@ -78,6 +82,6 @@ from a guess. Registration works the same way with `build_facility_registration(
 ## Tests
 
 ```bash
-pip install -e ".[dev]"
+pip install -e ".[dev,core]"   # without core, the ingredient tests are skipped
 pytest
 ```

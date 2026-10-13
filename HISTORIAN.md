@@ -45,3 +45,16 @@ Shared XML pieces moved to `spl_xml.py`; `ListingNotValid` is now an alias of `S
   inside it (IG 35.1.5.1, 35.1.5.3).
 - Renewals need `last_submitted` so the 2-year rule (IG 35.1.1.6) can be checked locally.
 - The leave-on/rinse-off category rule is not applied to registrations; the guide exempts them.
+
+## 2026-10-13: Ingredients from fragrance-reg-core
+
+**What:** `ingredients.ingredients_from_product(FinishedProduct)` returns the US label ingredient
+list for a listing. fragrance-reg-core v0.5.3 is an optional `[core]` extra. 48 tests.
+
+**Decisions:**
+- Use fragrance-reg-core's US list as is. The listing must match the printed label
+  (IG 36.2.2.12), so nothing is re-sorted here.
+- Its ERROR findings (e.g. no INCI name) block; WARNINGs are passed on for a person to read.
+- Components with role COLORANT become color additives (COLR, IG 3.4.4.1). fragrance-reg-core
+  orders colors by weight; when a color lands before other ingredients we warn rather than move
+  it, since the label may group colors at the end.

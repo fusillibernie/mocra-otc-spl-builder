@@ -4,6 +4,7 @@ from .completeness import Finding, check_otc_product
 from .cosmetic_spl import ListingNotValid, build_cosmetic_listing
 from .spl_xml import SplFile, SplNotValid
 from .cosmetic_validation import validate_cosmetic_listing
+from .ingredients import IngredientResult, ingredients_from_product
 from .facility_registration import build_facility_registration, validate_facility_registration
 from .models import (
     ActiveIngredient,
@@ -48,6 +49,8 @@ __all__ = [
     "Facility",
     "Finding",
     "Ingredient",
+    "IngredientResult",
+    "ingredients_from_product",
     "ListingNotValid",
     "ListingType",
     "OtcProduct",
