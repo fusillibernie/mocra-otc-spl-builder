@@ -88,3 +88,11 @@ FDA server that answers like the spec's examples. 60 tests.
 - The secret never appears in `repr`.
 
 **Not done:** no run against FDA yet (no USP account; the user has no products to register yet).
+
+## 2026-10-13: ESG route for cosmetic SPL
+
+FDA's Center Submission Types page (photographed; content current as of 2026-09-17) has no
+cosmetics entry under HFP. It lists center OC, submission type SPL, AS2 routing ID
+OC_REGLIST_SPL (test and production, 100 GB, no test required for new users). We route cosmetic
+registration and listing there (`EsgConfig.for_cosmetic_spl`, and `from_env` defaults). This is
+an inference to confirm with ESG support before the first production submission.

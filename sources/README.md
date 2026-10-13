@@ -14,6 +14,6 @@ Still needed:
 
 - [ ] FDA SPL terminology file for cosmetic categories, to confirm the exact display names and the code system OID (the codes themselves come from the guidance's Appendix A).
 - [ ] The complete SPL schema set. `spl.xsd` only includes `PORP_MT050032UV.xsd`, which pulls in further files; FDA's SPL resources page offers the set as a zip.
-- [ ] FDA "Center Submission Types" page: the center and submission type values for cosmetic SPL (the API guide's sample routes cosmetics to HFP).
+- [x] FDA "Center Submission Types" page, photographed 2026-10-13 (content current as of 2026-09-17): `center_submission_types_2026-09-17/`. Cosmetic SPL route inferred as OC / SPL.
 - [ ] OTC Monograph orders for the monographs in `data/otc_monographs.json`
 - [ ] Check FDA's SPL resources page for a guide newer than December 2023: https://www.fda.gov/industry/fda-resources-data-standards/structured-product-labeling-resources

@@ -49,7 +49,7 @@ class FakeFda:
 
 
 def client(fda=None, **cfg):
-    config = EsgConfig("cid", "secret", "regulatory@delbiado.com", fda_center="HFP-PLACEHOLDER", submission_type="TYPE-PLACEHOLDER", **cfg)
+    config = EsgConfig.for_cosmetic_spl("cid", "secret", "regulatory@delbiado.com")
     return EsgClient(config, transport=fda or FakeFda())
 
 
@@ -91,6 +91,7 @@ def test_test_submission_runs_the_spec_sequence():
     assert token_call[3] == b"client_id=cid&client_secret=secret"
     assert creds_call[2]["Authorization"] == "Bearer tok-1" and creds_call[2]["accesstoken"] == "tok-1"
     creds_body = json.loads(creds_call[3])
+    assert creds_body["fda_center"] == "OC" and creds_body["submission_type"] == "SPL"
     assert creds_body["file_count"] == 1 and creds_body["user_id"] == "4909" and creds_body["company_id"] == "5842"
     assert pkg.content in upload_call[3] and "multipart/form-data; boundary=" in upload_call[2]["Content-Type"]
     assert json.loads(submit_call[3]) == {"username": f"4909-{CORE_ID}", "password": "temp-pw", "sha256_checksum": pkg.sha256}
@@ -113,6 +114,15 @@ def test_no_routing_values_no_submission():
     c = EsgClient(EsgConfig("cid", "secret", "regulatory@delbiado.com"), transport=FakeFda())
     with pytest.raises(ValueError, match="Center Submission Types"):
         c.submit(package(), "x")
+
+
+def test_from_env_defaults_to_the_cosmetic_route(monkeypatch):
+    for k, v in {"ESG_CLIENT_ID": "cid", "ESG_CLIENT_SECRET": "s", "ESG_USER_EMAIL": "a@delbiado.com"}.items():
+        monkeypatch.setenv(k, v)
+    monkeypatch.delenv("ESG_FDA_CENTER", raising=False)
+    monkeypatch.delenv("ESG_SUBMISSION_TYPE", raising=False)
+    config = EsgConfig.from_env()
+    assert (config.fda_center, config.submission_type) == ("OC", "SPL")
 
 
 def test_token_is_reused_until_near_expiry():

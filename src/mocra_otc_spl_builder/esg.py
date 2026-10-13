@@ -27,6 +27,16 @@ from .spl_xml import SplFile
 API_BASE = "https://external-api-esgng.fda.gov"  # spec 2.1, 2.2, 2.7 to 2.9
 UPLOAD_BASE = "https://upload-api-esgng.fda.gov"  # spec 2.4 to 2.6
 
+# Route for cosmetic registration and listing SPL, from FDA's "Center Submission Types" page
+# (content current as of 2026-09-17; photos in sources/center_submission_types_2026-09-17/):
+# center OC, USP/API submission type SPL, AS2 routing ID OC_REGLIST_SPL, test and production,
+# 100 GB, no test submission required for new users. The page does not name cosmetics; OC/SPL
+# is inferred from "REGLIST" and from the SPL guide being issued by the Office of the Chief
+# Scientist (part of OC). HFP (formerly CFSAN) lists no SPL type. Confirm with
+# ESGNGSupport@fda.hhs.gov before the first production submission.
+COSMETIC_SPL_CENTER = "OC"
+COSMETIC_SPL_SUBMISSION_TYPE = "SPL"
+
 # (method, url, headers, body) -> (status, body)
 Transport = Callable[[str, str, dict, bytes | None], tuple[int, bytes]]
 
@@ -44,11 +54,16 @@ class EsgConfig:
     client_id: str
     client_secret: str
     user_email: str  # the USP account's business email
-    # From FDA's "Center Submission Types" page. No defaults: a wrong value routes the file wrongly.
+    # From FDA's "Center Submission Types" page; use for_cosmetic_spl() for cosmetic SPL.
     fda_center: str = ""
     submission_type: str = ""
     api_base: str = API_BASE
     upload_base: str = UPLOAD_BASE
+
+    @classmethod
+    def for_cosmetic_spl(cls, client_id: str, client_secret: str, user_email: str) -> "EsgConfig":
+        """Config routed for cosmetic registration and listing SPL (OC / SPL, see above)."""
+        return cls(client_id, client_secret, user_email, COSMETIC_SPL_CENTER, COSMETIC_SPL_SUBMISSION_TYPE)
 
     @classmethod
     def from_env(cls) -> "EsgConfig":
@@ -58,8 +73,8 @@ class EsgConfig:
             client_id=env["ESG_CLIENT_ID"],
             client_secret=env["ESG_CLIENT_SECRET"],
             user_email=env["ESG_USER_EMAIL"],
-            fda_center=env.get("ESG_FDA_CENTER", ""),
-            submission_type=env.get("ESG_SUBMISSION_TYPE", ""),
+            fda_center=env.get("ESG_FDA_CENTER", COSMETIC_SPL_CENTER),
+            submission_type=env.get("ESG_SUBMISSION_TYPE", COSMETIC_SPL_SUBMISSION_TYPE),
         )
 
     def __repr__(self) -> str:  # never print the secret

@@ -72,8 +72,8 @@ from a guess. Registration works the same way with `build_facility_registration(
 from mocra_otc_spl_builder.esg import Approval, EsgClient, EsgConfig, package_spl
 
 pkg = package_spl(spl, image_dir="labels/")
-client = EsgClient(EsgConfig.from_env())        # ESG_CLIENT_ID, ESG_CLIENT_SECRET, ESG_USER_EMAIL,
-                                                # ESG_FDA_CENTER, ESG_SUBMISSION_TYPE
+client = EsgClient(EsgConfig.from_env())        # ESG_CLIENT_ID, ESG_CLIENT_SECRET, ESG_USER_EMAIL
+                                                # (routed to center OC, type SPL by default)
 receipt = client.submit(pkg, "Initial listing")  # test submission
 # production, after a person has reviewed this exact file:
 receipt = client.submit(pkg, "Initial listing", test=False,
@@ -105,11 +105,12 @@ non-repudiation letter, FDA's approval (1-3 weeks), then API keys from USP "API 
    details and identify the registration by set id; we send an empty author organization.
    Confirm FDA accepts that.
 6. **US agent without email.** The guide says to give "N/A"; we send it as `mailto:N/A`.
-7. **ESG routing values.** `fda_center` and `submission_type` for cosmetic SPL come from
-   FDA's "Center Submission Types" page; none of the documents we have list them. The ACK
-   samples route cosmetics to "HFP". The client refuses to send until both are set.
-8. **ESG package format.** We send one zip (XML plus .jpg labels). Confirm the center accepts
-   a zip for this submission type, and its size limit.
+7. **ESG routing.** FDA's Center Submission Types page (2026-09-17, photos in `sources/`)
+   lists center `OC`, type `SPL`, AS2 routing ID `OC_REGLIST_SPL`. It doesn't say
+   "cosmetics"; we infer it from "REGLIST" and from OC issuing the SPL guide. HFP lists no
+   SPL type. Confirm with ESGNGSupport@fda.hhs.gov.
+8. **ESG package format.** We send one zip (XML plus .jpg labels). Confirm OC/SPL accepts a
+   zip (size limit is 100 GB).
 9. **ESG header.** The spec's text says `Authorization: Bearer`, its curl examples use
    `accesstoken`; we send both.
 
