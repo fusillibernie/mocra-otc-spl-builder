@@ -86,9 +86,9 @@ def test_products_and_responsible_person_required():
 
 
 def test_leave_on_rinse_off_pair_is_allowed_in_registrations():
-    from mocra_otc_spl_builder import Category
+    from mocra_otc_spl_builder import category
 
-    cats = [Category("14D1", "leave-on"), Category("14D2", "rinse-off")]  # IG 3.4.3.25 exempts registrations
+    cats = [category("14D1"), category("14D2")]  # IG 3.4.3.25 exempts registrations
     assert validate_facility_registration(reg(products=[replace(PRODUCT, categories=cats)]), TODAY) == []
 
 

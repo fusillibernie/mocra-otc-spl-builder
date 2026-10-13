@@ -1,7 +1,7 @@
 from mocra_otc_spl_builder import (
     Address,
     BusinessType,
-    Category,
+    category,
     CosmeticListing,
     CosmeticProduct,
     Facility,
@@ -10,9 +10,7 @@ from mocra_otc_spl_builder import (
     Signer,
 )
 
-# Placeholder until FDA's cosmetic category list is in sources/. (The guide's own example, 01B,
-# is baby lotions, so it is not used for a perfume here.)
-EXAMPLE_CATEGORY = Category("PLACEHOLDER", "fragrance category from FDA's list")
+EXAMPLE_CATEGORY = category("05B")  # Perfumes
 
 FILLER = Facility(fei="1234567")
 SMALL_STUDIO = Facility(

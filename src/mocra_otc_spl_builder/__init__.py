@@ -1,5 +1,6 @@
 """FDA SPL builder for MoCRA cosmetic registration/listing and OTC drug listing (own brands)."""
 
+from .categories import category
 from .completeness import Finding, check_otc_product
 from .cosmetic_spl import ListingNotValid, build_cosmetic_listing
 from .spl_xml import SplFile, SplNotValid
@@ -59,6 +60,7 @@ __all__ = [
     "SplFile",
     "SplNotValid",
     "build_cosmetic_listing",
+    "category",
     "check_otc_product",
     "validate_cosmetic_listing",
 ]

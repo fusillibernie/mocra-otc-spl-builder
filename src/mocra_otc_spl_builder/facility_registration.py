@@ -8,6 +8,7 @@ import re
 from datetime import date
 
 from . import codes as C
+from .categories import category_findings
 from .completeness import Finding
 from .cosmetic_validation import GUID, LISTING_NUMBER, US_PHONE, _address, _phone_ok
 from .models import ContactParty, FacilityRegistration, RegisteredFacility, RegistrationType
@@ -75,8 +76,9 @@ def validate_facility_registration(reg: FacilityRegistration, today: date | None
             findings.append(Finding(where, "the product has the brand name it is sold under (IG 35.2.2.1)"))
         if "®" in p.name or "™" in p.name:
             findings.append(Finding(where, "remove ® and ™ from the name (IG 35.2.2.2)"))
-        if not p.categories or any(not (c.code and c.display_name) for c in p.categories):
-            findings.append(Finding(where, "one or more categories, each with code and display name (IG 35.2.2.3)"))
+        if not p.categories:
+            findings.append(Finding(where, "one or more categories (IG 35.2.2.3)"))
+        findings += category_findings(where, p.categories)
         if not p.responsible_person.strip():
             findings.append(Finding(where, "the product's responsible person (organization name) (IG 35.2.3.1)"))
         if p.listing_number and not LISTING_NUMBER.match(p.listing_number):

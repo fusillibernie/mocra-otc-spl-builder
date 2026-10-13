@@ -1,6 +1,6 @@
 from dataclasses import replace
 
-from mocra_otc_spl_builder import Category, Facility, Ingredient, ListingType, validate_cosmetic_listing
+from mocra_otc_spl_builder import Category, Facility, Ingredient, ListingType, category, validate_cosmetic_listing
 
 from .cosmetic_fixtures import EXAMPLE_CATEGORY, SMALL_STUDIO, edp, listing
 
@@ -46,7 +46,7 @@ def test_duplicate_product_names():
 
 
 def test_leave_on_and_rinse_off_of_same_category():
-    cats = [Category("14D1", "body and hand, leave-on"), Category("14D2", "body and hand, rinse-off")]
+    cats = [category("14D1"), category("14D2")]
     assert "IG 3.4.3.5 to 3.4.3.30" in messages(listing(products=[edp(categories=cats)]))
 
 
@@ -79,3 +79,22 @@ def test_us_address_needs_state_and_zip():
     studio = replace(SMALL_STUDIO, address=replace(SMALL_STUDIO.address, state="", postal_code="1120"))
     out = messages(listing(products=[edp(facilities=[studio])]))
     assert "IG 2.1.6.4" in out and "IG 2.1.6.5" in out
+
+
+def test_category_must_be_on_fdas_list_and_specific():
+    out = messages(listing(products=[edp(categories=[Category("99Z", "made up"), Category("01D", "Other baby products")])]))
+    assert "99Z is not in FDA's category list" in out and "01D has subcategories" in out
+
+
+def test_category_display_name_must_match():
+    assert "IG 3.4.3.4" in messages(listing(products=[edp(categories=[Category("05B", "Perfume")])]))
+
+
+def test_category_helper():
+    import pytest
+
+    assert category("05A").display_name == "Colognes and toilet waters [Fragrance preparations]"
+    with pytest.raises(ValueError, match="01D1, 01D2"):
+        category("01D")
+    with pytest.raises(KeyError):
+        category("05Z")

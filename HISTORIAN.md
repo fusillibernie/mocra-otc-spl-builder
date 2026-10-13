@@ -58,3 +58,17 @@ list for a listing. fragrance-reg-core v0.5.3 is an optional `[core]` extra. 48 
 - Components with role COLORANT become color additives (COLR, IG 3.4.4.1). fragrance-reg-core
   orders colors by weight; when a color lands before other ingredients we warn rather than move
   it, since the label may group colors at the end.
+
+## 2026-10-13: Real category codes; FDA guidance and ESG API guide added
+
+**What:** `data/cosmetic_categories.json` built from Appendix A of FDA's Dec 2024 registration and
+listing guidance by `scripts/build_cosmetic_categories.py` (153 entries, 119 selectable).
+`category("05B")` gives a Category; listing and registration validation now reject codes not on
+the list, codes that have subcategories (01D -> 01D1/01D2), and mismatched display names. 51 tests.
+
+**Not verified:** display names (generated in the IG 3.4.3.5 style) and code "17".
+
+**Learned from the guidance:** small businesses (<$1M average US cosmetic sales over 3 years,
+outside the 612(b) product types) are exempt from both registration and listing; get the FEI
+before registering (feiportal@fda.hhs.gov, 7-10 business days); an ESG account takes 1-3 weeks
+and needs a business email domain (not Gmail).

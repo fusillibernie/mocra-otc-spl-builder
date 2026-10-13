@@ -7,6 +7,7 @@ was assigned to us, or that a facility has an active registration).
 
 import re
 
+from .categories import category_findings
 from .codes import LEAVE_ON_RINSE_OFF_PAIRS
 from .completeness import Finding
 from .models import Address, CosmeticListing, CosmeticProduct, Facility, ListingType
@@ -73,9 +74,7 @@ def _product(where: str, p: CosmeticProduct) -> list[Finding]:
 
     if not p.categories:
         findings.append(Finding(f"{where}.categories", "at least one cosmetic product category (IG 36.2.2.11)"))
-    for c in p.categories:
-        if not (c.code and c.display_name):
-            findings.append(Finding(f"{where}.categories", "each category has a code and its display name (IG 3.4.3.3, 3.4.3.4)"))
+    findings += category_findings(f"{where}.categories", p.categories)
     codes = {c.code for c in p.categories}
     for a, b in LEAVE_ON_RINSE_OFF_PAIRS:
         if a in codes and b in codes:

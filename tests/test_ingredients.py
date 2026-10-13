@@ -14,12 +14,12 @@ from fragrance_reg_core.models.product import (  # noqa: E402
 from fragrance_reg_core.models.regulatory import Market, ProductType  # noqa: E402
 
 from mocra_otc_spl_builder import (  # noqa: E402
-    Category,
     CosmeticListing,
     CosmeticProduct,
     Facility,
     ResponsiblePerson,
     build_cosmetic_listing,
+    category,
     ingredients_from_product,
 )
 
@@ -83,7 +83,7 @@ def test_feeds_straight_into_a_listing():
         responsible_person=ResponsiblePerson("Our Brand LLC", phone="+1-212-555-0100"),
         products=[CosmeticProduct(
             name="Nostalgia Eau de Parfum",
-            categories=[Category("PLACEHOLDER", "fragrance category from FDA's list")],
+            categories=[category("05B")],
             ingredients=result.ingredients,
             facilities=[Facility(fei="1234567")],
         )],

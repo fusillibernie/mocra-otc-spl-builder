@@ -50,7 +50,7 @@ spl = build_cosmetic_listing(CosmeticListing(
                                          business_type=BusinessType.DISTRIBUTOR),
     products=[CosmeticProduct(
         name="Moon Dust Eau de Parfum",
-        categories=[Category(code, display_name)],      # from FDA's category list
+        categories=[category("05B")],                   # Perfumes, FDA guidance Appendix A
         ingredients=ingredients_from_product(finished_product).ingredients,  # or [Ingredient("..."), ...]
         facilities=[Facility(fei="1234567")],
     )],
@@ -68,7 +68,11 @@ from a guess. Registration works the same way with `build_facility_registration(
    `2.16.840.1.113883.6.303`, but its chapter 35 and 36 examples use `2.16.840.1.113883.6.345`.
    We use the rule's value (`codes.COSMETIC_CATEGORY_SYSTEM`). Confirm with FDA's terminology
    files or spl@fda.hhs.gov.
-2. **Category list.** Not in the guide; needs FDA's SPL terminology file.
+2. **Category display names.** Codes come from the FDA guidance's Appendix A
+   (`data/cosmetic_categories.json`, 119 selectable). The display names are generated in the
+   style of IG 3.4.3.5 ("Other baby products, leave-on [Baby products]") because the guide
+   shows three different styles; confirm against FDA's terminology file. Group 17 ("Other
+   preparations") uses code "17", also unconfirmed.
 3. **Schema check.** Element order follows the guide's examples but has not been validated
    against `spl.xsd` (fda.gov is blocked from the build environment).
 4. **First listing, product code.** For a product with no listing number yet we omit the

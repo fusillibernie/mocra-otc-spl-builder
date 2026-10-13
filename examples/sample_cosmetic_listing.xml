@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet href="https://www.accessdata.fda.gov/spl/stylesheet/spl.xsl" type="text/xsl"?>
 <document xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 https://www.accessdata.fda.gov/spl/schema/spl.xsd">
-  <id root="0cbe6da8-3281-46a4-a8a5-151fc2e67578" />
+  <id root="f2872935-7137-408b-83d2-3ebd466fda8f" />
   <code code="103572-4" codeSystem="2.16.840.1.113883.6.1" displayName="Cosmetic Product Listing" />
   <effectiveTime value="20261013" />
-  <setId root="ad84b272-d81c-4513-8ea4-3b28da23f44c" />
+  <setId root="3f49a1c4-e8d1-43ef-bcb5-6ad832c83692" />
   <versionNumber value="1" />
   <author>
     <time />
@@ -89,7 +89,7 @@
     <structuredBody>
       <component>
         <section>
-          <id root="625c5739-7c18-4d40-98f1-dbf8ddb9f3e6" />
+          <id root="1b7f4ed8-9acc-4fcc-9b09-3cab441b2f1d" />
           <code code="48780-1" codeSystem="2.16.840.1.113883.6.1" displayName="SPL product data elements section" />
           <effectiveTime value="20261013" />
           <subject>
@@ -98,7 +98,7 @@
                 <name>Moon Dust Eau de Parfum</name>
                 <asSpecializedKind classCode="GEN">
                   <generalizedMaterialKind>
-                    <code code="PLACEHOLDER" codeSystem="2.16.840.1.113883.6.303" displayName="fragrance category from FDA's list" />
+                    <code code="05B" codeSystem="2.16.840.1.113883.6.303" displayName="Perfumes [Fragrance preparations]" />
                   </generalizedMaterialKind>
                 </asSpecializedKind>
                 <ingredient classCode="INGR">
@@ -138,7 +138,7 @@
                 <name>Dusk Eau de Parfum</name>
                 <asSpecializedKind classCode="GEN">
                   <generalizedMaterialKind>
-                    <code code="PLACEHOLDER" codeSystem="2.16.840.1.113883.6.303" displayName="fragrance category from FDA's list" />
+                    <code code="05B" codeSystem="2.16.840.1.113883.6.303" displayName="Perfumes [Fragrance preparations]" />
                   </generalizedMaterialKind>
                 </asSpecializedKind>
                 <ingredient classCode="INGR">
