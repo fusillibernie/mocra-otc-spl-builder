@@ -1,0 +1,8 @@
+{
+  "metadata": {
+    "verified": false,
+    "source": "OTC Monographs@FDA (final administrative orders under FD&C Act §505G)",
+    "note": "Add only monographs our products use. Copy each limit from the order, cite the section, then set verified: true."
+  },
+  "monographs": []
+}
