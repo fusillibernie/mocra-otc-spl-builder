@@ -3,6 +3,8 @@
 from .categories import category
 from .completeness import Finding, check_otc_product
 from .cosmetic_spl import ListingNotValid, build_cosmetic_listing
+from .preview import preview_html
+from .schema import schema_errors
 from .spl_xml import SplFile, SplNotValid
 from .cosmetic_validation import validate_cosmetic_listing
 from .ingredients import IngredientResult, ingredients_from_product
@@ -61,6 +63,8 @@ __all__ = [
     "SplNotValid",
     "build_cosmetic_listing",
     "category",
+    "preview_html",
+    "schema_errors",
     "check_otc_product",
     "validate_cosmetic_listing",
 ]

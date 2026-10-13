@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet href="https://www.accessdata.fda.gov/spl/stylesheet/spl.xsl" type="text/xsl"?>
 <document xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 https://www.accessdata.fda.gov/spl/schema/spl.xsd">
-  <id root="1858fe64-3ce0-48ee-b45f-eb9b048f3636" />
+  <id root="a42b7121-9ba0-4c16-9902-1c5943450990" />
   <code code="103573-2" codeSystem="2.16.840.1.113883.6.1" displayName="Cosmetic Facility Registration" />
   <effectiveTime value="20261013" />
-  <setId root="e4416de0-c5c5-4e01-bd64-c13ddb01bc5c" />
+  <setId root="c9a8540a-0ee9-4043-83b8-8794d85a8d87" />
   <versionNumber value="1" />
   <author>
     <time />
@@ -25,6 +25,9 @@
                 <contactParty>
                   <telecom value="tel:+33-4-93-00-00-00" />
                   <telecom value="mailto:contact@atelier.example" />
+                  <contactPerson>
+                    <name>Camille Martin</name>
+                  </contactPerson>
                 </contactParty>
                 <assignedEntity>
                   <assignedOrganization>
@@ -60,7 +63,7 @@
     <structuredBody>
       <component>
         <section>
-          <id root="99b930ff-24d9-432f-ae64-28cf126f7861" />
+          <id root="4137abb5-da49-4892-b7fd-1dd2714cbf6c" />
           <code code="48780-1" codeSystem="2.16.840.1.113883.6.1" displayName="SPL product data elements section" />
           <effectiveTime value="20261013" />
           <subject>

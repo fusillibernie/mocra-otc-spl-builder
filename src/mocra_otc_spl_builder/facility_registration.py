@@ -89,6 +89,8 @@ def validate_facility_registration(reg: FacilityRegistration, today: date | None
             findings.append(Finding("authorized_agent", "the authorized agent has a name (IG 35.1.2)"))
         if agent.duns and not re.fullmatch(r"\d{9}", agent.duns):
             findings.append(Finding("authorized_agent", "a DUNS number has 9 digits (IG 2.1.5.2)"))
+        if agent.contact and not agent.contact.person_name.strip():
+            findings.append(Finding("authorized_agent", "a contact needs a person's name: FDA's SPL schema requires contactPerson"))
     return findings
 
 
@@ -125,6 +127,8 @@ def _contact(where: str, c: ContactParty) -> list[Finding]:
         findings.append(Finding(where, f"facility contact phone '{c.phone}' is required, in +country format (IG 2.1.7.1 to 2.1.7.10)"))
     if not EMAIL.match(c.email):
         findings.append(Finding(where, "facility contact email is required (IG 2.1.7.1, 2.1.7.12)"))
+    if not c.person_name.strip():
+        findings.append(Finding(where, "a contact person's name is required: FDA's SPL schema needs contactPerson even though IG 2.1.8.3 calls it optional"))
     if c.address:
         findings += _address(where, c.address)
     return findings
@@ -150,7 +154,7 @@ def build_facility_registration(reg: FacilityRegistration, today: date | None = 
                 el(registrant, "id", root=C.DUNS_ROOT, extension=a.duns)
             el(registrant, "name", a.name)
             if a.contact:
-                contact_party(registrant, a.contact)
+                contact_party(registrant, a.contact)  # validated: needs a person (schema)
         _facility_xml(registrant, reg.facility)
 
     if reg.signer:
@@ -180,6 +184,9 @@ def _facility_xml(registrant, f: RegisteredFacility) -> None:
     el(org, "id", extension=f.fei, root=C.FEI_ROOT)
     el(org, "name", f.name)
     addr(org, f.address)
+    # Schema order (POCP_MT030100UV.Organization): ..., addr, assignedEntity1, contactParty, assignedEntity
+    if f.parent_company:  # IG 35.1.6
+        el(el(el(org, "assignedEntity1"), "representedOrganization"), "name", f.parent_company)
     contact_party(org, f.contact)
     if f.us_agent:  # IG 35.1.5
         agent = el(org, "assignedEntity")
@@ -189,7 +196,5 @@ def _facility_xml(registrant, f: RegisteredFacility) -> None:
         el(agent_org, "telecom", value=f"mailto:{f.us_agent.email}")
         el(el(el(agent, "performance"), "actDefinition"), "code",
            code=C.US_AGENT[0], codeSystem=C.NCI_THESAURUS, displayName=C.US_AGENT[1])
-    if f.parent_company:  # IG 35.1.6
-        el(el(el(org, "assignedEntity1"), "representedOrganization"), "name", f.parent_company)
     if f.small_business:  # IG 35.1.7
         small_business(entity)

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet href="https://www.accessdata.fda.gov/spl/stylesheet/spl.xsl" type="text/xsl"?>
 <document xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 https://www.accessdata.fda.gov/spl/schema/spl.xsd">
-  <id root="f2872935-7137-408b-83d2-3ebd466fda8f" />
+  <id root="46a2974d-35a8-4a22-a008-c76fdfb2ebde" />
   <code code="103572-4" codeSystem="2.16.840.1.113883.6.1" displayName="Cosmetic Product Listing" />
   <effectiveTime value="20261013" />
-  <setId root="3f49a1c4-e8d1-43ef-bcb5-6ad832c83692" />
+  <setId root="2d77f7f7-feaf-47ac-bfc0-9fbde5eea830" />
   <versionNumber value="1" />
   <author>
     <time />
@@ -89,7 +89,7 @@
     <structuredBody>
       <component>
         <section>
-          <id root="1b7f4ed8-9acc-4fcc-9b09-3cab441b2f1d" />
+          <id root="47e27df7-28df-44a6-bcc1-11547b88b531" />
           <code code="48780-1" codeSystem="2.16.840.1.113883.6.1" displayName="SPL product data elements section" />
           <effectiveTime value="20261013" />
           <subject>

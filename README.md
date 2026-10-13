@@ -64,7 +64,12 @@ open(spl.filename, "w").write(spl.xml)   # file name is the document id (IG 2.1.
 ```
 
 An invalid listing or registration raises `SplNotValid` with every finding; nothing is built
-from a guess. Registration works the same way with `build_facility_registration(FacilityRegistration(...))`.
+from a guess. Then, with the `[schema]` extra:
+
+```python
+assert schema_errors(spl.xml) == []                     # FDA's SPL schema
+open("review.html", "w").write(preview_html(spl))       # what FDA will display, for the sign-off
+``` Registration works the same way with `build_facility_registration(FacilityRegistration(...))`.
 
 ## Sending to FDA
 
@@ -96,14 +101,15 @@ non-repudiation letter, FDA's approval (1-3 weeks), then API keys from USP "API 
    style of IG 3.4.3.5 ("Other baby products, leave-on [Baby products]") because the guide
    shows three different styles; confirm against FDA's terminology file. Group 17 ("Other
    preparations") uses code "17", also unconfirmed.
-3. **Schema check.** Element order follows the guide's examples but has not been validated
-   against `spl.xsd` (fda.gov is blocked from the build environment).
+3. ~~**Schema check.**~~ Done: FDA's SPL schema (SchemasR2b) is bundled and every document
+   variant is tested against it (`schema.py`, `tests/test_schema.py`). It found two things
+   the guide didn't say: a contact party needs a contact person, and the parent company goes
+   before the contact party.
 4. **First listing, product code.** For a product with no listing number yet we omit the
-   product `<code>`; the facility link uses an empty `<code/>` as the guide says the schema
-   requires. Confirm the product element is accepted without it.
+   product `<code>`. The schema accepts that; confirm FDA's validator does too.
 5. **Abbreviated renewal / cancellation header.** The guide says these carry no facility
    details and identify the registration by set id; we send an empty author organization.
-   Confirm FDA accepts that.
+   The schema accepts it; confirm FDA's validator does too.
 6. **US agent without email.** The guide says to give "N/A"; we send it as `mailto:N/A`.
 7. **ESG routing.** FDA's Center Submission Types page (2026-09-17, photos in `sources/`)
    lists center `OC`, type `SPL`, AS2 routing ID `OC_REGLIST_SPL`. It doesn't say
@@ -117,6 +123,6 @@ non-repudiation letter, FDA's approval (1-3 weeks), then API keys from USP "API 
 ## Tests
 
 ```bash
-pip install -e ".[dev,core]"   # without core, the ingredient tests are skipped
+pip install -e ".[dev,core]"   # without core or lxml, those tests are skipped
 pytest
 ```

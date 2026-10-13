@@ -96,3 +96,19 @@ cosmetics entry under HFP. It lists center OC, submission type SPL, AS2 routing 
 OC_REGLIST_SPL (test and production, 100 GB, no test required for new users). We route cosmetic
 registration and listing there (`EsgConfig.for_cosmetic_spl`, and `from_env` defaults). This is
 an inference to confirm with ESG support before the first production submission.
+
+## 2026-10-13: FDA schema and stylesheet
+
+**What:** FDA's SPL schema (SchemasR2b) and stylesheet 6.2 bundled under `data/`.
+`schema_errors(xml)` validates; `tests/test_schema.py` runs 3 listing and 7 registration variants
+(every optional element included) through it. `preview_html(spl)` renders with FDA's stylesheet,
+CSS inlined, for the person signing off. lxml is the optional `[schema]` extra. 74 tests.
+
+**The schema found two real bugs the guide didn't show:**
+- `contactParty` must contain `contactPerson` (IG 2.1.8.3 calls the name optional for
+  cosmetics). Facility and authorized-agent contacts now require a person's name.
+- The parent company (`assignedEntity1`) goes after `addr` and before `contactParty`; we had it
+  after the US agent.
+
+The stylesheet only renders product classification codes under 2.16.840.1.113883.6.303 (in its
+device/pesticide templates), mild support for our category code system choice; still to confirm.

@@ -36,7 +36,7 @@ GRASSE_PLANT = RegisteredFacility(
     name="Atelier de Grasse",
     fei="1234567890",
     address=Address(["1 Route de Nice"], "Grasse", "FRA", "France", postal_code="06130"),
-    contact=ContactParty(phone="+33-4-93-00-00-00", email="contact@atelier.example"),
+    contact=ContactParty(phone="+33-4-93-00-00-00", email="contact@atelier.example", person_name="Camille Martin"),
     us_agent=USAgent(name="US Reps Co", phone="+1-800-555-1212", email="agent@usreps.example"),
 )
 PRODUCT = RegisteredProduct(name="Moon Dust Eau de Parfum", categories=[EXAMPLE_CATEGORY], responsible_person="Our Brand LLC")
@@ -78,6 +78,11 @@ def test_facility_needs_fei_contact_phone_and_email():
     bad = replace(NJ_PLANT, fei="", contact=ContactParty())
     out = messages(reg(facility=bad))
     assert "IG 35.1.4.4" in out and "phone" in out and "email" in out
+
+
+def test_facility_contact_needs_a_person_for_the_schema():
+    bad = replace(NJ_PLANT, contact=replace(NJ_PLANT.contact, person_name=""))
+    assert "contactPerson" in messages(reg(facility=bad))
 
 
 def test_products_and_responsible_person_required():

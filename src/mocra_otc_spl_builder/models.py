@@ -17,7 +17,8 @@ class Address:
 
 @dataclass
 class ContactParty:
-    """IG 2.1.8. Phone and email are required for a facility contact (IG 2.1.7.1)."""
+    """IG 2.1.8. Phone and email are required for a facility contact (IG 2.1.7.1); FDA's schema
+    also requires the contact person's name."""
 
     phone: str = ""
     email: str = ""
