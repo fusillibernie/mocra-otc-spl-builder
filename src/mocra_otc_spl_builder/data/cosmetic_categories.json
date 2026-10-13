@@ -1,0 +1,1238 @@
+{
+  "metadata": {
+    "source": "FDA, Guidance for Industry: Registration and Listing of Cosmetic Product Facilities and Products, Appendix A",
+    "source_file": "fda_guidance_cosmetics_registration_listing_2024-12.pdf",
+    "source_sha256": "f8af7cd7635a625c4fefe93aa4aae7397bfa7919129c8a56bd8d0badc9b09262",
+    "codes_verified": true,
+    "codes_note": "Codes follow the appendix numbering (group 2 digits + letter + leave-on/rinse-off or application digit), the same pattern as the SPL IG's own examples (01B, 01D1, 14D1).",
+    "display_names_verified": false,
+    "display_names_note": "SPL needs FDA's exact display name (IG 3.4.3.4). The guide shows three different styles, so these are a best guess in the style of IG 3.4.3.5 until FDA's terminology file is checked.",
+    "code_17_note": "Group 17 (Other preparations) has no subcategories; '17' is used as its code, unconfirmed."
+  },
+  "categories": [
+    {
+      "code": "01",
+      "name": "Baby products",
+      "group": "Baby products",
+      "parent": null,
+      "selectable": false,
+      "display_name": "Baby products"
+    },
+    {
+      "code": "01A",
+      "name": "Baby shampoos",
+      "group": "Baby products",
+      "parent": "01",
+      "selectable": true,
+      "display_name": "Baby shampoos [Baby products]"
+    },
+    {
+      "code": "01B",
+      "name": "Lotions, oils, powders, and creams",
+      "group": "Baby products",
+      "parent": "01",
+      "selectable": true,
+      "display_name": "Lotions, oils, powders, and creams [Baby products]"
+    },
+    {
+      "code": "01C",
+      "name": "Baby wipes",
+      "group": "Baby products",
+      "parent": "01",
+      "selectable": true,
+      "display_name": "Baby wipes [Baby products]"
+    },
+    {
+      "code": "01D",
+      "name": "Other baby products",
+      "group": "Baby products",
+      "parent": "01",
+      "selectable": false,
+      "display_name": "Other baby products [Baby products]"
+    },
+    {
+      "code": "01D1",
+      "name": "Leave-on",
+      "group": "Baby products",
+      "parent": "01D",
+      "selectable": true,
+      "display_name": "Other baby products, leave-on [Baby products]"
+    },
+    {
+      "code": "01D2",
+      "name": "Rinse-off",
+      "group": "Baby products",
+      "parent": "01D",
+      "selectable": true,
+      "display_name": "Other baby products, rinse-off [Baby products]"
+    },
+    {
+      "code": "02",
+      "name": "Bath preparations",
+      "group": "Bath preparations",
+      "parent": null,
+      "selectable": false,
+      "display_name": "Bath preparations"
+    },
+    {
+      "code": "02A",
+      "name": "Bath oils, tablets, and salts",
+      "group": "Bath preparations",
+      "parent": "02",
+      "selectable": true,
+      "display_name": "Bath oils, tablets, and salts [Bath preparations]"
+    },
+    {
+      "code": "02B",
+      "name": "Bubble baths",
+      "group": "Bath preparations",
+      "parent": "02",
+      "selectable": true,
+      "display_name": "Bubble baths [Bath preparations]"
+    },
+    {
+      "code": "02C",
+      "name": "Bath capsules",
+      "group": "Bath preparations",
+      "parent": "02",
+      "selectable": true,
+      "display_name": "Bath capsules [Bath preparations]"
+    },
+    {
+      "code": "02D",
+      "name": "Other bath preparations",
+      "group": "Bath preparations",
+      "parent": "02",
+      "selectable": true,
+      "display_name": "Other bath preparations [Bath preparations]"
+    },
+    {
+      "code": "03",
+      "name": "Eye makeup preparations (other than children’s eye makeup preparations)",
+      "group": "Eye makeup preparations (other than children’s eye makeup preparations)",
+      "parent": null,
+      "selectable": false,
+      "display_name": "Eye makeup preparations (other than children’s eye makeup preparations)"
+    },
+    {
+      "code": "03A",
+      "name": "Eyebrow pencils",
+      "group": "Eye makeup preparations (other than children’s eye makeup preparations)",
+      "parent": "03",
+      "selectable": true,
+      "display_name": "Eyebrow pencils [Eye makeup preparations (other than children’s eye makeup preparations)]"
+    },
+    {
+      "code": "03B",
+      "name": "Eyeliners",
+      "group": "Eye makeup preparations (other than children’s eye makeup preparations)",
+      "parent": "03",
+      "selectable": true,
+      "display_name": "Eyeliners [Eye makeup preparations (other than children’s eye makeup preparations)]"
+    },
+    {
+      "code": "03C",
+      "name": "Eye shadows",
+      "group": "Eye makeup preparations (other than children’s eye makeup preparations)",
+      "parent": "03",
+      "selectable": true,
+      "display_name": "Eye shadows [Eye makeup preparations (other than children’s eye makeup preparations)]"
+    },
+    {
+      "code": "03D",
+      "name": "Eye lotions",
+      "group": "Eye makeup preparations (other than children’s eye makeup preparations)",
+      "parent": "03",
+      "selectable": true,
+      "display_name": "Eye lotions [Eye makeup preparations (other than children’s eye makeup preparations)]"
+    },
+    {
+      "code": "03E",
+      "name": "Eye makeup removers",
+      "group": "Eye makeup preparations (other than children’s eye makeup preparations)",
+      "parent": "03",
+      "selectable": true,
+      "display_name": "Eye makeup removers [Eye makeup preparations (other than children’s eye makeup preparations)]"
+    },
+    {
+      "code": "03F",
+      "name": "False eyelashes",
+      "group": "Eye makeup preparations (other than children’s eye makeup preparations)",
+      "parent": "03",
+      "selectable": true,
+      "display_name": "False eyelashes [Eye makeup preparations (other than children’s eye makeup preparations)]"
+    },
+    {
+      "code": "03G",
+      "name": "Mascaras",
+      "group": "Eye makeup preparations (other than children’s eye makeup preparations)",
+      "parent": "03",
+      "selectable": true,
+      "display_name": "Mascaras [Eye makeup preparations (other than children’s eye makeup preparations)]"
+    },
+    {
+      "code": "03H",
+      "name": "Eyelash and eyebrow adhesives, glues, and sealants",
+      "group": "Eye makeup preparations (other than children’s eye makeup preparations)",
+      "parent": "03",
+      "selectable": true,
+      "display_name": "Eyelash and eyebrow adhesives, glues, and sealants [Eye makeup preparations (other than children’s eye makeup preparations)]"
+    },
+    {
+      "code": "03I",
+      "name": "Eyelash and eyebrow preparations (primers, conditioners, serums, fortifiers)",
+      "group": "Eye makeup preparations (other than children’s eye makeup preparations)",
+      "parent": "03",
+      "selectable": true,
+      "display_name": "Eyelash and eyebrow preparations (primers, conditioners, serums, fortifiers) [Eye makeup preparations (other than children’s eye makeup preparations)]"
+    },
+    {
+      "code": "03J",
+      "name": "Eyelash cleansers",
+      "group": "Eye makeup preparations (other than children’s eye makeup preparations)",
+      "parent": "03",
+      "selectable": true,
+      "display_name": "Eyelash cleansers [Eye makeup preparations (other than children’s eye makeup preparations)]"
+    },
+    {
+      "code": "03K",
+      "name": "Other eye makeup preparations",
+      "group": "Eye makeup preparations (other than children’s eye makeup preparations)",
+      "parent": "03",
+      "selectable": true,
+      "display_name": "Other eye makeup preparations [Eye makeup preparations (other than children’s eye makeup preparations)]"
+    },
+    {
+      "code": "04",
+      "name": "Children’s eye makeup preparations",
+      "group": "Children’s eye makeup preparations",
+      "parent": null,
+      "selectable": false,
+      "display_name": "Children’s eye makeup preparations"
+    },
+    {
+      "code": "04A",
+      "name": "Children’s eyeshadows",
+      "group": "Children’s eye makeup preparations",
+      "parent": "04",
+      "selectable": true,
+      "display_name": "Children’s eyeshadows [Children’s eye makeup preparations]"
+    },
+    {
+      "code": "04B",
+      "name": "Other children’s eye makeup",
+      "group": "Children’s eye makeup preparations",
+      "parent": "04",
+      "selectable": true,
+      "display_name": "Other children’s eye makeup [Children’s eye makeup preparations]"
+    },
+    {
+      "code": "05",
+      "name": "Fragrance preparations",
+      "group": "Fragrance preparations",
+      "parent": null,
+      "selectable": false,
+      "display_name": "Fragrance preparations"
+    },
+    {
+      "code": "05A",
+      "name": "Colognes and toilet waters",
+      "group": "Fragrance preparations",
+      "parent": "05",
+      "selectable": true,
+      "display_name": "Colognes and toilet waters [Fragrance preparations]"
+    },
+    {
+      "code": "05B",
+      "name": "Perfumes",
+      "group": "Fragrance preparations",
+      "parent": "05",
+      "selectable": true,
+      "display_name": "Perfumes [Fragrance preparations]"
+    },
+    {
+      "code": "05C",
+      "name": "Powders (dusting and talcum) (excluding aftershave talc)",
+      "group": "Fragrance preparations",
+      "parent": "05",
+      "selectable": true,
+      "display_name": "Powders (dusting and talcum) (excluding aftershave talc) [Fragrance preparations]"
+    },
+    {
+      "code": "05D",
+      "name": "Other fragrance preparations",
+      "group": "Fragrance preparations",
+      "parent": "05",
+      "selectable": true,
+      "display_name": "Other fragrance preparations [Fragrance preparations]"
+    },
+    {
+      "code": "06",
+      "name": "Hair preparations (non-coloring)",
+      "group": "Hair preparations (non-coloring)",
+      "parent": null,
+      "selectable": false,
+      "display_name": "Hair preparations (non-coloring)"
+    },
+    {
+      "code": "06A",
+      "name": "Hair conditioners",
+      "group": "Hair preparations (non-coloring)",
+      "parent": "06",
+      "selectable": false,
+      "display_name": "Hair conditioners [Hair preparations (non-coloring)]"
+    },
+    {
+      "code": "06A1",
+      "name": "Leave-on",
+      "group": "Hair preparations (non-coloring)",
+      "parent": "06A",
+      "selectable": true,
+      "display_name": "Hair conditioners, leave-on [Hair preparations (non-coloring)]"
+    },
+    {
+      "code": "06A2",
+      "name": "Rinse-off",
+      "group": "Hair preparations (non-coloring)",
+      "parent": "06A",
+      "selectable": true,
+      "display_name": "Hair conditioners, rinse-off [Hair preparations (non-coloring)]"
+    },
+    {
+      "code": "06B",
+      "name": "Hair sprays (aerosol fixatives)",
+      "group": "Hair preparations (non-coloring)",
+      "parent": "06",
+      "selectable": true,
+      "display_name": "Hair sprays (aerosol fixatives) [Hair preparations (non-coloring)]"
+    },
+    {
+      "code": "06C",
+      "name": "Hair straighteners",
+      "group": "Hair preparations (non-coloring)",
+      "parent": "06",
+      "selectable": true,
+      "display_name": "Hair straighteners [Hair preparations (non-coloring)]"
+    },
+    {
+      "code": "06D",
+      "name": "Permanent waves",
+      "group": "Hair preparations (non-coloring)",
+      "parent": "06",
+      "selectable": true,
+      "display_name": "Permanent waves [Hair preparations (non-coloring)]"
+    },
+    {
+      "code": "06E",
+      "name": "Rinses (non-coloring)",
+      "group": "Hair preparations (non-coloring)",
+      "parent": "06",
+      "selectable": true,
+      "display_name": "Rinses (non-coloring) [Hair preparations (non-coloring)]"
+    },
+    {
+      "code": "06F",
+      "name": "Shampoos (non-coloring)",
+      "group": "Hair preparations (non-coloring)",
+      "parent": "06",
+      "selectable": false,
+      "display_name": "Shampoos (non-coloring) [Hair preparations (non-coloring)]"
+    },
+    {
+      "code": "06F1",
+      "name": "Leave-on",
+      "group": "Hair preparations (non-coloring)",
+      "parent": "06F",
+      "selectable": true,
+      "display_name": "Shampoos (non-coloring), leave-on [Hair preparations (non-coloring)]"
+    },
+    {
+      "code": "06F2",
+      "name": "Rinse-off",
+      "group": "Hair preparations (non-coloring)",
+      "parent": "06F",
+      "selectable": true,
+      "display_name": "Shampoos (non-coloring), rinse-off [Hair preparations (non-coloring)]"
+    },
+    {
+      "code": "06G",
+      "name": "Tonics, dressings, and other hair grooming aids",
+      "group": "Hair preparations (non-coloring)",
+      "parent": "06",
+      "selectable": true,
+      "display_name": "Tonics, dressings, and other hair grooming aids [Hair preparations (non-coloring)]"
+    },
+    {
+      "code": "06H",
+      "name": "Wave sets",
+      "group": "Hair preparations (non-coloring)",
+      "parent": "06",
+      "selectable": true,
+      "display_name": "Wave sets [Hair preparations (non-coloring)]"
+    },
+    {
+      "code": "06I",
+      "name": "Other hair preparations",
+      "group": "Hair preparations (non-coloring)",
+      "parent": "06",
+      "selectable": false,
+      "display_name": "Other hair preparations [Hair preparations (non-coloring)]"
+    },
+    {
+      "code": "06I1",
+      "name": "Leave-on",
+      "group": "Hair preparations (non-coloring)",
+      "parent": "06I",
+      "selectable": true,
+      "display_name": "Other hair preparations, leave-on [Hair preparations (non-coloring)]"
+    },
+    {
+      "code": "06I2",
+      "name": "Rinse-off",
+      "group": "Hair preparations (non-coloring)",
+      "parent": "06I",
+      "selectable": true,
+      "display_name": "Other hair preparations, rinse-off [Hair preparations (non-coloring)]"
+    },
+    {
+      "code": "07",
+      "name": "Hair coloring preparations",
+      "group": "Hair coloring preparations",
+      "parent": null,
+      "selectable": false,
+      "display_name": "Hair coloring preparations"
+    },
+    {
+      "code": "07A",
+      "name": "Hair dyes and colors (all types requiring caution statement and patch test)",
+      "group": "Hair coloring preparations",
+      "parent": "07",
+      "selectable": true,
+      "display_name": "Hair dyes and colors (all types requiring caution statement and patch test) [Hair coloring preparations]"
+    },
+    {
+      "code": "07B",
+      "name": "Hair tints",
+      "group": "Hair coloring preparations",
+      "parent": "07",
+      "selectable": true,
+      "display_name": "Hair tints [Hair coloring preparations]"
+    },
+    {
+      "code": "07C",
+      "name": "Hair rinses (coloring)",
+      "group": "Hair coloring preparations",
+      "parent": "07",
+      "selectable": false,
+      "display_name": "Hair rinses (coloring) [Hair coloring preparations]"
+    },
+    {
+      "code": "07C1",
+      "name": "Leave-on",
+      "group": "Hair coloring preparations",
+      "parent": "07C",
+      "selectable": true,
+      "display_name": "Hair rinses (coloring), leave-on [Hair coloring preparations]"
+    },
+    {
+      "code": "07C2",
+      "name": "Rinse-off",
+      "group": "Hair coloring preparations",
+      "parent": "07C",
+      "selectable": true,
+      "display_name": "Hair rinses (coloring), rinse-off [Hair coloring preparations]"
+    },
+    {
+      "code": "07D",
+      "name": "Hair shampoos (coloring)",
+      "group": "Hair coloring preparations",
+      "parent": "07",
+      "selectable": false,
+      "display_name": "Hair shampoos (coloring) [Hair coloring preparations]"
+    },
+    {
+      "code": "07D1",
+      "name": "Leave-on",
+      "group": "Hair coloring preparations",
+      "parent": "07D",
+      "selectable": true,
+      "display_name": "Hair shampoos (coloring), leave-on [Hair coloring preparations]"
+    },
+    {
+      "code": "07D2",
+      "name": "Rinse-off",
+      "group": "Hair coloring preparations",
+      "parent": "07D",
+      "selectable": true,
+      "display_name": "Hair shampoos (coloring), rinse-off [Hair coloring preparations]"
+    },
+    {
+      "code": "07E",
+      "name": "Hair color sprays (aerosol)",
+      "group": "Hair coloring preparations",
+      "parent": "07",
+      "selectable": true,
+      "display_name": "Hair color sprays (aerosol) [Hair coloring preparations]"
+    },
+    {
+      "code": "07F",
+      "name": "Hair lighteners with color",
+      "group": "Hair coloring preparations",
+      "parent": "07",
+      "selectable": true,
+      "display_name": "Hair lighteners with color [Hair coloring preparations]"
+    },
+    {
+      "code": "07G",
+      "name": "Hair bleaches",
+      "group": "Hair coloring preparations",
+      "parent": "07",
+      "selectable": true,
+      "display_name": "Hair bleaches [Hair coloring preparations]"
+    },
+    {
+      "code": "07H",
+      "name": "Eyelash and eyebrow dyes",
+      "group": "Hair coloring preparations",
+      "parent": "07",
+      "selectable": true,
+      "display_name": "Eyelash and eyebrow dyes [Hair coloring preparations]"
+    },
+    {
+      "code": "07I",
+      "name": "Other hair coloring preparations",
+      "group": "Hair coloring preparations",
+      "parent": "07",
+      "selectable": false,
+      "display_name": "Other hair coloring preparations [Hair coloring preparations]"
+    },
+    {
+      "code": "07I1",
+      "name": "Leave-on",
+      "group": "Hair coloring preparations",
+      "parent": "07I",
+      "selectable": true,
+      "display_name": "Other hair coloring preparations, leave-on [Hair coloring preparations]"
+    },
+    {
+      "code": "07I2",
+      "name": "Rinse-off",
+      "group": "Hair coloring preparations",
+      "parent": "07I",
+      "selectable": true,
+      "display_name": "Other hair coloring preparations, rinse-off [Hair coloring preparations]"
+    },
+    {
+      "code": "08",
+      "name": "Makeup preparations (not eye)(other than makeup preparations for children)",
+      "group": "Makeup preparations (not eye)(other than makeup preparations for children)",
+      "parent": null,
+      "selectable": false,
+      "display_name": "Makeup preparations (not eye)(other than makeup preparations for children)"
+    },
+    {
+      "code": "08A",
+      "name": "Blushers and rouges (all types)",
+      "group": "Makeup preparations (not eye)(other than makeup preparations for children)",
+      "parent": "08",
+      "selectable": true,
+      "display_name": "Blushers and rouges (all types) [Makeup preparations (not eye)(other than makeup preparations for children)]"
+    },
+    {
+      "code": "08B",
+      "name": "Face powders",
+      "group": "Makeup preparations (not eye)(other than makeup preparations for children)",
+      "parent": "08",
+      "selectable": true,
+      "display_name": "Face powders [Makeup preparations (not eye)(other than makeup preparations for children)]"
+    },
+    {
+      "code": "08C",
+      "name": "Foundations",
+      "group": "Makeup preparations (not eye)(other than makeup preparations for children)",
+      "parent": "08",
+      "selectable": false,
+      "display_name": "Foundations [Makeup preparations (not eye)(other than makeup preparations for children)]"
+    },
+    {
+      "code": "08C1",
+      "name": "Traditional applications",
+      "group": "Makeup preparations (not eye)(other than makeup preparations for children)",
+      "parent": "08C",
+      "selectable": true,
+      "display_name": "Foundations, traditional applications [Makeup preparations (not eye)(other than makeup preparations for children)]"
+    },
+    {
+      "code": "08C2",
+      "name": "Airbrush applications",
+      "group": "Makeup preparations (not eye)(other than makeup preparations for children)",
+      "parent": "08C",
+      "selectable": true,
+      "display_name": "Foundations, airbrush applications [Makeup preparations (not eye)(other than makeup preparations for children)]"
+    },
+    {
+      "code": "08D",
+      "name": "Leg and body paints",
+      "group": "Makeup preparations (not eye)(other than makeup preparations for children)",
+      "parent": "08",
+      "selectable": false,
+      "display_name": "Leg and body paints [Makeup preparations (not eye)(other than makeup preparations for children)]"
+    },
+    {
+      "code": "08D1",
+      "name": "Traditional applications",
+      "group": "Makeup preparations (not eye)(other than makeup preparations for children)",
+      "parent": "08D",
+      "selectable": true,
+      "display_name": "Leg and body paints, traditional applications [Makeup preparations (not eye)(other than makeup preparations for children)]"
+    },
+    {
+      "code": "08D2",
+      "name": "Airbrush applications",
+      "group": "Makeup preparations (not eye)(other than makeup preparations for children)",
+      "parent": "08D",
+      "selectable": true,
+      "display_name": "Leg and body paints, airbrush applications [Makeup preparations (not eye)(other than makeup preparations for children)]"
+    },
+    {
+      "code": "08E",
+      "name": "Lipsticks and lip glosses",
+      "group": "Makeup preparations (not eye)(other than makeup preparations for children)",
+      "parent": "08",
+      "selectable": true,
+      "display_name": "Lipsticks and lip glosses [Makeup preparations (not eye)(other than makeup preparations for children)]"
+    },
+    {
+      "code": "08F",
+      "name": "Makeup bases",
+      "group": "Makeup preparations (not eye)(other than makeup preparations for children)",
+      "parent": "08",
+      "selectable": false,
+      "display_name": "Makeup bases [Makeup preparations (not eye)(other than makeup preparations for children)]"
+    },
+    {
+      "code": "08F1",
+      "name": "Traditional applications",
+      "group": "Makeup preparations (not eye)(other than makeup preparations for children)",
+      "parent": "08F",
+      "selectable": true,
+      "display_name": "Makeup bases, traditional applications [Makeup preparations (not eye)(other than makeup preparations for children)]"
+    },
+    {
+      "code": "08F2",
+      "name": "Airbrush applications",
+      "group": "Makeup preparations (not eye)(other than makeup preparations for children)",
+      "parent": "08F",
+      "selectable": true,
+      "display_name": "Makeup bases, airbrush applications [Makeup preparations (not eye)(other than makeup preparations for children)]"
+    },
+    {
+      "code": "08G",
+      "name": "Makeup fixatives",
+      "group": "Makeup preparations (not eye)(other than makeup preparations for children)",
+      "parent": "08",
+      "selectable": true,
+      "display_name": "Makeup fixatives [Makeup preparations (not eye)(other than makeup preparations for children)]"
+    },
+    {
+      "code": "08H",
+      "name": "Other makeup preparations",
+      "group": "Makeup preparations (not eye)(other than makeup preparations for children)",
+      "parent": "08",
+      "selectable": false,
+      "display_name": "Other makeup preparations [Makeup preparations (not eye)(other than makeup preparations for children)]"
+    },
+    {
+      "code": "08H1",
+      "name": "Traditional applications",
+      "group": "Makeup preparations (not eye)(other than makeup preparations for children)",
+      "parent": "08H",
+      "selectable": true,
+      "display_name": "Other makeup preparations, traditional applications [Makeup preparations (not eye)(other than makeup preparations for children)]"
+    },
+    {
+      "code": "08H2",
+      "name": "Airbrush applications",
+      "group": "Makeup preparations (not eye)(other than makeup preparations for children)",
+      "parent": "08H",
+      "selectable": true,
+      "display_name": "Other makeup preparations, airbrush applications [Makeup preparations (not eye)(other than makeup preparations for children)]"
+    },
+    {
+      "code": "09",
+      "name": "Makeup preparations for children (not eye)",
+      "group": "Makeup preparations for children (not eye)",
+      "parent": null,
+      "selectable": false,
+      "display_name": "Makeup preparations for children (not eye)"
+    },
+    {
+      "code": "09A",
+      "name": "Children’s blushers and rouges (all types)",
+      "group": "Makeup preparations for children (not eye)",
+      "parent": "09",
+      "selectable": true,
+      "display_name": "Children’s blushers and rouges (all types) [Makeup preparations for children (not eye)]"
+    },
+    {
+      "code": "09B",
+      "name": "Children’s face paints",
+      "group": "Makeup preparations for children (not eye)",
+      "parent": "09",
+      "selectable": true,
+      "display_name": "Children’s face paints [Makeup preparations for children (not eye)]"
+    },
+    {
+      "code": "09C",
+      "name": "Children’s face powders",
+      "group": "Makeup preparations for children (not eye)",
+      "parent": "09",
+      "selectable": true,
+      "display_name": "Children’s face powders [Makeup preparations for children (not eye)]"
+    },
+    {
+      "code": "09D",
+      "name": "Children’s foundations",
+      "group": "Makeup preparations for children (not eye)",
+      "parent": "09",
+      "selectable": true,
+      "display_name": "Children’s foundations [Makeup preparations for children (not eye)]"
+    },
+    {
+      "code": "09E",
+      "name": "Children’s lipsticks and lip glosses",
+      "group": "Makeup preparations for children (not eye)",
+      "parent": "09",
+      "selectable": true,
+      "display_name": "Children’s lipsticks and lip glosses [Makeup preparations for children (not eye)]"
+    },
+    {
+      "code": "09F",
+      "name": "Children’s color hairsprays",
+      "group": "Makeup preparations for children (not eye)",
+      "parent": "09",
+      "selectable": true,
+      "display_name": "Children’s color hairsprays [Makeup preparations for children (not eye)]"
+    },
+    {
+      "code": "09G",
+      "name": "Other children’s makeup",
+      "group": "Makeup preparations for children (not eye)",
+      "parent": "09",
+      "selectable": true,
+      "display_name": "Other children’s makeup [Makeup preparations for children (not eye)]"
+    },
+    {
+      "code": "10",
+      "name": "Manicuring preparations",
+      "group": "Manicuring preparations",
+      "parent": null,
+      "selectable": false,
+      "display_name": "Manicuring preparations"
+    },
+    {
+      "code": "10A",
+      "name": "Basecoats and undercoats",
+      "group": "Manicuring preparations",
+      "parent": "10",
+      "selectable": true,
+      "display_name": "Basecoats and undercoats [Manicuring preparations]"
+    },
+    {
+      "code": "10B",
+      "name": "Cuticle softeners",
+      "group": "Manicuring preparations",
+      "parent": "10",
+      "selectable": true,
+      "display_name": "Cuticle softeners [Manicuring preparations]"
+    },
+    {
+      "code": "10C",
+      "name": "Nail creams and lotions",
+      "group": "Manicuring preparations",
+      "parent": "10",
+      "selectable": true,
+      "display_name": "Nail creams and lotions [Manicuring preparations]"
+    },
+    {
+      "code": "10D",
+      "name": "Nail extenders",
+      "group": "Manicuring preparations",
+      "parent": "10",
+      "selectable": true,
+      "display_name": "Nail extenders [Manicuring preparations]"
+    },
+    {
+      "code": "10E",
+      "name": "Nail polishes and enamels",
+      "group": "Manicuring preparations",
+      "parent": "10",
+      "selectable": true,
+      "display_name": "Nail polishes and enamels [Manicuring preparations]"
+    },
+    {
+      "code": "10F",
+      "name": "Nail polish and enamel removers",
+      "group": "Manicuring preparations",
+      "parent": "10",
+      "selectable": true,
+      "display_name": "Nail polish and enamel removers [Manicuring preparations]"
+    },
+    {
+      "code": "10G",
+      "name": "Other manicuring preparations",
+      "group": "Manicuring preparations",
+      "parent": "10",
+      "selectable": true,
+      "display_name": "Other manicuring preparations [Manicuring preparations]"
+    },
+    {
+      "code": "11",
+      "name": "Oral products",
+      "group": "Oral products",
+      "parent": null,
+      "selectable": false,
+      "display_name": "Oral products"
+    },
+    {
+      "code": "11A",
+      "name": "Dentifrices (aerosols, liquids, pastes, and powders)",
+      "group": "Oral products",
+      "parent": "11",
+      "selectable": true,
+      "display_name": "Dentifrices (aerosols, liquids, pastes, and powders) [Oral products]"
+    },
+    {
+      "code": "11B",
+      "name": "Mouthwashes and breath fresheners (liquids and sprays)",
+      "group": "Oral products",
+      "parent": "11",
+      "selectable": true,
+      "display_name": "Mouthwashes and breath fresheners (liquids and sprays) [Oral products]"
+    },
+    {
+      "code": "11C",
+      "name": "Other oral products",
+      "group": "Oral products",
+      "parent": "11",
+      "selectable": true,
+      "display_name": "Other oral products [Oral products]"
+    },
+    {
+      "code": "12",
+      "name": "Personal cleanliness",
+      "group": "Personal cleanliness",
+      "parent": null,
+      "selectable": false,
+      "display_name": "Personal cleanliness"
+    },
+    {
+      "code": "12A",
+      "name": "Bath soaps and body washes",
+      "group": "Personal cleanliness",
+      "parent": "12",
+      "selectable": true,
+      "display_name": "Bath soaps and body washes [Personal cleanliness]"
+    },
+    {
+      "code": "12B",
+      "name": "Deodorants (underarm)",
+      "group": "Personal cleanliness",
+      "parent": "12",
+      "selectable": false,
+      "display_name": "Deodorants (underarm) [Personal cleanliness]"
+    },
+    {
+      "code": "12B1",
+      "name": "Sticks, roll-ons, gels, creams, and wipes",
+      "group": "Personal cleanliness",
+      "parent": "12B",
+      "selectable": true,
+      "display_name": "Deodorants (underarm), sticks, roll-ons, gels, creams, and wipes [Personal cleanliness]"
+    },
+    {
+      "code": "12B2",
+      "name": "Sprays",
+      "group": "Personal cleanliness",
+      "parent": "12B",
+      "selectable": true,
+      "display_name": "Deodorants (underarm), sprays [Personal cleanliness]"
+    },
+    {
+      "code": "12C",
+      "name": "Douches",
+      "group": "Personal cleanliness",
+      "parent": "12",
+      "selectable": true,
+      "display_name": "Douches [Personal cleanliness]"
+    },
+    {
+      "code": "12D",
+      "name": "Feminine deodorants",
+      "group": "Personal cleanliness",
+      "parent": "12",
+      "selectable": false,
+      "display_name": "Feminine deodorants [Personal cleanliness]"
+    },
+    {
+      "code": "12D1",
+      "name": "Leave-on",
+      "group": "Personal cleanliness",
+      "parent": "12D",
+      "selectable": true,
+      "display_name": "Feminine deodorants, leave-on [Personal cleanliness]"
+    },
+    {
+      "code": "12D2",
+      "name": "Rinse-off",
+      "group": "Personal cleanliness",
+      "parent": "12D",
+      "selectable": true,
+      "display_name": "Feminine deodorants, rinse-off [Personal cleanliness]"
+    },
+    {
+      "code": "12E",
+      "name": "Disposable wipes",
+      "group": "Personal cleanliness",
+      "parent": "12",
+      "selectable": true,
+      "display_name": "Disposable wipes [Personal cleanliness]"
+    },
+    {
+      "code": "12F",
+      "name": "Other personal cleanliness products",
+      "group": "Personal cleanliness",
+      "parent": "12",
+      "selectable": false,
+      "display_name": "Other personal cleanliness products [Personal cleanliness]"
+    },
+    {
+      "code": "12F1",
+      "name": "Leave-on",
+      "group": "Personal cleanliness",
+      "parent": "12F",
+      "selectable": true,
+      "display_name": "Other personal cleanliness products, leave-on [Personal cleanliness]"
+    },
+    {
+      "code": "12F2",
+      "name": "Rinse-off",
+      "group": "Personal cleanliness",
+      "parent": "12F",
+      "selectable": true,
+      "display_name": "Other personal cleanliness products, rinse-off [Personal cleanliness]"
+    },
+    {
+      "code": "13",
+      "name": "Shaving preparations",
+      "group": "Shaving preparations",
+      "parent": null,
+      "selectable": false,
+      "display_name": "Shaving preparations"
+    },
+    {
+      "code": "13A",
+      "name": "Aftershave lotions",
+      "group": "Shaving preparations",
+      "parent": "13",
+      "selectable": true,
+      "display_name": "Aftershave lotions [Shaving preparations]"
+    },
+    {
+      "code": "13B",
+      "name": "Beard softeners",
+      "group": "Shaving preparations",
+      "parent": "13",
+      "selectable": true,
+      "display_name": "Beard softeners [Shaving preparations]"
+    },
+    {
+      "code": "13C",
+      "name": "Men's talcum",
+      "group": "Shaving preparations",
+      "parent": "13",
+      "selectable": true,
+      "display_name": "Men's talcum [Shaving preparations]"
+    },
+    {
+      "code": "13D",
+      "name": "Pre-shave lotions (all types)",
+      "group": "Shaving preparations",
+      "parent": "13",
+      "selectable": true,
+      "display_name": "Pre-shave lotions (all types) [Shaving preparations]"
+    },
+    {
+      "code": "13E",
+      "name": "Shaving creams (aerosol, brushless, and lather)",
+      "group": "Shaving preparations",
+      "parent": "13",
+      "selectable": true,
+      "display_name": "Shaving creams (aerosol, brushless, and lather) [Shaving preparations]"
+    },
+    {
+      "code": "13F",
+      "name": "Shaving soaps (cakes, sticks, etc.)",
+      "group": "Shaving preparations",
+      "parent": "13",
+      "selectable": true,
+      "display_name": "Shaving soaps (cakes, sticks, etc.) [Shaving preparations]"
+    },
+    {
+      "code": "13G",
+      "name": "Other shaving preparation products",
+      "group": "Shaving preparations",
+      "parent": "13",
+      "selectable": true,
+      "display_name": "Other shaving preparation products [Shaving preparations]"
+    },
+    {
+      "code": "14",
+      "name": "Skin care preparations, (creams, lotions, powder, and sprays)",
+      "group": "Skin care preparations, (creams, lotions, powder, and sprays)",
+      "parent": null,
+      "selectable": false,
+      "display_name": "Skin care preparations, (creams, lotions, powder, and sprays)"
+    },
+    {
+      "code": "14A",
+      "name": "Cleansing (cold creams, cleansing lotions, liquids, and pads)",
+      "group": "Skin care preparations, (creams, lotions, powder, and sprays)",
+      "parent": "14",
+      "selectable": true,
+      "display_name": "Cleansing (cold creams, cleansing lotions, liquids, and pads) [Skin care preparations, (creams, lotions, powder, and sprays)]"
+    },
+    {
+      "code": "14B",
+      "name": "Depilatories",
+      "group": "Skin care preparations, (creams, lotions, powder, and sprays)",
+      "parent": "14",
+      "selectable": true,
+      "display_name": "Depilatories [Skin care preparations, (creams, lotions, powder, and sprays)]"
+    },
+    {
+      "code": "14C",
+      "name": "Face and neck (excluding shaving preparations)",
+      "group": "Skin care preparations, (creams, lotions, powder, and sprays)",
+      "parent": "14",
+      "selectable": false,
+      "display_name": "Face and neck (excluding shaving preparations) [Skin care preparations, (creams, lotions, powder, and sprays)]"
+    },
+    {
+      "code": "14C1",
+      "name": "Leave-on",
+      "group": "Skin care preparations, (creams, lotions, powder, and sprays)",
+      "parent": "14C",
+      "selectable": true,
+      "display_name": "Face and neck (excluding shaving preparations), leave-on [Skin care preparations, (creams, lotions, powder, and sprays)]"
+    },
+    {
+      "code": "14C2",
+      "name": "Rinse-off",
+      "group": "Skin care preparations, (creams, lotions, powder, and sprays)",
+      "parent": "14C",
+      "selectable": true,
+      "display_name": "Face and neck (excluding shaving preparations), rinse-off [Skin care preparations, (creams, lotions, powder, and sprays)]"
+    },
+    {
+      "code": "14D",
+      "name": "Body and hand (excluding shaving preparations)",
+      "group": "Skin care preparations, (creams, lotions, powder, and sprays)",
+      "parent": "14",
+      "selectable": false,
+      "display_name": "Body and hand (excluding shaving preparations) [Skin care preparations, (creams, lotions, powder, and sprays)]"
+    },
+    {
+      "code": "14D1",
+      "name": "Leave-on",
+      "group": "Skin care preparations, (creams, lotions, powder, and sprays)",
+      "parent": "14D",
+      "selectable": true,
+      "display_name": "Body and hand (excluding shaving preparations), leave-on [Skin care preparations, (creams, lotions, powder, and sprays)]"
+    },
+    {
+      "code": "14D2",
+      "name": "Rinse-off",
+      "group": "Skin care preparations, (creams, lotions, powder, and sprays)",
+      "parent": "14D",
+      "selectable": true,
+      "display_name": "Body and hand (excluding shaving preparations), rinse-off [Skin care preparations, (creams, lotions, powder, and sprays)]"
+    },
+    {
+      "code": "14E",
+      "name": "Foot powders and sprays",
+      "group": "Skin care preparations, (creams, lotions, powder, and sprays)",
+      "parent": "14",
+      "selectable": true,
+      "display_name": "Foot powders and sprays [Skin care preparations, (creams, lotions, powder, and sprays)]"
+    },
+    {
+      "code": "14F",
+      "name": "Moisturizing",
+      "group": "Skin care preparations, (creams, lotions, powder, and sprays)",
+      "parent": "14",
+      "selectable": true,
+      "display_name": "Moisturizing [Skin care preparations, (creams, lotions, powder, and sprays)]"
+    },
+    {
+      "code": "14G",
+      "name": "Night",
+      "group": "Skin care preparations, (creams, lotions, powder, and sprays)",
+      "parent": "14",
+      "selectable": true,
+      "display_name": "Night [Skin care preparations, (creams, lotions, powder, and sprays)]"
+    },
+    {
+      "code": "14H",
+      "name": "Paste masks (mud packs)",
+      "group": "Skin care preparations, (creams, lotions, powder, and sprays)",
+      "parent": "14",
+      "selectable": true,
+      "display_name": "Paste masks (mud packs) [Skin care preparations, (creams, lotions, powder, and sprays)]"
+    },
+    {
+      "code": "14I",
+      "name": "Skin fresheners",
+      "group": "Skin care preparations, (creams, lotions, powder, and sprays)",
+      "parent": "14",
+      "selectable": true,
+      "display_name": "Skin fresheners [Skin care preparations, (creams, lotions, powder, and sprays)]"
+    },
+    {
+      "code": "14J",
+      "name": "Other skin care preparations",
+      "group": "Skin care preparations, (creams, lotions, powder, and sprays)",
+      "parent": "14",
+      "selectable": false,
+      "display_name": "Other skin care preparations [Skin care preparations, (creams, lotions, powder, and sprays)]"
+    },
+    {
+      "code": "14J1",
+      "name": "Leave-on",
+      "group": "Skin care preparations, (creams, lotions, powder, and sprays)",
+      "parent": "14J",
+      "selectable": true,
+      "display_name": "Other skin care preparations, leave-on [Skin care preparations, (creams, lotions, powder, and sprays)]"
+    },
+    {
+      "code": "14J2",
+      "name": "Rinse-off",
+      "group": "Skin care preparations, (creams, lotions, powder, and sprays)",
+      "parent": "14J",
+      "selectable": true,
+      "display_name": "Other skin care preparations, rinse-off [Skin care preparations, (creams, lotions, powder, and sprays)]"
+    },
+    {
+      "code": "15",
+      "name": "Suntan preparations",
+      "group": "Suntan preparations",
+      "parent": null,
+      "selectable": false,
+      "display_name": "Suntan preparations"
+    },
+    {
+      "code": "15A",
+      "name": "Suntan gels, creams, and liquids",
+      "group": "Suntan preparations",
+      "parent": "15",
+      "selectable": true,
+      "display_name": "Suntan gels, creams, and liquids [Suntan preparations]"
+    },
+    {
+      "code": "15B",
+      "name": "Indoor tanning preparations",
+      "group": "Suntan preparations",
+      "parent": "15",
+      "selectable": false,
+      "display_name": "Indoor tanning preparations [Suntan preparations]"
+    },
+    {
+      "code": "15B1",
+      "name": "Traditional applications (creams, lotions, etc.)",
+      "group": "Suntan preparations",
+      "parent": "15B",
+      "selectable": true,
+      "display_name": "Indoor tanning preparations, traditional applications (creams, lotions, etc.) [Suntan preparations]"
+    },
+    {
+      "code": "15B2",
+      "name": "Airbrush applications",
+      "group": "Suntan preparations",
+      "parent": "15B",
+      "selectable": true,
+      "display_name": "Indoor tanning preparations, airbrush applications [Suntan preparations]"
+    },
+    {
+      "code": "15B3",
+      "name": "Spray applications",
+      "group": "Suntan preparations",
+      "parent": "15B",
+      "selectable": true,
+      "display_name": "Indoor tanning preparations, spray applications [Suntan preparations]"
+    },
+    {
+      "code": "15B4",
+      "name": "Professional airbrush tanning applications",
+      "group": "Suntan preparations",
+      "parent": "15B",
+      "selectable": true,
+      "display_name": "Indoor tanning preparations, professional airbrush tanning applications [Suntan preparations]"
+    },
+    {
+      "code": "15B5",
+      "name": "Professional spray tanning applications",
+      "group": "Suntan preparations",
+      "parent": "15B",
+      "selectable": true,
+      "display_name": "Indoor tanning preparations, professional spray tanning applications [Suntan preparations]"
+    },
+    {
+      "code": "15C",
+      "name": "Other suntan preparations",
+      "group": "Suntan preparations",
+      "parent": "15",
+      "selectable": true,
+      "display_name": "Other suntan preparations [Suntan preparations]"
+    },
+    {
+      "code": "16",
+      "name": "Tattoo preparations",
+      "group": "Tattoo preparations",
+      "parent": null,
+      "selectable": false,
+      "display_name": "Tattoo preparations"
+    },
+    {
+      "code": "16A",
+      "name": "Permanent tattoo inks",
+      "group": "Tattoo preparations",
+      "parent": "16",
+      "selectable": true,
+      "display_name": "Permanent tattoo inks [Tattoo preparations]"
+    },
+    {
+      "code": "16B",
+      "name": "Temporary tattoo inks",
+      "group": "Tattoo preparations",
+      "parent": "16",
+      "selectable": true,
+      "display_name": "Temporary tattoo inks [Tattoo preparations]"
+    },
+    {
+      "code": "16C",
+      "name": "Other tattoo preparations",
+      "group": "Tattoo preparations",
+      "parent": "16",
+      "selectable": true,
+      "display_name": "Other tattoo preparations [Tattoo preparations]"
+    },
+    {
+      "code": "17",
+      "name": "Other preparations (i.e., those preparations that do not fit another category)",
+      "group": "Other preparations (i.e., those preparations that do not fit another category)",
+      "parent": null,
+      "selectable": true,
+      "display_name": "Other preparations (i.e., those preparations that do not fit another category)"
+    }
+  ]
+}

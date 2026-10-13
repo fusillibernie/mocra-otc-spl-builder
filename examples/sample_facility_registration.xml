@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="https://www.accessdata.fda.gov/spl/stylesheet/spl.xsl" type="text/xsl"?>
+<document xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 https://www.accessdata.fda.gov/spl/schema/spl.xsd">
+  <id root="a42b7121-9ba0-4c16-9902-1c5943450990" />
+  <code code="103573-2" codeSystem="2.16.840.1.113883.6.1" displayName="Cosmetic Facility Registration" />
+  <effectiveTime value="20261013" />
+  <setId root="c9a8540a-0ee9-4043-83b8-8794d85a8d87" />
+  <versionNumber value="1" />
+  <author>
+    <time />
+    <assignedEntity>
+      <representedOrganization>
+        <assignedEntity>
+          <assignedOrganization>
+            <assignedEntity>
+              <assignedOrganization>
+                <id extension="1234567890" root="2.16.840.1.113883.4.82" />
+                <name>Atelier de Grasse</name>
+                <addr>
+                  <streetAddressLine>1 Route de Nice</streetAddressLine>
+                  <city>Grasse</city>
+                  <postalCode>06130</postalCode>
+                  <country code="FRA" codeSystem="1.0.3166.1.2.3">France</country>
+                </addr>
+                <contactParty>
+                  <telecom value="tel:+33-4-93-00-00-00" />
+                  <telecom value="mailto:contact@atelier.example" />
+                  <contactPerson>
+                    <name>Camille Martin</name>
+                  </contactPerson>
+                </contactParty>
+                <assignedEntity>
+                  <assignedOrganization>
+                    <name>US Reps Co</name>
+                    <telecom value="tel:+1-800-555-1212" />
+                    <telecom value="mailto:agent@usreps.example" />
+                  </assignedOrganization>
+                  <performance>
+                    <actDefinition>
+                      <code code="C73330" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="United States agent" />
+                    </actDefinition>
+                  </performance>
+                </assignedEntity>
+              </assignedOrganization>
+            </assignedEntity>
+          </assignedOrganization>
+        </assignedEntity>
+      </representedOrganization>
+    </assignedEntity>
+  </author>
+  <legalAuthenticator>
+    <noteText>The data and information in this submission have been reviewed and, to the best of my knowledge, are certified to be true and accurate. I agree to report changes to this information and renew as required under section 607 of the Federal Food, Drug, and Cosmetic Act.</noteText>
+    <time value="20261013" />
+    <signatureText mediaType="text/plain">P. Example</signatureText>
+    <assignedEntity>
+      <assignedPerson>
+        <name>Pat Example</name>
+      </assignedPerson>
+      <representedOrganization />
+    </assignedEntity>
+  </legalAuthenticator>
+  <component>
+    <structuredBody>
+      <component>
+        <section>
+          <id root="4137abb5-da49-4892-b7fd-1dd2714cbf6c" />
+          <code code="48780-1" codeSystem="2.16.840.1.113883.6.1" displayName="SPL product data elements section" />
+          <effectiveTime value="20261013" />
+          <subject>
+            <manufacturedProduct>
+              <manufacturedProduct>
+                <name>Moon Dust Eau de Parfum</name>
+                <asSpecializedKind classCode="GEN">
+                  <generalizedMaterialKind>
+                    <code code="05B" codeSystem="2.16.840.1.113883.6.303" displayName="Perfumes [Fragrance preparations]" />
+                  </generalizedMaterialKind>
+                </asSpecializedKind>
+              </manufacturedProduct>
+              <manufacturerOrganization>
+                <name>Our Brand LLC</name>
+              </manufacturerOrganization>
+            </manufacturedProduct>
+          </subject>
+        </section>
+      </component>
+    </structuredBody>
+  </component>
+</document>

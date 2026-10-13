@@ -1,0 +1,27 @@
+[project]
+name = "mocra-otc-spl-builder"
+version = "0.0.1"
+description = "Builds and validates FDA SPL for our own brands: MoCRA cosmetic facility registration and product listing, OTC drug listing"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+# Ingredient lists from finished-product QQs (ingredients.py)
+core = ["fragrance-reg-core @ git+https://github.com/fusillibernie/fragrance-reg-core@v0.5.3"]
+# Check generated XML against FDA's SPL schema (schema.py)
+schema = ["lxml>=5"]
+dev = ["pytest>=7.4.0", "lxml>=5"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mocra_otc_spl_builder"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
