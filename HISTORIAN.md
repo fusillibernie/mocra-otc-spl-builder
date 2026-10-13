@@ -33,3 +33,15 @@ FDA SPL Implementation Guide (Dec 2023, `sources/spl_ig_vp_dec_2023.pdf`). 31 te
 - No category list or schema yet. The guide contradicts itself on the category code system;
   we follow the validation rule (6.303) over the examples (6.345). README lists the open questions.
 - Test fixtures use a PLACEHOLDER category; the guide's example 01B is baby lotions.
+
+## 2026-10-13: Cosmetic facility registration SPL
+
+**What:** `facility_registration.py` validates and builds all five IG chapter 35 document types.
+Shared XML pieces moved to `spl_xml.py`; `ListingNotValid` is now an alias of `SplNotValid`.
+43 tests.
+
+**Decisions:**
+- One facility per document (IG 35.1.4.1). A US agent is required outside the US and refused
+  inside it (IG 35.1.5.1, 35.1.5.3).
+- Renewals need `last_submitted` so the 2-year rule (IG 35.1.1.6) can be checked locally.
+- The leave-on/rinse-off category rule is not applied to registrations; the guide exempts them.

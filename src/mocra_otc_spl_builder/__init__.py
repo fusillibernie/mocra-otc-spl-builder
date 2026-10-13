@@ -1,11 +1,20 @@
 """FDA SPL builder for MoCRA cosmetic registration/listing and OTC drug listing (own brands)."""
 
 from .completeness import Finding, check_otc_product
-from .cosmetic_spl import ListingNotValid, SplFile, build_cosmetic_listing
+from .cosmetic_spl import ListingNotValid, build_cosmetic_listing
+from .spl_xml import SplFile, SplNotValid
 from .cosmetic_validation import validate_cosmetic_listing
+from .facility_registration import build_facility_registration, validate_facility_registration
 from .models import (
     ActiveIngredient,
     Address,
+    AuthorizedAgent,
+    ContactParty,
+    FacilityRegistration,
+    RegisteredFacility,
+    RegisteredProduct,
+    RegistrationType,
+    USAgent,
     BusinessType,
     Category,
     CosmeticListing,
@@ -23,6 +32,15 @@ __version__ = "0.0.1"
 __all__ = [
     "ActiveIngredient",
     "Address",
+    "AuthorizedAgent",
+    "ContactParty",
+    "FacilityRegistration",
+    "RegisteredFacility",
+    "RegisteredProduct",
+    "RegistrationType",
+    "USAgent",
+    "build_facility_registration",
+    "validate_facility_registration",
     "BusinessType",
     "Category",
     "CosmeticListing",
@@ -36,6 +54,7 @@ __all__ = [
     "ResponsiblePerson",
     "Signer",
     "SplFile",
+    "SplNotValid",
     "build_cosmetic_listing",
     "check_otc_product",
     "validate_cosmetic_listing",

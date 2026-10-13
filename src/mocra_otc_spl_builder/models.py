@@ -1,6 +1,7 @@
 """What we know about a product before it becomes SPL. Empty strings mean "not known yet"."""
 
 from dataclasses import dataclass, field
+from datetime import date
 from enum import Enum
 
 
@@ -12,6 +13,16 @@ class Address:
     country_name: str
     state: str = ""  # 2-letter, required for USA (IG 2.1.6.4)
     postal_code: str = ""
+
+
+@dataclass
+class ContactParty:
+    """IG 2.1.8. Phone and email are required for a facility contact (IG 2.1.7.1)."""
+
+    phone: str = ""
+    email: str = ""
+    person_name: str = ""
+    address: Address | None = None
 
 
 class BusinessType(Enum):
@@ -95,6 +106,68 @@ class CosmeticListing:
     # For an update, the set id and next version number of the earlier listing (IG 36.1.1.4).
     set_id: str = ""
     version: int = 1
+
+
+class RegistrationType(Enum):
+    INITIAL = "initial"  # 103573-2
+    AMENDMENT = "amendment"  # X8888-1
+    BIENNIAL_RENEWAL = "biennial_renewal"  # X8888-4, renewal with facility details
+    ABBREVIATED_RENEWAL = "abbreviated_renewal"  # X8888-2, renewal with no changes
+    CANCELLATION = "cancellation"  # X8888-3
+
+
+@dataclass
+class USAgent:
+    """Required for a facility outside the US (IG 35.1.5)."""
+
+    name: str
+    phone: str  # US number, +1-aaa-bbb-cccc
+    email: str
+
+
+@dataclass
+class AuthorizedAgent:
+    """Optional additional contact, e.g. the company registering on the facility's behalf (IG 35.1.2)."""
+
+    name: str
+    duns: str = ""
+    contact: ContactParty | None = None
+
+
+@dataclass
+class RegisteredFacility:
+    name: str
+    fei: str  # 7 or 10 digits (IG 35.1.4.4)
+    address: Address
+    contact: ContactParty  # IG 35.1.4.8
+    duns: str = ""
+    us_agent: USAgent | None = None
+    parent_company: str = ""
+    small_business: bool = False
+
+
+@dataclass
+class RegisteredProduct:
+    """A product made or processed at the facility, as reported in the registration (IG 35.2)."""
+
+    name: str  # brand name under which it is sold
+    categories: list[Category]
+    responsible_person: str  # organization name (IG 35.2.3)
+    listing_number: str = ""
+
+
+@dataclass
+class FacilityRegistration:
+    registration_type: RegistrationType
+    facility: RegisteredFacility | None  # none for abbreviated renewal / cancellation
+    products: list[RegisteredProduct] = field(default_factory=list)
+    authorized_agent: AuthorizedAgent | None = None
+    signer: Signer | None = None
+    # For anything but an initial registration: the earlier registration's set id (IG 35.1.1.4).
+    set_id: str = ""
+    version: int = 1
+    # Date of the last registration document of any kind, to check the 2-year renewal rule (IG 35.1.1.6).
+    last_submitted: date | None = None
 
 
 @dataclass

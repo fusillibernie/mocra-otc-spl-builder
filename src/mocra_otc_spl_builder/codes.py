@@ -14,6 +14,12 @@ SCHEMA_LOCATION = "urn:hl7-org:v3 https://www.accessdata.fda.gov/spl/schema/spl.
 LOINC = "2.16.840.1.113883.6.1"
 DOC_COSMETIC_LISTING = ("103572-4", "Cosmetic Product Listing")  # IG 36, Table 10
 DOC_COSMETIC_UPDATE = ("X8888-5", "Cosmetic – Update")  # IG 36, Table 10
+# Facility registration document types (IG 35, Table 9)
+DOC_FACILITY_REGISTRATION = ("103573-2", "Cosmetic Facility Registration")
+DOC_FACILITY_AMENDMENT = ("X8888-1", "Cosmetic Facility Registration - Amendment")
+DOC_FACILITY_ABBREVIATED_RENEWAL = ("X8888-2", "Cosmetic Facility Registration - Abbreviated Renewal")
+DOC_FACILITY_CANCELLATION = ("X8888-3", "Cosmetic Facility Registration - Cancellation")
+DOC_FACILITY_BIENNIAL_RENEWAL = ("X8888-4", "Cosmetic Facility Registration - Biennial Renewal")
 SECTION_PRODUCT_DATA = ("48780-1", "SPL product data elements section")  # IG 2.2 examples, 3.1
 
 # Identifiers
@@ -37,6 +43,7 @@ BUSINESS_TYPE_CODES = {
     "pack": "C84731",
     "distribute": "C201565",
 }
+US_AGENT = ("C73330", "United States agent")  # IG 35.1.5
 
 # Characteristics (IG 3.4.8, 3.4.9, 35.1.7)
 SPL_CHARACTERISTIC = "2.16.840.1.113883.1.11.19255"
@@ -44,7 +51,13 @@ SMALL_BUSINESS = "SPLSMALLBUSINESS"
 PROFESSIONAL_USE = "SPLPROFESSIONALUSE"
 LABEL_IMAGE = "SPLIMAGE"
 
-# Signing statement, word for word (IG 36.1.7.2)
+# Signing statements, word for word (IG 36.1.7.2 listing, 35.1.3.2 facility registration)
+SIGNING_STATEMENT_REGISTRATION = (
+    "The data and information in this submission have been reviewed and, to the best of my "
+    "knowledge, are certified to be true and accurate. I agree to report changes to this "
+    "information and renew as required under section 607 of the Federal Food, Drug, and "
+    "Cosmetic Act."
+)
 SIGNING_STATEMENT = (
     "The data and information in this submission have been reviewed and, to the best of my "
     "knowledge, are certified to be true and accurate. I agree to report changes to this "

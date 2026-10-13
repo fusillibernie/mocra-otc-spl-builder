@@ -51,11 +51,15 @@ def _responsible_person(listing: CosmeticListing) -> list[Finding]:
     findings = []
     if not rp.name:
         findings.append(Finding("responsible_person.name", "the responsible person has a name (IG 36.1.2.2)"))
-    if not (US_PHONE.match(rp.phone) or (not rp.phone.startswith("+1-") and INTL_PHONE.match(rp.phone))):
+    if not _phone_ok(rp.phone):
         findings.append(Finding("responsible_person.phone", f"'{rp.phone}' is not +1-aaa-bbb-cccc or another +country format (IG 2.1.7.3 to 2.1.7.10)"))
     if rp.duns and not re.fullmatch(r"\d{9}", rp.duns):
         findings.append(Finding("responsible_person.duns", "a DUNS number has 9 digits (IG 2.1.5.2)"))
     return findings
+
+
+def _phone_ok(phone: str) -> bool:
+    return bool(US_PHONE.match(phone) or (not phone.startswith("+1-") and INTL_PHONE.match(phone)))
 
 
 def _product(where: str, p: CosmeticProduct) -> list[Finding]:

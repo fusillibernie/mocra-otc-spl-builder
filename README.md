@@ -23,9 +23,15 @@ Agents help with steps 1, 2 and with reading FDA error acknowledgments. They nev
 
 ## Status
 
-- **Phase 1: cosmetics.** Product listing SPL (initial and update) builds and is checked
-  against the guide's chapter 36 rules (`cosmetic_validation.py`, every finding cites its
-  rule). Facility registration (chapter 35) is next. See `examples/sample_cosmetic_listing.xml`.
+- **Phase 1: cosmetics.** Both MoCRA submissions build, each checked first against the
+  guide's rules (every finding cites its rule number):
+  - facility registration, chapter 35 (`facility_registration.py`): initial, amendment,
+    biennial renewal, abbreviated renewal, cancellation. `examples/sample_facility_registration.xml`
+  - product listing, chapter 36 (`cosmetic_spl.py`, `cosmetic_validation.py`): initial and
+    update. `examples/sample_cosmetic_listing.xml`
+
+  Order in practice: register each facility first (FDA's registration number and the FEI
+  come from that), then list products against those facilities.
 - **Phase 2: ESG NextGen API** submission and acknowledgments.
 - **Phase 3: OTC.** Priority monographs, modeled on Church & Dwight's OTC lines: M019
   antiperspirant, M021 anticaries, M006 topical acne, M020 sunscreen, M003 first aid antiseptic.
@@ -49,7 +55,8 @@ spl = build_cosmetic_listing(CosmeticListing(
 open(spl.filename, "w").write(spl.xml)   # file name is the document id (IG 2.1.2.6)
 ```
 
-An invalid listing raises `ListingNotValid` with every finding; nothing is built from a guess.
+An invalid listing or registration raises `SplNotValid` with every finding; nothing is built
+from a guess. Registration works the same way with `build_facility_registration(FacilityRegistration(...))`.
 
 ## Open questions (resolve before the first real submission)
 
@@ -60,6 +67,10 @@ An invalid listing raises `ListingNotValid` with every finding; nothing is built
 2. **Category list.** Not in the guide; needs FDA's SPL terminology file.
 3. **Schema check.** Element order follows the guide's examples but has not been validated
    against `spl.xsd` (fda.gov is blocked from the build environment).
+5. **Abbreviated renewal / cancellation header.** The guide says these carry no facility
+   details and identify the registration by set id; we send an empty author organization.
+   Confirm FDA accepts that.
+6. **US agent without email.** The guide says to give "N/A"; we send it as `mailto:N/A`.
 4. **First listing, product code.** For a product with no listing number yet we omit the
    product `<code>`; the facility link uses an empty `<code/>` as the guide says the schema
    requires. Confirm the product element is accepted without it.
