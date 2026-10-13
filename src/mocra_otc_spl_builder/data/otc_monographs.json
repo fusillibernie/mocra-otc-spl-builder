@@ -1,8 +1,55 @@
 {
   "metadata": {
     "verified": false,
-    "source": "OTC Monographs@FDA (final administrative orders under FD&C Act §505G)",
-    "note": "Add only monographs our products use. Copy each limit from the order, cite the section, then set verified: true."
+    "source": "OTC Monographs@FDA, https://www.accessdata.fda.gov/scripts/cder/omuf",
+    "note": "Priority list modeled on Church & Dwight's OTC lines (reference only). IDs and titles confirmed from FDA order titles; active ingredients and limits are NOT entered yet. Copy each from the order with the section cited, then set that monograph's verified: true.",
+    "not_yet_identified": [
+      {"category": "Consumer antiseptic hand rub (hand sanitizer)", "reference_brands": ["Touchland"], "note": "Find which monograph or order covers it; do not assume M003 (first aid antiseptic)."},
+      {"category": "Oral pain relief (benzocaine)", "reference_brands": ["Orajel"], "note": "Find the governing monograph/order."},
+      {"category": "Anorectal", "reference_brands": ["Anusol"], "note": "Find the governing monograph/order."}
+    ]
   },
-  "monographs": []
+  "monographs": [
+    {
+      "id": "M019",
+      "title": "Antiperspirant Drug Products for Over-the-Counter Human Use",
+      "order": "https://www.accessdata.fda.gov/drugsatfda_docs/omuf/Order/Final%20Administrative%20Order%20OTC000015_M019-Antiperspirant%20Drug%20Products%20for%20OTC%20Human%20Use.pdf",
+      "reference_brands": ["Arrid", "Arm & Hammer antiperspirant"],
+      "active_ingredients": [],
+      "verified": false
+    },
+    {
+      "id": "M021",
+      "title": "Anticaries Drug Products for Over-the-Counter Human Use",
+      "order": "https://www.accessdata.fda.gov/drugsatfda_docs/omuf/Order/Final%20Administrative%20Order%20OTC000034_M021-Anticaries%20Drug%20Products%20for%20OTC%20Human%20Use.pdf",
+      "reference_brands": ["Arm & Hammer toothpaste", "TheraBreath fluoride rinse"],
+      "active_ingredients": [],
+      "verified": false
+    },
+    {
+      "id": "M006",
+      "title": "Topical Acne Drug Products for Over-the-Counter Human Use",
+      "order": "https://www.accessdata.fda.gov/drugsatfda_docs/omuf/Order/Final%20Administrative%20Order%20OTC000013_M006-Topical%20Acne%20drug%20products%20for%20OTC%20Human%20Use.pdf",
+      "reference_brands": ["Hero Cosmetics (medicated acne products)"],
+      "active_ingredients": [],
+      "verified": false
+    },
+    {
+      "id": "M020",
+      "title": "Sunscreen Drug Products for Over-the-Counter Human Use",
+      "order": "https://www.accessdata.fda.gov/drugsatfda_docs/omuf/order/supportDoc/OTC000039/Final_Administrative_Order.pdf",
+      "note": "OTC000039 (June 10, 2026) amends M020 to add bemotrizinol up to 6%. Load the base monograph plus every amending order.",
+      "reference_brands": [],
+      "active_ingredients": [],
+      "verified": false
+    },
+    {
+      "id": "M003",
+      "title": "First Aid Antiseptic Drug Products for Over-the-Counter Human Use",
+      "order": "https://www.accessdata.fda.gov/drugsatfda_docs/omuf/monographs/OTC%20Monograph_M003-First%20Aid%20Antiseptic%20products%20for%20OTC%20Human%20Use.pdf",
+      "reference_brands": [],
+      "active_ingredients": [],
+      "verified": false
+    }
+  ]
 }

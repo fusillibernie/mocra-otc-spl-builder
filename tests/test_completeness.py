@@ -70,9 +70,14 @@ def test_otc_needs_labeler_code_and_active_details():
     assert fields(check_otc_product(product, data)) == {"labeler_code", "active_ingredients[0]"}
 
 
-def test_packaged_monograph_table_starts_empty_and_unverified():
+def test_packaged_monographs_stay_unverified_until_limits_are_entered():
     from mocra_otc_spl_builder.completeness import load_monographs
 
     data = load_monographs()
     assert data["metadata"]["verified"] is False
-    assert data["monographs"] == []
+    for m in data["monographs"]:
+        assert m["verified"] is False or m["active_ingredients"], m["id"]
+
+
+def test_packaged_unverified_monograph_blocks_listing():
+    assert "not yet verified" in check_otc_product(_otc())[0].message

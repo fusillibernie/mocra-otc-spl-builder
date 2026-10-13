@@ -23,7 +23,14 @@ Agents help with steps 1, 2 and with reading FDA error acknowledgments. They nev
 
 ## Status
 
-Skeleton only. Phase 1 is cosmetic product listing SPL. See `sources/README.md` for the FDA
+Skeleton only.
+
+- **Phase 1: cosmetics.** Facility registration and product listing SPL, validated locally.
+- **Phase 2: ESG NextGen API** submission and acknowledgments.
+- **Phase 3: OTC.** Priority monographs, modeled on Church & Dwight's OTC lines: M019
+  antiperspirant, M021 anticaries, M006 topical acne, M020 sunscreen, M003 first aid antiseptic.
+  Hand sanitizer, oral pain and anorectal still need their governing monograph identified
+  (`data/otc_monographs.json`). See `sources/README.md` for the FDA
 documents that must be downloaded before any XML code is written. No SPL code values
 (LOINC section codes, document type codes, OIDs) are to be typed from memory.
 

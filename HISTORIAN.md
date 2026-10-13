@@ -13,3 +13,9 @@ FDA also accepts SPL over ESG NextGen, which has an API for submit/status/acknow
 - A person signs off every submission. Agents prepare and explain, never submit.
 - OTC monographs: only the ones our products use, as data with `verified: false` until
   checked against the monograph order. Not a full monograph engine.
+
+## 2026-10-13: Priorities
+
+Cosmetics first. OTC monograph table seeded with five IDs/titles confirmed from FDA order titles,
+prioritized by Church & Dwight's OTC lines (reference only). No limits entered; every entry stays
+`verified: false` and blocks a listing until the order is read and its section cited.
