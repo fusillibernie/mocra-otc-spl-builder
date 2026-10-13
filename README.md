@@ -67,13 +67,13 @@ from a guess. Registration works the same way with `build_facility_registration(
 2. **Category list.** Not in the guide; needs FDA's SPL terminology file.
 3. **Schema check.** Element order follows the guide's examples but has not been validated
    against `spl.xsd` (fda.gov is blocked from the build environment).
+4. **First listing, product code.** For a product with no listing number yet we omit the
+   product `<code>`; the facility link uses an empty `<code/>` as the guide says the schema
+   requires. Confirm the product element is accepted without it.
 5. **Abbreviated renewal / cancellation header.** The guide says these carry no facility
    details and identify the registration by set id; we send an empty author organization.
    Confirm FDA accepts that.
 6. **US agent without email.** The guide says to give "N/A"; we send it as `mailto:N/A`.
-4. **First listing, product code.** For a product with no listing number yet we omit the
-   product `<code>`; the facility link uses an empty `<code/>` as the guide says the schema
-   requires. Confirm the product element is accepted without it.
 
 ## Tests
 
