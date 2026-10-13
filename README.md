@@ -36,7 +36,11 @@ Agents help with steps 1, 2 and with reading FDA error acknowledgments. They nev
 
   Order in practice: register each facility first (FDA's registration number and the FEI
   come from that), then list products against those facilities.
-- **Phase 2: ESG NextGen API** submission and acknowledgments.
+- **Phase 2: ESG NextGen API** (`esg.py`, built from the API Specification v1.2 and API
+  Guide v1.2.1). Packages the SPL and its label images into one zip, gets a token and
+  temporary credentials, uploads, submits with the SHA-256, then reads status and ACKs.
+  Test submissions by default; production needs an `Approval` naming the person and the exact
+  file's SHA-256. Not yet run against FDA: needs a USP account and API keys (see below).
 - **Phase 3: OTC.** Priority monographs, modeled on Church & Dwight's OTC lines: M019
   antiperspirant, M021 anticaries, M006 topical acne, M020 sunscreen, M003 first aid antiseptic.
   Hand sanitizer, oral pain and anorectal still need their governing monograph identified
@@ -62,6 +66,25 @@ open(spl.filename, "w").write(spl.xml)   # file name is the document id (IG 2.1.
 An invalid listing or registration raises `SplNotValid` with every finding; nothing is built
 from a guess. Registration works the same way with `build_facility_registration(FacilityRegistration(...))`.
 
+## Sending to FDA
+
+```python
+from mocra_otc_spl_builder.esg import Approval, EsgClient, EsgConfig, package_spl
+
+pkg = package_spl(spl, image_dir="labels/")
+client = EsgClient(EsgConfig.from_env())        # ESG_CLIENT_ID, ESG_CLIENT_SECRET, ESG_USER_EMAIL,
+                                                # ESG_FDA_CENTER, ESG_SUBMISSION_TYPE
+receipt = client.submit(pkg, "Initial listing")  # test submission
+# production, after a person has reviewed this exact file:
+receipt = client.submit(pkg, "Initial listing", test=False,
+                        approval=Approval("Full Name", pkg.sha256))
+client.acknowledgements(receipt.core_id)         # ACK1 received, ACK2 at center, ACK3 center's answer
+```
+
+Before the first real use: a USP account on a business email (Gmail is refused), a
+non-repudiation letter, FDA's approval (1-3 weeks), then API keys from USP "API Management"
+(Power User only). Some center/submission types make new users send a test submission first.
+
 ## Open questions (resolve before the first real submission)
 
 1. **Category code system.** The guide's validation rule 3.4.3.2 says
@@ -82,6 +105,13 @@ from a guess. Registration works the same way with `build_facility_registration(
    details and identify the registration by set id; we send an empty author organization.
    Confirm FDA accepts that.
 6. **US agent without email.** The guide says to give "N/A"; we send it as `mailto:N/A`.
+7. **ESG routing values.** `fda_center` and `submission_type` for cosmetic SPL come from
+   FDA's "Center Submission Types" page; none of the documents we have list them. The ACK
+   samples route cosmetics to "HFP". The client refuses to send until both are set.
+8. **ESG package format.** We send one zip (XML plus .jpg labels). Confirm the center accepts
+   a zip for this submission type, and its size limit.
+9. **ESG header.** The spec's text says `Authorization: Bearer`, its curl examples use
+   `accesstoken`; we send both.
 
 ## Tests
 

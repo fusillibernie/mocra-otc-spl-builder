@@ -72,3 +72,19 @@ the list, codes that have subcategories (01D -> 01D1/01D2), and mismatched displ
 outside the 612(b) product types) are exempt from both registration and listing; get the FEI
 before registering (feiportal@fda.hhs.gov, 7-10 business days); an ESG account takes 1-3 weeks
 and needs a business email domain (not Gmail).
+
+## 2026-10-13: ESG NextGen API client
+
+**What:** `esg.py`: token (cached, 1 hour), company info, test/production credentials, payload,
+multipart upload, submit with SHA-256, status, acknowledgments. `package_spl` zips the XML with
+its .jpg labels (one file per submission, spec 2.2). Standard library only; tests use a fake
+FDA server that answers like the spec's examples. 60 tests.
+
+**Decisions:**
+- Test submission is the default. Production needs an `Approval(person, sha256)` that matches
+  the exact package, so a sign-off can't be reused for a different file.
+- `fda_center` / `submission_type` have no defaults; the client refuses to send without them.
+- Send both `Authorization: Bearer` and `accesstoken`, because the spec contradicts itself.
+- The secret never appears in `repr`.
+
+**Not done:** no run against FDA yet (no USP account; the user has no products to register yet).
