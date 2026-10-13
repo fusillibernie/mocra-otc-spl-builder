@@ -1,10 +1,10 @@
-"""Gaps that would stop a submission. Every gap is a Finding; nothing is filled in by guessing."""
+"""Gaps that would stop an OTC submission (cosmetics: see cosmetic_validation). Every gap is a Finding; nothing is filled in by guessing."""
 
 import json
 from dataclasses import dataclass
 from importlib import resources
 
-from .models import CosmeticProduct, Facility, OtcProduct
+from .models import Facility, OtcProduct
 
 
 @dataclass(frozen=True)
@@ -26,20 +26,6 @@ def _facility_findings(facilities: list[Facility]) -> list[Finding]:
         for i, f in enumerate(facilities)
         if not (f.fei or f.duns)
     ]
-
-
-def check_cosmetic_product(product: CosmeticProduct) -> list[Finding]:
-    findings = _facility_findings(product.facilities)
-    rp = product.responsible_person
-    if not (rp.name and rp.address):
-        findings.append(Finding("responsible_person", "name and address are required"))
-    if not product.category_codes:
-        findings.append(Finding("category_codes", "no cosmetic product category"))
-    if not product.ingredients:
-        findings.append(Finding("ingredients", "no ingredient list"))
-    if not product.label_files:
-        findings.append(Finding("label_files", "no label attached"))
-    return findings
 
 
 def check_otc_product(product: OtcProduct, monographs: dict | None = None) -> list[Finding]:

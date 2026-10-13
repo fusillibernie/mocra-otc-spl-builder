@@ -1,40 +1,10 @@
-from mocra_otc_spl_builder import (
-    ActiveIngredient,
-    CosmeticProduct,
-    Facility,
-    OtcProduct,
-    ResponsiblePerson,
-    check_cosmetic_product,
-    check_otc_product,
-)
+from mocra_otc_spl_builder import ActiveIngredient, Facility, OtcProduct, check_otc_product
 
-RP = ResponsiblePerson(name="Our Brand LLC", address="1 Main St, New York, NY 10001")
-PLANT = Facility(name="Contract Filler Inc", address="2 Plant Rd, NJ", fei="1234567890")
+PLANT = Facility(fei="1234567890")
 
 
 def fields(findings):
     return {f.field for f in findings}
-
-
-def test_complete_cosmetic_has_no_findings():
-    product = CosmeticProduct(
-        name="Eau de Parfum",
-        responsible_person=RP,
-        facilities=[PLANT],
-        category_codes=["placeholder"],
-        ingredients=["Alcohol Denat.", "Fragrance", "Water"],
-        label_files=["label.pdf"],
-    )
-    assert check_cosmetic_product(product) == []
-
-
-def test_cosmetic_gaps_are_reported_not_guessed():
-    product = CosmeticProduct(
-        name="EdP", responsible_person=ResponsiblePerson("", ""), facilities=[Facility("Plant", "addr")]
-    )
-    assert fields(check_cosmetic_product(product)) == {
-        "facilities[0]", "responsible_person", "category_codes", "ingredients", "label_files",
-    }
 
 
 def _otc(**kw):

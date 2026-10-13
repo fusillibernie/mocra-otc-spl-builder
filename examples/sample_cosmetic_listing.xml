@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="https://www.accessdata.fda.gov/spl/stylesheet/spl.xsl" type="text/xsl"?>
+<document xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 https://www.accessdata.fda.gov/spl/schema/spl.xsd">
+  <id root="0cbe6da8-3281-46a4-a8a5-151fc2e67578" />
+  <code code="103572-4" codeSystem="2.16.840.1.113883.6.1" displayName="Cosmetic Product Listing" />
+  <effectiveTime value="20261013" />
+  <setId root="ad84b272-d81c-4513-8ea4-3b28da23f44c" />
+  <versionNumber value="1" />
+  <author>
+    <time />
+    <assignedEntity>
+      <representedOrganization>
+        <name>Our Brand LLC</name>
+        <telecom value="tel:+1-212-555-0100" />
+        <assignedEntity>
+          <assignedOrganization>
+            <assignedEntity>
+              <assignedOrganization />
+              <performance>
+                <actDefinition>
+                  <code code="C201565" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="distribute" />
+                </actDefinition>
+              </performance>
+            </assignedEntity>
+            <assignedEntity>
+              <assignedOrganization>
+                <id extension="1234567" root="2.16.840.1.113883.4.82" />
+              </assignedOrganization>
+              <performance>
+                <actDefinition>
+                  <product>
+                    <manufacturedProduct classCode="MANU">
+                      <manufacturedMaterialKind>
+                        <code />
+                        <name>Moon Dust Eau de Parfum</name>
+                      </manufacturedMaterialKind>
+                    </manufacturedProduct>
+                  </product>
+                </actDefinition>
+              </performance>
+            </assignedEntity>
+            <assignedEntity>
+              <assignedOrganization>
+                <name>Small Pour Studio</name>
+                <addr>
+                  <streetAddressLine>123 Burl Road</streetAddressLine>
+                  <city>Brooklyn</city>
+                  <state>NY</state>
+                  <postalCode>11201</postalCode>
+                  <country code="USA" codeSystem="1.0.3166.1.2.3">USA</country>
+                </addr>
+              </assignedOrganization>
+              <subjectOf>
+                <characteristic classCode="OBS">
+                  <code code="SPLSMALLBUSINESS" codeSystem="2.16.840.1.113883.1.11.19255" />
+                  <value xsi:type="BL" value="true" />
+                </characteristic>
+              </subjectOf>
+              <performance>
+                <actDefinition>
+                  <product>
+                    <manufacturedProduct classCode="MANU">
+                      <manufacturedMaterialKind>
+                        <code />
+                        <name>Dusk Eau de Parfum</name>
+                      </manufacturedMaterialKind>
+                    </manufacturedProduct>
+                  </product>
+                </actDefinition>
+              </performance>
+            </assignedEntity>
+          </assignedOrganization>
+        </assignedEntity>
+      </representedOrganization>
+    </assignedEntity>
+  </author>
+  <legalAuthenticator>
+    <noteText>The data and information in this submission have been reviewed and, to the best of my knowledge, are certified to be true and accurate. I agree to report changes to this information as required under section 607 of the Federal Food, Drug, and Cosmetic Act.</noteText>
+    <time value="20261013" />
+    <signatureText mediaType="text/plain">P. Example</signatureText>
+    <assignedEntity>
+      <assignedPerson>
+        <name>Pat Example</name>
+      </assignedPerson>
+      <representedOrganization />
+    </assignedEntity>
+  </legalAuthenticator>
+  <component>
+    <structuredBody>
+      <component>
+        <section>
+          <id root="625c5739-7c18-4d40-98f1-dbf8ddb9f3e6" />
+          <code code="48780-1" codeSystem="2.16.840.1.113883.6.1" displayName="SPL product data elements section" />
+          <effectiveTime value="20261013" />
+          <subject>
+            <manufacturedProduct>
+              <manufacturedProduct>
+                <name>Moon Dust Eau de Parfum</name>
+                <asSpecializedKind classCode="GEN">
+                  <generalizedMaterialKind>
+                    <code code="PLACEHOLDER" codeSystem="2.16.840.1.113883.6.303" displayName="fragrance category from FDA's list" />
+                  </generalizedMaterialKind>
+                </asSpecializedKind>
+                <ingredient classCode="INGR">
+                  <ingredientSubstance>
+                    <name>Alcohol Denat.</name>
+                  </ingredientSubstance>
+                </ingredient>
+                <ingredient classCode="INGR">
+                  <ingredientSubstance>
+                    <name>Fragrance</name>
+                  </ingredientSubstance>
+                </ingredient>
+                <ingredient classCode="INGR">
+                  <ingredientSubstance>
+                    <name>Water</name>
+                  </ingredientSubstance>
+                </ingredient>
+                <ingredient classCode="INGR">
+                  <ingredientSubstance>
+                    <name>Linalool</name>
+                  </ingredientSubstance>
+                </ingredient>
+              </manufacturedProduct>
+              <subjectOf>
+                <characteristic>
+                  <code code="SPLIMAGE" codeSystem="2.16.840.1.113883.1.11.19255" />
+                  <value xsi:type="ED" mediaType="image/jpeg">
+                    <reference value="moon-dust-front.jpg" />
+                  </value>
+                </characteristic>
+              </subjectOf>
+            </manufacturedProduct>
+          </subject>
+          <subject>
+            <manufacturedProduct>
+              <manufacturedProduct>
+                <name>Dusk Eau de Parfum</name>
+                <asSpecializedKind classCode="GEN">
+                  <generalizedMaterialKind>
+                    <code code="PLACEHOLDER" codeSystem="2.16.840.1.113883.6.303" displayName="fragrance category from FDA's list" />
+                  </generalizedMaterialKind>
+                </asSpecializedKind>
+                <ingredient classCode="INGR">
+                  <ingredientSubstance>
+                    <name>Alcohol Denat.</name>
+                  </ingredientSubstance>
+                </ingredient>
+                <ingredient classCode="INGR">
+                  <ingredientSubstance>
+                    <name>Fragrance</name>
+                  </ingredientSubstance>
+                </ingredient>
+                <ingredient classCode="INGR">
+                  <ingredientSubstance>
+                    <name>Water</name>
+                  </ingredientSubstance>
+                </ingredient>
+                <ingredient classCode="INGR">
+                  <ingredientSubstance>
+                    <name>Linalool</name>
+                  </ingredientSubstance>
+                </ingredient>
+              </manufacturedProduct>
+            </manufacturedProduct>
+          </subject>
+        </section>
+      </component>
+    </structuredBody>
+  </component>
+</document>
