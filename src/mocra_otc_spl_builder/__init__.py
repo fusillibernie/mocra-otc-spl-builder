@@ -2,6 +2,7 @@
 
 from .categories import category
 from .completeness import Finding, check_otc_product
+from .cscp import CscpReport, ReportableList, cscp_report
 from .cosmetic_spl import ListingNotValid, build_cosmetic_listing
 from .preview import preview_html
 from .schema import schema_errors
@@ -48,6 +49,9 @@ __all__ = [
     "BusinessType",
     "Category",
     "CosmeticListing",
+    "CscpReport",
+    "ReportableList",
+    "cscp_report",
     "CosmeticProduct",
     "Facility",
     "Finding",

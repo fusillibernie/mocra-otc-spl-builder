@@ -112,3 +112,21 @@ CSS inlined, for the person signing off. lxml is the optional `[schema]` extra. 
 
 The stylesheet only renders product classification codes under 2.16.840.1.113883.6.303 (in its
 device/pesticide templates), mild support for our category code system choice; still to confirm.
+
+## 2026-10-14: State reporting (CSCP and VOC) lives here, not in fragrance-reg-core
+
+The user chose this repo: these are cosmetics and OTC filings. "CPSC allergens" meant California's
+CSCP (SB 312); no CPSC allergen report was found. VOC means all of CARB's personal fragrance survey, any
+general consumer-products survey, and aerosols including OTC antiperspirants.
+
+**Built:** `cscp.cscp_report` (allergens at or above 0.001% leave-on / 0.01% rinse-off via
+fragrance-reg-core, CSV data pack, blocking findings vs warnings), `data/cscp_rules.json` (unverified),
+`data/cscp_reportable_ingredients.json` (empty, awaiting importer). 86 tests.
+
+**Decisions:** output is a data pack, not a submission (CSCP is a portal, CARB's survey a downloadable
+tool). "At or above", not core's "exceeds". A report is never complete while the Reportable Ingredients
+List is unloaded. Calls core's private `_allergen_contributions` for now; ask core to expose it.
+
+**Not built:** VOC (needs CARB's regulation text and reporting tool), the CDPH list importer,
+deadlines. cdph.ca.gov and arb.ca.gov are blocked from here like fda.gov; all rules above are from
+search summaries and marked unverified. Plan: `docs/STATE_REPORTING.md`.

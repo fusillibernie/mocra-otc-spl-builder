@@ -1,0 +1,32 @@
+{
+  "metadata": {
+    "regulation": "California Fragrance and Flavor Ingredient Right to Know Act of 2020 (SB 312), Health & Safety Code 111792.6, on top of the California Safe Cosmetics Act",
+    "agency": "California Department of Public Health, California Safe Cosmetics Program (CSCP); reported through the CSCP web portal",
+    "last_updated": "2026-10-14",
+    "verified": false,
+    "verification_note": "NOT VERIFIED AGAINST THE OFFICIAL SOURCE. Entered from search-result summaries of CDPH's pages and law-firm alerts; cdph.ca.gov could not be reached from the build environment. Confirm every value against CDPH's SB 312 page, Compliance FAQ and fragrance allergens fact sheet before relying on a report.",
+    "sources": [
+      "https://www.cdph.ca.gov/Programs/CCDPHP/DEODC/OHB/CSCP/Pages/SB312.aspx",
+      "https://www.cdph.ca.gov/Programs/CCDPHP/DEODC/OHB/CSCP/Pages/Compliance-FAQ.aspx",
+      "https://faegredrinker.com/en/insights/publications/2020/10/california-ramps-up-chemical-bans-disclosure-obligations-for-personal-care-and-beauty-products",
+      "https://www.afslaw.com/perspectives/alerts/california-greatly-expands-list-cosmetics-fragrances-reportable-allergens"
+    ]
+  },
+  "allergens": {
+    "leave_on_percent": 0.001,
+    "rinse_off_percent": 0.01,
+    "comparison": "at_or_above",
+    "comparison_note": "CDPH says 'at or above'. EU labeling says 'exceeds', so a substance exactly at the threshold is reportable here but not labeled there.",
+    "reportable_regardless_of_function": true,
+    "list_flags": ["eu_26", "eu_82"],
+    "accepted_declaration_basis": ["eu_82"],
+    "list_note": "CDPH's fragrance allergen list appears to track the EU's expanded list (Regulation (EU) 2023/1545, 82 substances). Unconfirmed."
+  },
+  "other_fragrance_flavor_ingredients": {
+    "reportable_at_any_concentration": true,
+    "list": "CSCP Reportable Ingredients List (updated twice a year; 6 months to comply after each update). Not loaded: see cscp_reportable_ingredients.json."
+  },
+  "deadlines": {
+    "note": "A CDPH FAQ was reported to tie allergen reporting to the EU timelines (2026 for new products, 2028 for existing). Unconfirmed; may already be due for new products."
+  }
+}
