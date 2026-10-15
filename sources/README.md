@@ -23,3 +23,6 @@ Still needed:
 - [ ] Check FDA's SPL resources page for a guide newer than December 2023: https://www.fda.gov/industry/fda-resources-data-standards/structured-product-labeling-resources
 - [ ] CDPH CSCP Reportable Ingredients List, reporting instructions, fragrance allergens fact sheet (see `docs/STATE_REPORTING.md`)
 - [ ] CARB: Consumer Products Regulation (17 CCR 94500-94517), 2021 PFP amendments, PFP Reporting Tool and instructions, any survey notice
+
+Files here are kept current by `scripts/refresh_sources.py` (see `docs/STATE_REPORTING.md`): what it
+fetches is listed in `manifest.json`; what it has fetched, with hashes, in `fetched.json`.

@@ -125,6 +125,13 @@ non-repudiation letter, FDA's approval (1-3 weeks), then API keys from USP "API 
 9. **ESG header.** The spec's text says `Authorization: Bearer`, its curl examples use
    `accesstoken`; we send both.
 
+## Keeping the data current
+
+Regulations change (CARB amends its consumer products rules every few years; CDPH updates its list
+twice a year; FDA revises guides and routes). `.github/workflows/` runs on GitHub, because the dev
+sandbox can't reach these sites: a weekly page watcher and a monthly file refresher that opens a pull
+request with new or changed official files. See `docs/STATE_REPORTING.md`.
+
 ## Tests
 
 ```bash

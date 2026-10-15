@@ -3,6 +3,54 @@
 Written 2026-10-14. Everything marked **unconfirmed** comes from search-result summaries; cdph.ca.gov,
 arb.ca.gov and fda.gov are blocked from the build environment, so no primary page was read.
 
+## How the data gets pulled and stays current
+
+The development sandbox can't reach fda.gov, arb.ca.gov, cdph.ca.gov, ecfr.gov or federalregister.gov
+(its network policy rejects them), so nothing is pulled from there. GitHub's runners can, and git is
+the bridge back: files the runners fetch land in a pull request, and a session here can read them.
+
+| Job | When | Does | Result |
+|---|---|---|---|
+| `watch.yml` + `scripts/watch_sources.py` | Mondays | fetches the pages and APIs in `sources/watchlist.json` (CARB, CDPH and FDA pages, the Federal Register and eCFR APIs), reduces them to text, compares fingerprints | PR with the changed lines and what to re-check |
+| `refresh-sources.yml` + `scripts/refresh_sources.py` | 1st of each month, or on demand | downloads the files in `sources/manifest.json`; on `links` entries it crawls the index page, so a **new amendment, tool version or list update shows up as a new file** with no edit; checks each file is the real type (not a block page); records sha256; runs `build` importers for what changed; runs the tests | PR with the new files, the tests' result and a report |
+| `ci.yml` | every push and PR | tests (the core-dependent ones run only if a `CORE_DEPLOY_KEY` secret is set) | |
+
+Nothing merges itself and no data changes without a reviewed PR. Old versions stay in git history.
+
+To run one now: GitHub > Actions > "Refresh official source files" > Run workflow (optionally one
+manifest id, such as `carb-consumer-products`). One-time setting: Settings > Actions > General >
+"Allow GitHub Actions to create and approve pull requests".
+
+Importers are not written yet (`scripts/build_carb_voc_limits.py`, `scripts/build_cscp_list.py`): they
+need to see the real files. After the first refresh PR, read the files from its branch, write the
+importers against them, and from then on they re-run on every update. Until then the report says
+"importer not written yet".
+
+**Unproven:** none of the URLs has been fetched from a runner yet. Entries marked `confirmed: false` in
+the manifest were inferred; a 404 shows up under "Couldn't fetch". A site may also refuse automated
+requests (core found osha.gov and ifrafragrance.org return 403): those are reported, never worked
+around by pretending to be a browser.
+
+## What else can be pulled
+
+| Source | Fetched as | Feeds | In the pipeline |
+|---|---|---|---|
+| FDA SPL Implementation Guide (current) | file | `codes.py`, validation | yes |
+| FDA SPL schema, stylesheet, code lists | links crawl | `data/spl_schema`, `data/spl_stylesheet` | yes |
+| FDA cosmetics guidance and category list (Appendix A) | links crawl | `data/cosmetic_categories.json` | yes |
+| ESG NextGen API specification and guides | links crawl | `esg.py` | yes (URL inferred) |
+| FDA Center Submission Types page (the OC / SPL route) | page watch | `esg.py` | yes |
+| OTC monograph orders (M019, M021, M006, M020 amendment, M003) | files | `data/otc_monographs.json` | yes; base M020 order URL still needed |
+| New OTC orders, OMUFA fee notices, MoCRA rules | Federal Register API | monographs, validation | yes |
+| CARB regulation text, final regulation orders, category limits | links crawl | `data/carb_voc_limits.json` | yes; importer to write |
+| CARB PFP reporting tool and instructions, survey notices | links crawl | VOC data pack | yes |
+| CDPH Reportable Ingredients List, guidance, fact sheets | links crawl | `data/cscp_reportable_ingredients.json` | yes; importer to write |
+| eCFR: 21 CFR 701, 201.66; 40 CFR 51.100, 59 | dated XML and the versions API | labeling, VOC exemptions | yes (syntax inferred) |
+| FDA UNII list (active-ingredient UNIIs for OTC listings) | zip, large | OTC listing | not yet: too large to commit monthly; use workflow artifacts |
+| FDA NDC directory (labeler codes, duplicate checks) | zip, large | OTC listing | not yet, same reason |
+| EU CosIng (INCI names and CAS) | CSV export | ingredient-name checks | not yet |
+| OEHHA Prop 65 list | spreadsheet | core, not this repo | n/a |
+
 ## Where it lives
 
 Here, in the cosmetics/OTC repo, not in fragrance-reg-core: these are filings a cosmetics and OTC brand

@@ -130,3 +130,21 @@ List is unloaded. Calls core's private `_allergen_contributions` for now; ask co
 **Not built:** VOC (needs CARB's regulation text and reporting tool), the CDPH list importer,
 deadlines. cdph.ca.gov and arb.ca.gov are blocked from here like fda.gov; all rules above are from
 search summaries and marked unverified. Plan: `docs/STATE_REPORTING.md`.
+
+## 2026-10-15: Pulling official sources and keeping them current
+
+**Why not pull CARB from the dev session:** the sandbox's network policy rejects every government
+host (arb.ca.gov, cdph.ca.gov, fda.gov, ecfr.gov, federalregister.gov, govinfo, law.cornell.edu, EPA,
+even web.archive.org); only GitHub and PyPI are reachable. So GitHub Actions does the fetching and
+git carries the files back.
+
+**Built:** `scripts/refresh_sources.py` (file and link-crawl fetcher with content checks, sha256 state in
+`sources/fetched.json`, `{today}` URLs, importer hooks), `sources/manifest.json` (19 entries),
+`sources/watchlist.json` (17 pages and APIs), `scripts/watch_sources.py` (copied from core), three
+workflows (CI, weekly watch, monthly refresh). 110 tests, using a fake site.
+
+**Decisions:** nothing auto-merges; a failed or blocked fetch is reported, not worked around; large
+reference sets (UNII, NDC) are not committed monthly; unconfirmed URLs are flagged `confirmed: false`.
+
+**Unproven until the first run:** every URL, CARB/CDPH/FDA tolerance of automated requests, and the
+refresh workflow's push permissions.
