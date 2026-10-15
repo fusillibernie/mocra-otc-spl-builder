@@ -33,7 +33,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 from dataclasses import dataclass, field
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from html.parser import HTMLParser
 from pathlib import Path
 from typing import Callable
@@ -53,6 +53,10 @@ class FetchError(Exception):
     pass
 
 
+def _explain(error: Exception) -> str:
+    return str(error) if isinstance(error, FetchError) else f"unexpected {type(error).__name__}: {error}"
+
+
 def _tls_context():
     """Verify against the Mozilla CA bundle when certifi is installed; verification is never turned off."""
     try:
@@ -62,14 +66,109 @@ def _tls_context():
         return ssl.create_default_context()
 
 
-def urllib_opener(url: str) -> tuple[str, dict, bytes]:
+def snippet(body: bytes, limit: int = 160) -> str:
+    """The visible start of a response body, for error messages (tags and whitespace removed)."""
+    text = re.sub(r"<(script|style)[^>]*>.*?</\1>", " ", body[:4000].decode("utf-8", "replace"), flags=re.S | re.I)
+    return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", text)).strip()[:limit]
+
+
+def describe_http_error(code: int, headers, body: bytes) -> str:
+    server = headers.get("server") if headers else None
+    detail = snippet(body)
+    return f"HTTP {code}" + (f" (server: {server})" if server else "") + (f": {detail!r}" if detail else "")
+
+
+def _http_get(url: str, timeout: int = 30) -> bytes:
+    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+    with urllib.request.urlopen(req, timeout=timeout) as resp:  # plain HTTP is normal for certificate (AIA) URLs
+        return resp.read(1_000_000)
+
+
+_PEM = re.compile(r"-----BEGIN CERTIFICATE-----.+?-----END CERTIFICATE-----", re.S)
+_AIA = re.compile(r"CA Issuers - URI:(\S+)")
+
+
+def aia_issuer_uri(cert_text: str) -> str | None:
+    """The 'CA Issuers' URL from `openssl x509 -text` output: where the issuing certificate can be fetched."""
+    m = _AIA.search(cert_text)
+    return m.group(1) if m else None
+
+
+def chase_intermediates(host: str, run=subprocess.run, fetch=_http_get, max_depth: int = 3) -> list[str]:
+    """PEMs of the intermediate certificates a server failed to send, found the way browsers find them.
+
+    Some sites (cdph.ca.gov) send only their own certificate; browsers fetch the issuer from the
+    certificate's Authority Information Access URL, Python does not. The certificates fetched here are
+    only added as candidates: the chain must still verify up to a root in the standard CA bundle, and
+    verification is never switched off.
+    """
+    shown = run(["openssl", "s_client", "-connect", f"{host}:443", "-servername", host, "-showcerts"],
+                input="", capture_output=True, text=True, timeout=30).stdout
+    sent = _PEM.findall(shown)
+    if not sent:
+        return []
+    found, current = [], sent[0]
+    for _ in range(max_depth):
+        text = run(["openssl", "x509", "-noout", "-text"], input=current, capture_output=True, text=True).stdout
+        uri = aia_issuer_uri(text)
+        if not uri:
+            break
+        data = fetch(uri)
+        pems = _to_pems(data, run)
+        if not pems:
+            break
+        found += pems
+        current = pems[0]
+    return found
+
+
+def _to_pems(data: bytes, run) -> list[str]:
+    """Certificates in a fetched issuer file: PEM, DER, or a PKCS#7 bundle."""
+    text = data.decode("latin-1")
+    if "BEGIN CERTIFICATE" in text:
+        return _PEM.findall(text)
+    for cmd in (["openssl", "x509", "-inform", "DER", "-outform", "PEM"],
+                ["openssl", "pkcs7", "-inform", "DER", "-print_certs"]):
+        out = run(cmd, input=data, capture_output=True)
+        pems = _PEM.findall(out.stdout.decode("latin-1") if isinstance(out.stdout, bytes) else out.stdout)
+        if out.returncode == 0 and pems:
+            return pems
+    return []
+
+
+def _open(url: str, context) -> tuple[str, dict, bytes]:
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "*/*"})
+    with urllib.request.urlopen(req, timeout=60, context=context) as resp:
+        body = resp.read(MAX_BYTES + 1)
+        return resp.geturl(), {k.lower(): v for k, v in resp.headers.items()}, body
+
+
+def _missing_issuer(error: BaseException) -> bool:
+    reason = getattr(error, "reason", error)
+    return isinstance(reason, ssl.SSLCertVerificationError) and "unable to get local issuer" in str(reason)
+
+
+def urllib_opener(url: str) -> tuple[str, dict, bytes]:
     try:
-        with urllib.request.urlopen(req, timeout=60, context=_tls_context()) as resp:
-            body = resp.read(MAX_BYTES + 1)
-            return resp.geturl(), {k.lower(): v for k, v in resp.headers.items()}, body
+        try:
+            return _open(url, _tls_context())
+        except (urllib.error.URLError, ssl.SSLError) as e:
+            if isinstance(e, urllib.error.HTTPError) or not _missing_issuer(e):
+                raise
+            host = urllib.parse.urlparse(url).hostname
+            extra, context = [], None
+            try:
+                extra = chase_intermediates(host)
+                if extra:
+                    context = _tls_context()
+                    context.load_verify_locations(cadata="\n".join(extra))
+            except (OSError, ValueError, subprocess.SubprocessError, ssl.SSLError, urllib.error.URLError):
+                extra = []  # no openssl, nothing found, an unreadable certificate...: report the original error
+            if not extra:
+                raise
+            return _open(url, context)
     except urllib.error.HTTPError as e:
-        raise FetchError(f"HTTP {e.code}") from e
+        raise FetchError(describe_http_error(e.code, e.headers, e.read(4000))) from e
     except (urllib.error.URLError, TimeoutError, ssl.SSLError) as e:
         raise FetchError(f"{type(e).__name__}: {getattr(e, 'reason', e)}") from e
 
@@ -81,7 +180,8 @@ def check_content(name: str, body: bytes, headers: dict) -> None:
     if len(body) > MAX_BYTES:
         raise FetchError(f"larger than {MAX_BYTES // 1024 // 1024} MB")
     if not body:
-        raise FetchError("empty response")
+        seen = ", ".join(f"{k}={headers[k]}" for k in ("server", "content-type", "content-length") if k in headers)
+        raise FetchError(f"empty response ({seen or 'no headers'})")
     ext = Path(name).suffix.lower()
     head = body[:512].lstrip(b"\xef\xbb\xbf \r\n\t").lower()
     looks_html = head.startswith((b"<!doctype html", b"<html", b"<head", b"<body"))
@@ -202,27 +302,49 @@ class Result:
 
     @property
     def changed(self) -> list[FileResult]:
-        return [f for f in self.files if f.status != "same"]
+        return [f for f in self.files if f.status in ("new", "changed")]
 
     @property
     def exit_code(self) -> int:
         return 1 if self.changed else (2 if self.failures else 0)
 
 
-def _save(root: Path, state: dict, entry: dict, rel: str, url: str, body: bytes, today: str, result: Result) -> None:
+def _hash_index(root: Path) -> dict[str, str]:
+    """sha256 -> path (relative to sources/) of every data file already stored, so a file that is
+    already in the repo under another name isn't saved again."""
+    base, index = root / "sources", {}
+    skip = {"fetched.json", "manifest.json", "watchlist.json", "watch_state.json"}
+    if base.exists():
+        for p in sorted(base.rglob("*")):
+            if p.is_file() and p.suffix.lower() in EXTENSIONS and p.name not in skip and p.stat().st_size <= MAX_BYTES:
+                index.setdefault(hashlib.sha256(p.read_bytes()).hexdigest(), str(p.relative_to(base)))
+    return index
+
+
+def _save(root: Path, state: dict, entry: dict, rel: str, url: str, body: bytes, today: str, result: Result,
+          index: dict[str, str] | None = None) -> None:
+    index = index if index is not None else {}
     sha = hashlib.sha256(body).hexdigest()
     old = state.get(rel)
-    status = "new" if old is None else ("same" if old["sha256"] == sha else "changed")
-    if status != "same":
+    other = index.get(sha)
+    if old is None and other and other != rel:
+        status = "duplicate"
+    else:
+        status = "new" if old is None else ("same" if old["sha256"] == sha else "changed")
+    if status in ("new", "changed"):
         path = root / "sources" / rel
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(body)
-    state[rel] = {
+        index[sha] = rel
+    record = {
         "id": entry["id"], "url": url, "sha256": sha, "bytes": len(body),
         "first_seen": old["first_seen"] if old else today,
-        "changed": today if status != "same" else old["changed"],
+        "changed": today if status in ("new", "changed") else (old["changed"] if old else today),
         "checked": today,
     }
+    if status == "duplicate" or (status == "same" and old and old.get("duplicate_of")):
+        record["duplicate_of"] = other or old["duplicate_of"]
+    state[rel] = record
     result.files.append(FileResult(entry["id"], rel, status, url))
 
 
@@ -242,6 +364,21 @@ def refresh(manifest: dict, root: Path = ROOT, opener: Opener = urllib_opener, t
         first = False
         return opener(url)
 
+    def get_dated(entry: dict):
+        """Fetch entry['url']; if it has {today}, step back a day at a time (up to date_back_days) when
+        the newest data isn't published yet (the eCFR answers 406 for a date past its latest update)."""
+        error = None
+        for back in range(entry.get("date_back_days", 0) + 1):
+            url = entry["url"].replace("{today}", (today - timedelta(days=back)).isoformat())
+            try:
+                return (url, *get(url))
+            except FetchError as e:
+                error = e
+                if "{today}" not in entry["url"]:
+                    break
+        raise error
+
+    index = _hash_index(root)
     for entry in manifest["entries"]:
         if only and entry["id"] not in only:
             continue
@@ -251,28 +388,31 @@ def refresh(manifest: dict, root: Path = ROOT, opener: Opener = urllib_opener, t
         prefix = f"{save_dir}/" if save_dir else ""
         try:
             if entry["kind"] == "file":
-                url = entry["url"].replace("{today}", stamp)
-                final, headers, body = get(url)
+                url, final, headers, body = get_dated(entry)
                 name = safe_name(entry["save_as"])
                 check_content(name, body, headers)
-                _save(root, state, entry, prefix + name, url, body, stamp, result)
+                _save(root, state, entry, prefix + name, url, body, stamp, result, index)
             elif entry["kind"] == "links":
                 final, headers, body = get(entry["index_url"])
                 links = discover(entry, body.decode("utf-8", errors="replace"), final)
                 if not links:
-                    raise FetchError("no matching links on the index page (page changed, or the filters are too tight?)")
+                    counter = _Links()
+                    page = body.decode("utf-8", errors="replace")
+                    counter.feed(page)
+                    raise FetchError(f"no matching links on the index page ({len(counter.links)} links, {len(body)} bytes; "
+                                     f"page text starts: {snippet(body)!r})")
                 for url, text in links:
                     try:
                         final_url, headers, data = get(url)
                         name = filename_for(final_url, text, data, headers)
                         check_content(name, data, headers)
-                        _save(root, state, entry, prefix + name, url, data, stamp, result)
-                    except FetchError as e:
-                        result.failures.append(Failure(entry["id"], url, str(e), confirmed))
+                        _save(root, state, entry, prefix + name, url, data, stamp, result, index)
+                    except Exception as e:  # one bad file (a dropped connection, odd bytes) must not stop the rest
+                        result.failures.append(Failure(entry["id"], url, _explain(e), confirmed))
             else:
                 raise FetchError(f"unknown kind {entry['kind']!r}")
-        except FetchError as e:
-            result.failures.append(Failure(entry["id"], entry.get("url") or entry.get("index_url", ""), str(e), confirmed))
+        except Exception as e:
+            result.failures.append(Failure(entry["id"], entry.get("url") or entry.get("index_url", ""), _explain(e), confirmed))
 
     state_path.parent.mkdir(parents=True, exist_ok=True)
     state_path.write_text(json.dumps(state, indent=2, sort_keys=True) + "\n", encoding="utf-8")
@@ -294,7 +434,9 @@ def refresh(manifest: dict, root: Path = ROOT, opener: Opener = urllib_opener, t
 def report(result: Result, now: str) -> str:
     out = [f"# Source refresh report\n\nRun {now}. {len(result.files)} files seen: "
            f"{sum(f.status == 'new' for f in result.files)} new, {sum(f.status == 'changed' for f in result.files)} changed, "
-           f"{sum(f.status == 'same' for f in result.files)} unchanged; {len(result.failures)} failures.\n"]
+           f"{sum(f.status == 'same' for f in result.files)} unchanged, "
+           f"{sum(f.status == 'duplicate' for f in result.files)} already stored under another name; "
+           f"{len(result.failures)} failures.\n"]
     by_entry: dict[str, list[FileResult]] = {}
     for f in result.changed:
         by_entry.setdefault(f.entry_id, []).append(f)

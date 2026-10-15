@@ -132,6 +132,13 @@ twice a year; FDA revises guides and routes). `.github/workflows/` runs on GitHu
 sandbox can't reach these sites: a weekly page watcher and a monthly file refresher that opens a pull
 request with new or changed official files. See `docs/STATE_REPORTING.md`.
 
+10. **Provisional update and renewal codes.** The guide's amendment, renewal, cancellation and update
+    document types use `X8888-n` codes (X8888-1 to X8888-6), which look provisional; only 103572-4
+    (initial listing) and 103573-2 (initial registration) are plain codes. FDA's published terminology
+    list (`document_type.xml`, fetched 2026-10-15) contains none of the cosmetic filing types, and its
+    business-operation list lacks "distribute" (C201565), so FDA's public lists lag its guide. Initial
+    filings are unaffected. Ask FDA before the first amendment, renewal or update.
+
 ## Tests
 
 ```bash

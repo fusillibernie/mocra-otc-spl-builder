@@ -26,3 +26,9 @@ Still needed:
 
 Files here are kept current by `scripts/refresh_sources.py` (see `docs/STATE_REPORTING.md`): what it
 fetches is listed in `manifest.json`; what it has fetched, with hashes, in `fetched.json`.
+
+**Currency check, 2026-10-15** (first run of the refresh job on GitHub's runners): FDA serves byte-identical
+copies of the SPL Implementation Guide (Dec 2023, so it is still the current revision), the SPL schema and
+stylesheet 6.2, the ESG API guide v1.2.1, API specification v1.2 and the USP guide v1.8 (same sha256 as the
+files above). New from that run, under `fda/`: `spl/terminology_lists.zip` (FDA's code lists),
+`esg/` AS2 guide v2.2 and the USP passkey guide, and the schema and stylesheet zips.
