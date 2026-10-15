@@ -30,6 +30,16 @@
             "statusMessage": "Checking independent-reviewer ran..."
           }
         ]
+      },
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/guard-reads.sh",
+            "timeout": 10
+          }
+        ]
       }
     ],
     "SessionStart": [
