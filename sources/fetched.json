@@ -1,0 +1,101 @@
+{
+  "fda/cosmetics/spl_ig_vp_dec_2023.pdf": {
+    "bytes": 1920318,
+    "changed": "2026-10-15",
+    "checked": "2026-10-15",
+    "first_seen": "2026-10-15",
+    "id": "fda-cosmetics-registration-listing",
+    "sha256": "9845e23cb51ee2e7f493b17ed5729b2bc946040244e6f6da2d78c9491a41f983",
+    "url": "https://www.fda.gov/media/84201/download?attachment"
+  },
+  "fda/esg/esg_nextgen_api_guide_v1.2.1_-_august_2026.pdf": {
+    "bytes": 811181,
+    "changed": "2026-10-15",
+    "checked": "2026-10-15",
+    "first_seen": "2026-10-15",
+    "id": "fda-esg-user-guides",
+    "sha256": "31a968c13d294ac3e328a2c1c74fe603588e5c71ae9beb75852a8dfc0531005f",
+    "url": "https://www.fda.gov/media/194410/download?attachment"
+  },
+  "fda/esg/esg_nextgen_api_specification_v1.2_-_march_2026.pdf": {
+    "bytes": 426800,
+    "changed": "2026-10-15",
+    "checked": "2026-10-15",
+    "first_seen": "2026-10-15",
+    "id": "fda-esg-user-guides",
+    "sha256": "bd357b64a524f82325875ddc5e31b96327db3424318dcd6c5671d8bb82f7e5b7",
+    "url": "https://www.fda.gov/media/191612/download?attachment"
+  },
+  "fda/esg/esg_nextgen_as2_guide_for_industry_users_v2.2_-_july_2026.pdf": {
+    "bytes": 357644,
+    "changed": "2026-10-15",
+    "checked": "2026-10-15",
+    "first_seen": "2026-10-15",
+    "id": "fda-esg-user-guides",
+    "sha256": "fa6658702047084d768d9ef769c94261ccad56c78eb7bf1017ffff418d139600",
+    "url": "https://www.fda.gov/media/193542/download?attachment"
+  },
+  "fda/esg/esg_nextgen_unified_submission_portal_passkey_set-up_quick_guide.pdf": {
+    "bytes": 302464,
+    "changed": "2026-10-15",
+    "checked": "2026-10-15",
+    "first_seen": "2026-10-15",
+    "id": "fda-esg-user-guides",
+    "sha256": "649aa1b9419111ec29cf4e49dfd78449a050c0a961a760f32f940def453ba9c3",
+    "url": "https://www.fda.gov/media/194299/download?attachment"
+  },
+  "fda/esg/esg_nextgen_user_guide_for_the_unified_submission_portal_v1.8_-_september_2026.pdf": {
+    "bytes": 2647781,
+    "changed": "2026-10-15",
+    "checked": "2026-10-15",
+    "first_seen": "2026-10-15",
+    "id": "fda-esg-user-guides",
+    "sha256": "4907837b6496e7d200ebaf9a2c1d13b5b795881525c15a2e47488bc255f82485",
+    "url": "https://www.fda.gov/media/194894/download?attachment"
+  },
+  "fda/spl/SPL-Schema-Update.zip": {
+    "bytes": 125114,
+    "changed": "2026-10-15",
+    "checked": "2026-10-15",
+    "first_seen": "2026-10-15",
+    "id": "fda-spl-resources",
+    "sha256": "03419c6db5b1f391bef030c4abfdc02e4b2c5f24bb2dc9e65cc6da7b48ebaedb",
+    "url": "https://www.fda.gov/media/84209/download"
+  },
+  "fda/spl/SPL-Stylesheet-Update.zip": {
+    "bytes": 65791,
+    "changed": "2026-10-15",
+    "checked": "2026-10-15",
+    "first_seen": "2026-10-15",
+    "id": "fda-spl-resources",
+    "sha256": "cd807832d074da618af91b66a2375e669554b02fbc516b14864bd9be83f5a5ff",
+    "url": "https://www.fda.gov/media/86046/download"
+  },
+  "fda/spl/spl_ig_vp_dec_2023.pdf": {
+    "bytes": 1920318,
+    "changed": "2026-10-15",
+    "checked": "2026-10-15",
+    "first_seen": "2026-10-15",
+    "id": "fda-spl-resources",
+    "sha256": "9845e23cb51ee2e7f493b17ed5729b2bc946040244e6f6da2d78c9491a41f983",
+    "url": "https://www.fda.gov/media/84201/download"
+  },
+  "fda/spl/terminology_lists.zip": {
+    "bytes": 12561,
+    "changed": "2026-10-15",
+    "checked": "2026-10-15",
+    "first_seen": "2026-10-15",
+    "id": "fda-spl-resources",
+    "sha256": "eb0aeaff977ee70b165ce55bea133e4178f076e189e0e694a5f07d0d5d5033fa",
+    "url": "https://www.fda.gov/media/86426/download"
+  },
+  "fda/spl_implementation_guide_current.pdf": {
+    "bytes": 1920318,
+    "changed": "2026-10-15",
+    "checked": "2026-10-15",
+    "first_seen": "2026-10-15",
+    "id": "fda-spl-ig",
+    "sha256": "9845e23cb51ee2e7f493b17ed5729b2bc946040244e6f6da2d78c9491a41f983",
+    "url": "https://www.fda.gov/media/84201/download"
+  }
+}
