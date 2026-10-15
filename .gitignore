@@ -1,6 +1,5 @@
 # Local-only assistant files
-CLAUDE.md
-.claude/
+.claude/settings.local.json
 
 # Python
 __pycache__/
