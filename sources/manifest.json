@@ -21,7 +21,7 @@
       "name": "FDA SPL resources page: schema, stylesheet, guides, code lists",
       "kind": "links",
       "index_url": "https://www.fda.gov/industry/fda-resources-data-standards/structured-product-labeling-resources",
-      "link_text": "schema|stylesheet|implementation guide|terminology|value set|code system|controlled",
+      "link_text": "schema|stylesheet|terminology|value set|code system|controlled",
       "link_url": "/media/\\d+/download",
       "extensions": [
         ".zip",
@@ -42,7 +42,7 @@
       "name": "FDA cosmetics registration and listing page: guidance, category list, forms",
       "kind": "links",
       "index_url": "https://www.fda.gov/cosmetics/registration-listing-cosmetic-product-facilities-and-products",
-      "link_text": "guidance|categor|SPL|decision|instruction",
+      "link_text": "guidance|categor|decision|instruction|appendix",
       "link_url": "/media/\\d+/download",
       "extensions": [
         ".pdf"
@@ -59,7 +59,6 @@
       "id": "fda-esg-user-guides",
       "name": "ESG NextGen user guides (API guide and specification, USP guide)",
       "kind": "links",
-      "confirmed": false,
       "index_url": "https://www.fda.gov/industry/getting-started-esg-nextgen/user-guides",
       "link_text": "API|specification|unified|portal|USP|guide",
       "link_url": "/media/\\d+/download",
@@ -71,7 +70,7 @@
       "affects": [
         "src/mocra_otc_spl_builder/esg.py"
       ],
-      "note": "Check endpoints, headers, request bodies and error codes in esg.py against the new specification."
+      "note": "Confirmed 2026-10-15: the crawl finds the API guide and specification, the USP guide, the AS2 guide and the passkey guide. Check endpoints, headers, request bodies and error codes in esg.py against the new specification."
     },
     {
       "id": "fda-otc-m019",
@@ -82,7 +81,9 @@
       "save_as": "OTC000015_M019_antiperspirant.pdf",
       "affects": [
         "src/mocra_otc_spl_builder/data/otc_monographs.json"
-      ]
+      ],
+      "confirmed": false,
+      "note": "HTTP 404 from a GitHub runner on 2026-10-15 although this URL came from a search result: find the current link on OTC Monographs@FDA."
     },
     {
       "id": "fda-otc-m021",
@@ -93,7 +94,9 @@
       "save_as": "OTC000034_M021_anticaries.pdf",
       "affects": [
         "src/mocra_otc_spl_builder/data/otc_monographs.json"
-      ]
+      ],
+      "confirmed": false,
+      "note": "HTTP 404 from a GitHub runner on 2026-10-15 although this URL came from a search result: find the current link on OTC Monographs@FDA."
     },
     {
       "id": "fda-otc-m006",
@@ -104,7 +107,9 @@
       "save_as": "OTC000013_M006_acne.pdf",
       "affects": [
         "src/mocra_otc_spl_builder/data/otc_monographs.json"
-      ]
+      ],
+      "confirmed": false,
+      "note": "HTTP 404 from a GitHub runner on 2026-10-15 although this URL came from a search result: find the current link on OTC Monographs@FDA."
     },
     {
       "id": "fda-otc-m020-amendment",
@@ -116,7 +121,8 @@
       "affects": [
         "src/mocra_otc_spl_builder/data/otc_monographs.json"
       ],
-      "note": "The base M020 order is not here yet: find its URL on OTC Monographs@FDA and add it."
+      "note": "HTTP 404 from a GitHub runner on 2026-10-15 although this URL came from a search result: find the current link on OTC Monographs@FDA. The base M020 order is not here yet: find its URL on OTC Monographs@FDA and add it.",
+      "confirmed": false
     },
     {
       "id": "fda-otc-m003",
@@ -127,7 +133,9 @@
       "save_as": "M003_first_aid_antiseptic.pdf",
       "affects": [
         "src/mocra_otc_spl_builder/data/otc_monographs.json"
-      ]
+      ],
+      "confirmed": false,
+      "note": "HTTP 404 from a GitHub runner on 2026-10-15 although this URL came from a search result: find the current link on OTC Monographs@FDA."
     },
     {
       "id": "carb-pfp-2025",
@@ -249,7 +257,8 @@
         "docs/STATE_REPORTING.md",
         "src/mocra_otc_spl_builder/data/carb_voc_limits.json (planned)"
       ],
-      "note": "EPA's list of compounds exempt from the VOC definition; it changes by rule."
+      "note": "EPA's list of compounds exempt from the VOC definition; it changes by rule.",
+      "date_back_days": 7
     },
     {
       "id": "ecfr-40-cfr-59",
@@ -261,7 +270,8 @@
       "save_dir": "ecfr",
       "affects": [
         "docs/STATE_REPORTING.md"
-      ]
+      ],
+      "date_back_days": 7
     },
     {
       "id": "ecfr-21-cfr-701",
@@ -273,7 +283,8 @@
       "save_dir": "ecfr",
       "affects": [
         "src/mocra_otc_spl_builder/ingredients.py"
-      ]
+      ],
+      "date_back_days": 7
     },
     {
       "id": "ecfr-21-cfr-201-66",
@@ -285,7 +296,8 @@
       "save_dir": "ecfr",
       "affects": [
         "src/mocra_otc_spl_builder/data/otc_monographs.json"
-      ]
+      ],
+      "date_back_days": 7
     }
   ]
 }

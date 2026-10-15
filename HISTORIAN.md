@@ -148,3 +148,19 @@ reference sets (UNII, NDC) are not committed monthly; unconfirmed URLs are flagg
 
 **Unproven until the first run:** every URL, CARB/CDPH/FDA tolerance of automated requests, and the
 refresh workflow's push permissions.
+
+## 2026-10-15: First refresh run on GitHub's runners
+
+PR #1 merged; the run was started by hand (the dev session's token can't dispatch workflows: 403).
+**Worked:** FDA, entirely. Its files are byte-identical to what we already had, which settles that the Dec 2023
+Implementation Guide is still FDA's current revision (as of 2026-10-15), and that our schema, stylesheet and ESG
+guides are current. **Failed:** CARB (no links / empty PDF), CDPH (missing intermediate certificate), eCFR (406),
+the five OTC orders (404). The PR step failed on the repo setting; the branch carried the files.
+
+**Fixes (this branch):** failures now report server, status and the start of the page; a missing intermediate
+certificate is fetched from the certificate's AIA URL while verification stays on against certifi's roots; dated
+eCFR URLs step back up to 7 days; files already stored under another name aren't saved again (the SPL guide had
+been saved three times). 121 tests.
+
+**Found in FDA's terminology lists:** no cosmetic filing document types and no "distribute" operation code, so the
+public lists lag the guide; the `X8888-n` codes for updates and renewals look provisional (README open question 10).

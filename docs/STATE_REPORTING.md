@@ -31,6 +31,20 @@ the manifest were inferred; a 404 shows up under "Couldn't fetch". A site may al
 requests (core found osha.gov and ifrafragrance.org return 403): those are reported, never worked
 around by pretending to be a browser.
 
+## First run, 2026-10-15
+
+| Source | Result | Next |
+|---|---|---|
+| FDA SPL guide, schema, stylesheet, ESG guides, terminology lists | fetched; identical to the files already in the repo, plus the terminology lists | none |
+| CARB (3 entries) | "no matching links" on both index pages; the PFP instructions PDF came back empty (HTTP 200, no body) | the script now reports the server, status and the start of the page; re-run to see whether CARB is blocking automated requests or serving a page needing JavaScript. If it is blocking, upload the files through Drive instead |
+| CDPH (3 entries) | certificate error: the server does not send its intermediate certificate | the script now fetches the intermediate the way browsers do and still verifies against the standard roots; re-run |
+| eCFR (4 entries) | HTTP 406 | probably a date past eCFR's latest update; the script now tries the previous 7 days; re-run |
+| OTC monograph orders (5 entries) | HTTP 404 although the URLs came from a search | find the current links on OTC Monographs@FDA |
+
+The refresh job's branch was pushed, but the PR step failed because "Allow GitHub Actions to create and
+approve pull requests" is off (Settings > Actions > General). That setting is optional here: the files arrive
+on the `sources/<date>` branch either way.
+
 ## What else can be pulled
 
 | Source | Fetched as | Feeds | In the pipeline |
