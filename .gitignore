@@ -1,5 +1,4 @@
 # Local-only assistant files
-CLAUDE.md
 .claude/settings.local.json
 
 # Python
