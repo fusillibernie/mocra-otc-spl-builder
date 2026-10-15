@@ -1,0 +1,291 @@
+{
+  "_about": "Official files this repo's data is built from. scripts/refresh_sources.py downloads them (monthly in GitHub Actions, because the dev sandbox cannot reach these hosts), records sha256 in sources/fetched.json, and opens a pull request when something is new or changed. 'kind: links' crawls an index page, so a new amendment or tool version appears as a new file without editing this file. confirmed:false means the URL was inferred, not seen: the first run reports if it is wrong. 'build' lists importer scripts to run when the entry changes (skipped, and reported, until written). Large reference sets (FDA's NDC directory and UNII list) are not here: committing them monthly would bloat git; add them with artifact storage when the OTC phase needs them.",
+  "entries": [
+    {
+      "id": "fda-spl-ig",
+      "name": "FDA SPL Implementation Guide with Validation Procedures (current)",
+      "kind": "file",
+      "url": "https://www.fda.gov/media/84201/download",
+      "save_as": "spl_implementation_guide_current.pdf",
+      "save_dir": "fda",
+      "affects": [
+        "src/mocra_otc_spl_builder/codes.py",
+        "src/mocra_otc_spl_builder/cosmetic_validation.py",
+        "src/mocra_otc_spl_builder/facility_registration.py",
+        "src/mocra_otc_spl_builder/cosmetic_spl.py"
+      ],
+      "note": "FDA keeps this media id pointing at the current guide. A change means a new revision: diff it against sources/spl_ig_vp_dec_2023.pdf (chapters 2, 3.4, 35, 36 for cosmetics; 4 onward for OTC drug listing)."
+    },
+    {
+      "id": "fda-spl-resources",
+      "name": "FDA SPL resources page: schema, stylesheet, guides, code lists",
+      "kind": "links",
+      "index_url": "https://www.fda.gov/industry/fda-resources-data-standards/structured-product-labeling-resources",
+      "link_text": "schema|stylesheet|implementation guide|terminology|value set|code system|controlled",
+      "link_url": "/media/\\d+/download",
+      "extensions": [
+        ".zip",
+        ".pdf",
+        ".xlsx"
+      ],
+      "save_dir": "fda/spl",
+      "max_files": 20,
+      "affects": [
+        "src/mocra_otc_spl_builder/data/spl_schema/",
+        "src/mocra_otc_spl_builder/data/spl_stylesheet/",
+        "src/mocra_otc_spl_builder/codes.py"
+      ],
+      "note": "A new schema or stylesheet bundle: replace the copies under data/spl_schema/ and data/spl_stylesheet/ and re-run tests/test_schema.py."
+    },
+    {
+      "id": "fda-cosmetics-registration-listing",
+      "name": "FDA cosmetics registration and listing page: guidance, category list, forms",
+      "kind": "links",
+      "index_url": "https://www.fda.gov/cosmetics/registration-listing-cosmetic-product-facilities-and-products",
+      "link_text": "guidance|categor|SPL|decision|instruction",
+      "link_url": "/media/\\d+/download",
+      "extensions": [
+        ".pdf"
+      ],
+      "save_dir": "fda/cosmetics",
+      "max_files": 15,
+      "affects": [
+        "src/mocra_otc_spl_builder/data/cosmetic_categories.json",
+        "src/mocra_otc_spl_builder/cosmetic_validation.py"
+      ],
+      "note": "A new guidance revision can change Appendix A (the category codes): point scripts/build_cosmetic_categories.py at it and re-run."
+    },
+    {
+      "id": "fda-esg-user-guides",
+      "name": "ESG NextGen user guides (API guide and specification, USP guide)",
+      "kind": "links",
+      "confirmed": false,
+      "index_url": "https://www.fda.gov/industry/getting-started-esg-nextgen/user-guides",
+      "link_text": "API|specification|unified|portal|USP|guide",
+      "link_url": "/media/\\d+/download",
+      "extensions": [
+        ".pdf"
+      ],
+      "save_dir": "fda/esg",
+      "max_files": 15,
+      "affects": [
+        "src/mocra_otc_spl_builder/esg.py"
+      ],
+      "note": "Check endpoints, headers, request bodies and error codes in esg.py against the new specification."
+    },
+    {
+      "id": "fda-otc-m019",
+      "name": "OTC monograph order M019 antiperspirant",
+      "kind": "file",
+      "save_dir": "fda/otc",
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/omuf/Order/Final%20Administrative%20Order%20OTC000015_M019-Antiperspirant%20Drug%20Products%20for%20OTC%20Human%20Use.pdf",
+      "save_as": "OTC000015_M019_antiperspirant.pdf",
+      "affects": [
+        "src/mocra_otc_spl_builder/data/otc_monographs.json"
+      ]
+    },
+    {
+      "id": "fda-otc-m021",
+      "name": "OTC monograph order M021 anticaries",
+      "kind": "file",
+      "save_dir": "fda/otc",
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/omuf/Order/Final%20Administrative%20Order%20OTC000034_M021-Anticaries%20Drug%20Products%20for%20OTC%20Human%20Use.pdf",
+      "save_as": "OTC000034_M021_anticaries.pdf",
+      "affects": [
+        "src/mocra_otc_spl_builder/data/otc_monographs.json"
+      ]
+    },
+    {
+      "id": "fda-otc-m006",
+      "name": "OTC monograph order M006 topical acne",
+      "kind": "file",
+      "save_dir": "fda/otc",
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/omuf/Order/Final%20Administrative%20Order%20OTC000013_M006-Topical%20Acne%20drug%20products%20for%20OTC%20Human%20Use.pdf",
+      "save_as": "OTC000013_M006_acne.pdf",
+      "affects": [
+        "src/mocra_otc_spl_builder/data/otc_monographs.json"
+      ]
+    },
+    {
+      "id": "fda-otc-m020-amendment",
+      "name": "OTC order OTC000039 amending M020 sunscreen (bemotrizinol)",
+      "kind": "file",
+      "save_dir": "fda/otc",
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/omuf/order/supportDoc/OTC000039/Final_Administrative_Order.pdf",
+      "save_as": "OTC000039_M020_amendment.pdf",
+      "affects": [
+        "src/mocra_otc_spl_builder/data/otc_monographs.json"
+      ],
+      "note": "The base M020 order is not here yet: find its URL on OTC Monographs@FDA and add it."
+    },
+    {
+      "id": "fda-otc-m003",
+      "name": "OTC monograph M003 first aid antiseptic",
+      "kind": "file",
+      "save_dir": "fda/otc",
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/omuf/monographs/OTC%20Monograph_M003-First%20Aid%20Antiseptic%20products%20for%20OTC%20Human%20Use.pdf",
+      "save_as": "M003_first_aid_antiseptic.pdf",
+      "affects": [
+        "src/mocra_otc_spl_builder/data/otc_monographs.json"
+      ]
+    },
+    {
+      "id": "carb-pfp-2025",
+      "name": "CARB 2025 personal fragrance products page: reporting tool, instructions, letters",
+      "kind": "links",
+      "index_url": "https://ww2.arb.ca.gov/our-work/programs/consumer-products-program/product-reporting/2025-personal-fragrance-products",
+      "link_text": "tool|instruction|letter|template|reporting|assessment|PFP|formulation",
+      "extensions": [
+        ".pdf",
+        ".xlsx",
+        ".xlsm",
+        ".xls",
+        ".zip"
+      ],
+      "save_dir": "carb/pfp",
+      "max_files": 15,
+      "affects": [
+        "docs/STATE_REPORTING.md",
+        "src/mocra_otc_spl_builder/data/carb_voc_limits.json (planned)"
+      ],
+      "note": "The PFP reporting tool defines the fields the VOC data pack must match."
+    },
+    {
+      "id": "carb-pfp-tool-instructions",
+      "name": "CARB PFP Reporting Tool instructions (Jan 2026)",
+      "kind": "file",
+      "url": "https://ww2.arb.ca.gov/sites/default/files/2026-01/PFP-RT%20Instructions.pdf",
+      "save_as": "PFP-RT_Instructions_2026-01.pdf",
+      "save_dir": "carb/pfp",
+      "affects": [
+        "docs/STATE_REPORTING.md"
+      ]
+    },
+    {
+      "id": "carb-consumer-products",
+      "name": "CARB consumer products program: regulation text, final regulation orders, category limits",
+      "kind": "links",
+      "index_url": "https://ww2.arb.ca.gov/our-work/programs/consumer-products-program",
+      "link_text": "regulation|final regulation order|94500|94509|consumer products|survey|reporting|VOC|table",
+      "extensions": [
+        ".pdf",
+        ".xlsx"
+      ],
+      "save_dir": "carb/consumer-products",
+      "max_files": 20,
+      "affects": [
+        "src/mocra_otc_spl_builder/data/carb_voc_limits.json (planned)"
+      ],
+      "build": [
+        "scripts/build_carb_voc_limits.py"
+      ],
+      "note": "17 CCR 94500-94517 and each amendment's Final Regulation Order should be among these. If the right file is not, find its page and add a links entry. CARB amends this regulation every few years."
+    },
+    {
+      "id": "cdph-fragrance-allergens-factsheet",
+      "name": "CDPH fact sheet: fragrance allergens in cosmetics",
+      "kind": "file",
+      "url": "https://www.cdph.ca.gov/Programs/CCDPHP/DEODC/OHB/CSCP/CDPH%20Document%20Library/FragranceAllergensinCosmeticsFactsheet.pdf",
+      "save_as": "FragranceAllergensinCosmeticsFactsheet.pdf",
+      "save_dir": "cdph",
+      "affects": [
+        "src/mocra_otc_spl_builder/data/cscp_rules.json"
+      ],
+      "note": "Confirms thresholds, the allergen list and the deadlines in cscp_rules.json."
+    },
+    {
+      "id": "cdph-cscp-sb312",
+      "name": "CDPH SB 312 page: Reportable Ingredients List, guidance, fact sheets",
+      "kind": "links",
+      "index_url": "https://www.cdph.ca.gov/Programs/CCDPHP/DEODC/OHB/CSCP/Pages/SB312.aspx",
+      "link_text": "list|ingredient|allergen|guidance|reporting|fact sheet|candidate|flavor|fragrance",
+      "link_url": "CDPH%20Document%20Library",
+      "extensions": [
+        ".pdf",
+        ".xlsx",
+        ".xls",
+        ".csv"
+      ],
+      "save_dir": "cdph",
+      "max_files": 25,
+      "affects": [
+        "src/mocra_otc_spl_builder/data/cscp_reportable_ingredients.json",
+        "src/mocra_otc_spl_builder/data/cscp_rules.json"
+      ],
+      "build": [
+        "scripts/build_cscp_list.py"
+      ],
+      "note": "The Reportable Ingredients List is updated twice a year; companies have 6 months to comply after each update."
+    },
+    {
+      "id": "cdph-cscp-reporting-guidance",
+      "name": "CDPH CSCP reporting guidance page",
+      "kind": "links",
+      "index_url": "https://www.cdph.ca.gov/Programs/CCDPHP/DEODC/OHB/CSCP/Pages/ReportingGuidance.aspx",
+      "link_text": "list|ingredient|allergen|guidance|reporting|fact sheet|template|instruction",
+      "link_url": "CDPH%20Document%20Library",
+      "extensions": [
+        ".pdf",
+        ".xlsx",
+        ".xls",
+        ".csv"
+      ],
+      "save_dir": "cdph/reporting",
+      "max_files": 25,
+      "affects": [
+        "src/mocra_otc_spl_builder/cscp.py",
+        "src/mocra_otc_spl_builder/data/cscp_rules.json"
+      ]
+    },
+    {
+      "id": "ecfr-40-cfr-51-100",
+      "name": "40 CFR 51.100 definitions (VOC, exempt compounds)",
+      "kind": "file",
+      "confirmed": false,
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/{today}/title-40.xml?part=51&section=51.100",
+      "save_as": "40cfr51.100.xml",
+      "save_dir": "ecfr",
+      "affects": [
+        "docs/STATE_REPORTING.md",
+        "src/mocra_otc_spl_builder/data/carb_voc_limits.json (planned)"
+      ],
+      "note": "EPA's list of compounds exempt from the VOC definition; it changes by rule."
+    },
+    {
+      "id": "ecfr-40-cfr-59",
+      "name": "40 CFR part 59 (national VOC emission standards, consumer products)",
+      "kind": "file",
+      "confirmed": false,
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/{today}/title-40.xml?part=59",
+      "save_as": "40cfr59.xml",
+      "save_dir": "ecfr",
+      "affects": [
+        "docs/STATE_REPORTING.md"
+      ]
+    },
+    {
+      "id": "ecfr-21-cfr-701",
+      "name": "21 CFR part 701 cosmetic labeling",
+      "kind": "file",
+      "confirmed": false,
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/{today}/title-21.xml?part=701",
+      "save_as": "21cfr701.xml",
+      "save_dir": "ecfr",
+      "affects": [
+        "src/mocra_otc_spl_builder/ingredients.py"
+      ]
+    },
+    {
+      "id": "ecfr-21-cfr-201-66",
+      "name": "21 CFR 201.66 OTC Drug Facts labeling",
+      "kind": "file",
+      "confirmed": false,
+      "url": "https://www.ecfr.gov/api/versioner/v1/full/{today}/title-21.xml?part=201&section=201.66",
+      "save_as": "21cfr201.66.xml",
+      "save_dir": "ecfr",
+      "affects": [
+        "src/mocra_otc_spl_builder/data/otc_monographs.json"
+      ]
+    }
+  ]
+}

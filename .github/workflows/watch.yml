@@ -1,0 +1,58 @@
+name: Watch regulatory pages
+
+# Weekly: fetch the official pages and APIs the data depends on (sources/watchlist.json); if any changed,
+# open a pull request with the report and new fingerprints for a person to review. Never edits the data.
+on:
+  schedule:
+    - cron: "0 7 * * 1"   # Mondays 07:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    env:
+      # Optional: with this repository secret set, each change gets a short Claude summary.
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.13"
+      - name: Restore cached page text (for line-by-line diffs)
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: sources/watch_cache
+          key: watch-cache-${{ github.run_id }}
+          restore-keys: watch-cache-
+      - name: Install the optional summarizer
+        if: env.ANTHROPIC_API_KEY != ''
+        run: pip install anthropic
+      - name: Check pages
+        id: watch
+        run: |
+          set +e
+          if [ -n "$ANTHROPIC_API_KEY" ]; then python scripts/watch_sources.py --summarize; else python scripts/watch_sources.py; fi
+          echo "code=$?" >> "$GITHUB_OUTPUT"
+      - name: Show the report
+        if: always()
+        run: cat sources/watch_report.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Open a pull request when something changed
+        if: steps.watch.outputs.code == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          branch="watch/$(date -u +%Y-%m-%d)"
+          git config user.name "source-watch"
+          git config user.email "source-watch@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add sources/watch_state.json sources/watch_report.md
+          git commit -m "Regulatory pages changed or baselined ($(date -u +%Y-%m-%d))"
+          git push origin "$branch"
+          gh pr create --title "Regulatory pages changed or baselined ($(date -u +%Y-%m-%d))" --body-file sources/watch_report.md
+      - name: Fail when pages could not be fetched, so GitHub emails the owner
+        if: steps.watch.outputs.code == '2'
+        run: exit 1

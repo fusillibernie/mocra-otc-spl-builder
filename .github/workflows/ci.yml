@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      # Optional. fragrance-reg-core is private; with a read-only deploy key as this repository secret,
+      # the ingredient-list and CSCP tests run too. Without it they are skipped.
+      CORE_DEPLOY_KEY: ${{ secrets.CORE_DEPLOY_KEY }}
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.13"]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: pip install -e ".[dev,schema]"
+      - name: Install fragrance-reg-core
+        if: env.CORE_DEPLOY_KEY != ''
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "$CORE_DEPLOY_KEY" > ~/.ssh/core_key
+          chmod 600 ~/.ssh/core_key
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          GIT_SSH_COMMAND="ssh -i ~/.ssh/core_key -o IdentitiesOnly=yes" \
+            pip install "fragrance-reg-core @ git+ssh://git@github.com/fusillibernie/fragrance-reg-core@v0.5.3"
+      - run: pytest -q

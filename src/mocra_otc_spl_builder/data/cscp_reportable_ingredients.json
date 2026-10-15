@@ -1,0 +1,10 @@
+{
+  "metadata": {
+    "description": "CSCP Reportable Ingredients List: fragrance and flavor ingredients reportable at any concentration",
+    "verified": false,
+    "import_status": "awaiting importer: CDPH's list has not been supplied yet (cdph.ca.gov is blocked from the build environment). Download it from CDPH's SB 312 page, save it under sources/, then write scripts/build_cscp_list.py (as scripts/build_cosmetic_categories.py does for the FDA categories).",
+    "official_source": "https://www.cdph.ca.gov/Programs/CCDPHP/DEODC/OHB/CSCP/Pages/SB312.aspx",
+    "record_format": "{\"cas\": \"78-70-6\", \"name\": \"...\", \"lists\": [\"source list names\"]}"
+  },
+  "ingredients": []
+}

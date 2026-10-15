@@ -1,0 +1,62 @@
+name: Refresh official source files
+
+# Monthly (and on demand): download the official files in sources/manifest.json, find new versions on the
+# index pages it lists, run any importers for what changed, test, and open a pull request with the new
+# files for a person to review. Never merges and never edits data without that review.
+# This runs on GitHub's runners because the development sandbox can't reach CARB, CDPH or FDA.
+on:
+  schedule:
+    - cron: "0 8 1 * *"   # the 1st of each month, 08:00 UTC
+  workflow_dispatch:
+    inputs:
+      only:
+        description: "Comma-separated manifest ids to fetch (blank = all)"
+        required: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.13"
+      - run: pip install -e ".[dev,schema]" certifi
+      - name: Fetch files and run importers
+        id: refresh
+        env:
+          ONLY: ${{ inputs.only }}
+        run: |
+          set +e
+          if [ -n "$ONLY" ]; then python scripts/refresh_sources.py --build --only "$ONLY"; else python scripts/refresh_sources.py --build; fi
+          echo "code=$?" >> "$GITHUB_OUTPUT"
+      - name: Show the report
+        if: always()
+        run: cat sources/refresh_report.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Run the tests on whatever was regenerated
+        id: tests
+        if: steps.refresh.outputs.code == '1'
+        continue-on-error: true
+        run: pytest -q
+      - name: Open a pull request when something is new or changed
+        if: steps.refresh.outputs.code == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TESTS: ${{ steps.tests.outcome }}
+        run: |
+          branch="sources/$(date -u +%Y-%m-%d)"
+          { echo "Tests on the regenerated data: **${TESTS}**."; echo; cat sources/refresh_report.md; } > pr_body.md
+          git config user.name "source-refresh"
+          git config user.email "source-refresh@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add -A -- . ':!pr_body.md'
+          git commit -m "Official source files updated ($(date -u +%Y-%m-%d))"
+          git push origin "$branch"
+          gh pr create --title "Official source files updated ($(date -u +%Y-%m-%d))" --body-file pr_body.md
+      - name: Fail when fetches failed, so GitHub emails the owner
+        if: steps.refresh.outputs.code == '2'
+        run: exit 1

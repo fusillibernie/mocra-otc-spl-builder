@@ -1,0 +1,214 @@
+{
+  "_about": "Pages and APIs the data depends on. scripts/watch_sources.py fetches each weekly (GitHub Actions), compares with the last run and reports changes for a person to review. Copied from fragrance-reg-core's watcher; keep the two in sync. Files (PDFs, spreadsheets, zips) are handled by scripts/refresh_sources.py. 'affects' names what to re-check when a source changes.",
+  "sources": [
+    {
+      "id": "fda-mocra",
+      "name": "FDA: Modernization of Cosmetics Regulation Act (MoCRA)",
+      "url": "https://www.fda.gov/cosmetics/cosmetics-laws-regulations/modernization-cosmetics-regulation-act-2022-mocra",
+      "affects": [
+        "src/mocra_otc_spl_builder/cosmetic_validation.py",
+        "docs/STATE_REPORTING.md"
+      ]
+    },
+    {
+      "id": "fda-cosmetics-registration-listing",
+      "name": "FDA: registration and listing of cosmetic facilities and products",
+      "url": "https://www.fda.gov/cosmetics/registration-listing-cosmetic-product-facilities-and-products",
+      "affects": [
+        "src/mocra_otc_spl_builder/cosmetic_spl.py",
+        "src/mocra_otc_spl_builder/facility_registration.py"
+      ]
+    },
+    {
+      "id": "fda-cosmetics-guidance-documents",
+      "name": "FDA: cosmetics guidance documents",
+      "url": "https://www.fda.gov/cosmetics/cosmetics-guidance-documents",
+      "affects": [
+        "src/mocra_otc_spl_builder/data/cosmetic_categories.json"
+      ]
+    },
+    {
+      "id": "fda-spl-resources",
+      "name": "FDA: structured product labeling resources",
+      "url": "https://www.fda.gov/industry/fda-resources-data-standards/structured-product-labeling-resources",
+      "affects": [
+        "src/mocra_otc_spl_builder/data/spl_schema/",
+        "src/mocra_otc_spl_builder/codes.py"
+      ]
+    },
+    {
+      "id": "fda-esg-center-submission-types",
+      "name": "FDA ESG NextGen: Center Submission Types (cosmetic SPL routes to OC / SPL)",
+      "url": "https://www.fda.gov/industry/getting-started-esg-nextgen/center-submission-types",
+      "affects": [
+        "src/mocra_otc_spl_builder/esg.py"
+      ],
+      "note": "Re-check the OC / SPL route for cosmetic registration and listing, and the test-submission rules."
+    },
+    {
+      "id": "cdph-cscp-sb312",
+      "name": "CDPH CSCP: SB 312 fragrance and flavor ingredient reporting",
+      "url": "https://www.cdph.ca.gov/Programs/CCDPHP/DEODC/OHB/CSCP/Pages/SB312.aspx",
+      "affects": [
+        "src/mocra_otc_spl_builder/data/cscp_rules.json",
+        "src/mocra_otc_spl_builder/data/cscp_reportable_ingredients.json"
+      ]
+    },
+    {
+      "id": "cdph-cscp-compliance-faq",
+      "name": "CDPH CSCP compliance FAQ",
+      "url": "https://www.cdph.ca.gov/Programs/CCDPHP/DEODC/OHB/CSCP/Pages/Compliance-FAQ.aspx",
+      "affects": [
+        "src/mocra_otc_spl_builder/data/cscp_rules.json"
+      ],
+      "note": "Allergen deadlines are tied to the EU's here."
+    },
+    {
+      "id": "cdph-cscp-reporting-guidance",
+      "name": "CDPH CSCP reporting guidance",
+      "url": "https://www.cdph.ca.gov/Programs/CCDPHP/DEODC/OHB/CSCP/Pages/ReportingGuidance.aspx",
+      "affects": [
+        "src/mocra_otc_spl_builder/cscp.py"
+      ]
+    },
+    {
+      "id": "carb-consumer-products",
+      "name": "CARB: consumer products program",
+      "url": "https://ww2.arb.ca.gov/our-work/programs/consumer-products-program",
+      "affects": [
+        "docs/STATE_REPORTING.md",
+        "src/mocra_otc_spl_builder/data/carb_voc_limits.json (planned)"
+      ],
+      "note": "Watch for rulemakings, new surveys and reporting notices."
+    },
+    {
+      "id": "carb-pfp-2025",
+      "name": "CARB: 2025 personal fragrance products technical assessment and reporting",
+      "url": "https://ww2.arb.ca.gov/our-work/programs/consumer-products-program/product-reporting/2025-personal-fragrance-products",
+      "affects": [
+        "docs/STATE_REPORTING.md"
+      ]
+    },
+    {
+      "id": "fedreg-fda-mocra",
+      "name": "Federal Register: FDA documents on MoCRA (GMP, allergen labeling, talc testing rules)",
+      "method": "json",
+      "list_key": "results",
+      "keep": [
+        "publication_date",
+        "type",
+        "title",
+        "document_number"
+      ],
+      "url": "https://www.federalregister.gov/api/v1/documents.json?per_page=20&order=newest&conditions[agencies][]=food-and-drug-administration&conditions[term]=%22Modernization+of+Cosmetics+Regulation+Act%22",
+      "affects": [
+        "src/mocra_otc_spl_builder/cosmetic_validation.py",
+        "docs/STATE_REPORTING.md"
+      ],
+      "note": "A new proposed or final rule under MoCRA: read it for labeling, listing and registration changes."
+    },
+    {
+      "id": "fedreg-fda-otc-monograph",
+      "name": "Federal Register: FDA OTC monograph orders and fee notices",
+      "method": "json",
+      "list_key": "results",
+      "keep": [
+        "publication_date",
+        "type",
+        "title",
+        "document_number"
+      ],
+      "url": "https://www.federalregister.gov/api/v1/documents.json?per_page=20&order=newest&conditions[agencies][]=food-and-drug-administration&conditions[term]=%22over-the-counter+monograph%22",
+      "affects": [
+        "src/mocra_otc_spl_builder/data/otc_monographs.json"
+      ],
+      "note": "A new monograph order or amendment (like OTC000039 for sunscreen) or an OMUFA fee notice."
+    },
+    {
+      "id": "fedreg-epa-voc",
+      "name": "Federal Register: EPA volatile organic compound exemptions and consumer product rules",
+      "method": "json",
+      "list_key": "results",
+      "keep": [
+        "publication_date",
+        "type",
+        "title",
+        "document_number"
+      ],
+      "url": "https://www.federalregister.gov/api/v1/documents.json?per_page=20&order=newest&conditions[agencies][]=environmental-protection-agency&conditions[term]=%22volatile+organic+compound%22+exempt",
+      "affects": [
+        "docs/STATE_REPORTING.md"
+      ],
+      "note": "EPA changes the list of compounds exempt from the VOC definition by rule."
+    },
+    {
+      "id": "ecfr-21-701-3",
+      "name": "eCFR: versions of 21 CFR 701.3 cosmetic ingredient labeling",
+      "method": "json",
+      "url": "https://www.ecfr.gov/api/versioner/v1/versions/title-21.json?part=701&section=701.3",
+      "list_key": "content_versions",
+      "keep": [
+        "date",
+        "amendment_date",
+        "substantive"
+      ],
+      "filter": {
+        "identifier": "701.3"
+      },
+      "affects": [
+        "src/mocra_otc_spl_builder/ingredients.py"
+      ]
+    },
+    {
+      "id": "ecfr-21-201-66",
+      "name": "eCFR: versions of 21 CFR 201.66 OTC Drug Facts labeling",
+      "method": "json",
+      "url": "https://www.ecfr.gov/api/versioner/v1/versions/title-21.json?part=201&section=201.66",
+      "list_key": "content_versions",
+      "keep": [
+        "date",
+        "amendment_date",
+        "substantive"
+      ],
+      "filter": {
+        "identifier": "201.66"
+      },
+      "affects": [
+        "src/mocra_otc_spl_builder/data/otc_monographs.json"
+      ]
+    },
+    {
+      "id": "ecfr-40-51-100",
+      "name": "eCFR: versions of 40 CFR 51.100 (VOC definition and exempt compounds)",
+      "method": "json",
+      "url": "https://www.ecfr.gov/api/versioner/v1/versions/title-40.json?part=51&section=51.100",
+      "list_key": "content_versions",
+      "keep": [
+        "date",
+        "amendment_date",
+        "substantive"
+      ],
+      "filter": {
+        "identifier": "51.100"
+      },
+      "affects": [
+        "docs/STATE_REPORTING.md"
+      ]
+    },
+    {
+      "id": "ecfr-40-part-59",
+      "name": "eCFR: versions of 40 CFR part 59 (national consumer product VOC standards)",
+      "method": "json",
+      "url": "https://www.ecfr.gov/api/versioner/v1/versions/title-40.json?part=59",
+      "list_key": "content_versions",
+      "keep": [
+        "identifier",
+        "date",
+        "amendment_date"
+      ],
+      "affects": [
+        "docs/STATE_REPORTING.md"
+      ]
+    }
+  ]
+}

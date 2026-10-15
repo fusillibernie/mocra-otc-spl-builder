@@ -18,3 +18,6 @@ dist/
 .DS_Store
 Thumbs.db
 
+
+# Source watcher page-text cache (diffs only; fingerprints are in sources/watch_state.json)
+sources/watch_cache/
