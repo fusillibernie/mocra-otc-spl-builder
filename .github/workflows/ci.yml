@@ -32,5 +32,5 @@ jobs:
           chmod 600 ~/.ssh/core_key
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           GIT_SSH_COMMAND="ssh -i ~/.ssh/core_key -o IdentitiesOnly=yes" \
-            pip install "fragrance-reg-core @ git+ssh://git@github.com/fusillibernie/fragrance-reg-core@v0.5.3"
+            pip install "fragrance-reg-core @ git+ssh://git@github.com/fusillibernie/fragrance-reg-core@v0.6.0"
       - run: pytest -q

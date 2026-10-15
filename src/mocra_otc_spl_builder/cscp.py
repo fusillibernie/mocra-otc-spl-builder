@@ -117,7 +117,7 @@ def _at_or_above(value: float, threshold: float) -> bool:
 def _allergen_totals(service, product, as_of: date, core_findings: list):
     """Allergen totals per name across every component, from fragrance-reg-core.
 
-    This calls LabelingService._allergen_contributions, which is private in core v0.5.3. Ask core to
+    This calls LabelingService._allergen_contributions, which is private in core v0.6.0. Ask core to
     expose it (planned for the next release) and switch to that; the tests in tests/test_cscp.py
     exercise this call so a change in core fails loudly.
     """
