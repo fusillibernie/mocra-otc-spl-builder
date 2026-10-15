@@ -14,7 +14,11 @@ Nothing here edits the regulatory data. A person (or a reviewed pull request) de
 matters. The weekly GitHub Actions job (.github/workflows/watch.yml) runs this and opens a pull request
 with the report and the new fingerprints.
 
-Exit code: 0 = no changes, 1 = changes found, 2 = some pages couldn't be fetched (and none changed).
+Exit code: 0 = no changes, 1 = changes or newly baselined sources (the job opens a pull request),
+2 = some pages couldn't be fetched (and nothing else to report).
+
+Difference from fragrance-reg-core's copy: first-seen sources also exit 1, so a fresh repo or a newly added
+source gets its baseline committed.
 """
 
 from __future__ import annotations
@@ -220,7 +224,8 @@ def main() -> int:
                    "\n".join(f"- {s['name']} ({s['url']}): {s.get('reminder', '')}" for s in manual) + "\n")
     REPORT.write_text("\n".join(out), encoding="utf-8")
     print(f"\nReport: {REPORT}")
-    return 1 if changed else (2 if failed else 0)
+    # A first-seen source also needs committing, or its baseline is never saved and it stays "first seen".
+    return 1 if (changed or first_seen) else (2 if failed else 0)
 
 
 if __name__ == "__main__":

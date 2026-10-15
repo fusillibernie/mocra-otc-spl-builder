@@ -50,9 +50,9 @@ jobs:
           git config user.email "source-watch@users.noreply.github.com"
           git checkout -b "$branch"
           git add sources/watch_state.json sources/watch_report.md
-          git commit -m "Regulatory pages changed ($(date -u +%Y-%m-%d))"
+          git commit -m "Regulatory pages changed or baselined ($(date -u +%Y-%m-%d))"
           git push origin "$branch"
-          gh pr create --title "Regulatory pages changed ($(date -u +%Y-%m-%d))" --body-file sources/watch_report.md
+          gh pr create --title "Regulatory pages changed or baselined ($(date -u +%Y-%m-%d))" --body-file sources/watch_report.md
       - name: Fail when pages could not be fetched, so GitHub emails the owner
         if: steps.watch.outputs.code == '2'
         run: exit 1
