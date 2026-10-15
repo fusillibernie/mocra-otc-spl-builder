@@ -93,7 +93,7 @@ How it decides, per product:
   list not loaded; fragrance with no full composition (list ingredients below allergen level can't be
   ruled out). Warnings: estimated naturals, declaration list not stated, a figure within supplier
   rounding of the threshold.
-- Core integration uses `LabelingService._allergen_contributions`, private in v0.5.3. Ask core to
+- Core integration uses `LabelingService._allergen_contributions`, private in v0.6.0. Ask core to
   expose it (next release) and switch.
 
 Not built (needs documents or decisions):

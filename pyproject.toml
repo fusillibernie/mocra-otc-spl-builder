@@ -8,7 +8,7 @@ dependencies = []
 
 [project.optional-dependencies]
 # Ingredient lists from finished-product QQs (ingredients.py)
-core = ["fragrance-reg-core @ git+https://github.com/fusillibernie/fragrance-reg-core@v0.5.3"]
+core = ["fragrance-reg-core @ git+https://github.com/fusillibernie/fragrance-reg-core@v0.6.0"]
 # Check generated XML against FDA's SPL schema (schema.py)
 schema = ["lxml>=5"]
 dev = ["pytest>=7.4.0", "lxml>=5"]

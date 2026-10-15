@@ -49,7 +49,7 @@ Shared XML pieces moved to `spl_xml.py`; `ListingNotValid` is now an alias of `S
 ## 2026-10-13: Ingredients from fragrance-reg-core
 
 **What:** `ingredients.ingredients_from_product(FinishedProduct)` returns the US label ingredient
-list for a listing. fragrance-reg-core v0.5.3 is an optional `[core]` extra. 48 tests.
+list for a listing. fragrance-reg-core v0.6.0 is an optional `[core]` extra. 48 tests.
 
 **Decisions:**
 - Use fragrance-reg-core's US list as is. The listing must match the printed label
