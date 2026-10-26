@@ -1,0 +1,62 @@
+{
+  "carb-pfp-2025": {
+    "changed": "2026-10-26T13:59:59+00:00",
+    "checked": "2026-10-26T13:59:59+00:00",
+    "fingerprint": "a6129d6fb318259f61f31406d5e0602d5b48777d5b200d8496e52a7d58e8ab5d"
+  },
+  "ecfr-21-201-66": {
+    "changed": "2026-10-26T13:59:59+00:00",
+    "checked": "2026-10-26T13:59:59+00:00",
+    "fingerprint": "318f9be91349be3a2ac442c3f1d6911809474761d227173c1c772edeb16a3171"
+  },
+  "ecfr-21-701-3": {
+    "changed": "2026-10-26T13:59:59+00:00",
+    "checked": "2026-10-26T13:59:59+00:00",
+    "fingerprint": "318f9be91349be3a2ac442c3f1d6911809474761d227173c1c772edeb16a3171"
+  },
+  "ecfr-40-51-100": {
+    "changed": "2026-10-26T13:59:59+00:00",
+    "checked": "2026-10-26T13:59:59+00:00",
+    "fingerprint": "2df067642f2e72cceee16d9d5faf648966f16ad26ccf89d86f97672312e522eb"
+  },
+  "ecfr-40-part-59": {
+    "changed": "2026-10-26T13:59:59+00:00",
+    "checked": "2026-10-26T13:59:59+00:00",
+    "fingerprint": "9ebb26382b3bc04f2fcc5976823215af4db9868fbde2f3783d1c713c2dfcf6bd"
+  },
+  "fda-cosmetics-registration-listing": {
+    "changed": "2026-10-26T13:59:59+00:00",
+    "checked": "2026-10-26T13:59:59+00:00",
+    "fingerprint": "094fe9bcd2a17ca911167bc98b2f079e6acdc6a92ef12139e63e6e549edba5c5"
+  },
+  "fda-esg-center-submission-types": {
+    "changed": "2026-10-26T13:59:59+00:00",
+    "checked": "2026-10-26T13:59:59+00:00",
+    "fingerprint": "092f663ab6f1875e82ae689c3ac68db878e8c3a2942334daaefa94c18afe6270"
+  },
+  "fda-mocra": {
+    "changed": "2026-10-26T13:59:59+00:00",
+    "checked": "2026-10-26T13:59:59+00:00",
+    "fingerprint": "36f6d75648cbe4b0dfc3320b4755e2de6c466abaae8ae88bcdcad5ba07ad3114"
+  },
+  "fda-spl-resources": {
+    "changed": "2026-10-26T13:59:59+00:00",
+    "checked": "2026-10-26T13:59:59+00:00",
+    "fingerprint": "79acf097340f16f7a7a21fbb4cfa5c12b7a14f2a2548a2288fb7f366e5c8e7e7"
+  },
+  "fedreg-epa-voc": {
+    "changed": "2026-10-26T13:59:59+00:00",
+    "checked": "2026-10-26T13:59:59+00:00",
+    "fingerprint": "a2671d4868f4618612eba8d32b9a2c397224778c46f8a85a2e23a8ab0781ed81"
+  },
+  "fedreg-fda-mocra": {
+    "changed": "2026-10-26T13:59:59+00:00",
+    "checked": "2026-10-26T13:59:59+00:00",
+    "fingerprint": "93f2d0da7c706b54a1eb90d3e90ff64386096465062e7baadccabeb10d26e0e5"
+  },
+  "fedreg-fda-otc-monograph": {
+    "changed": "2026-10-26T13:59:59+00:00",
+    "checked": "2026-10-26T13:59:59+00:00",
+    "fingerprint": "db368e58b88b74d4694d3fcdff9b512e9a595c0f49289d86d77189a4a3a4e917"
+  }
+}
