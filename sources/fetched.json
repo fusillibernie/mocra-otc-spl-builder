@@ -1,4 +1,87 @@
 {
+  "carb/consumer-products/Webinar and Non-Respondent Companies Announcement_8-19-2025.pdf": {
+    "bytes": 132134,
+    "changed": "2026-11-01",
+    "checked": "2026-11-01",
+    "first_seen": "2026-11-01",
+    "id": "carb-consumer-products",
+    "sha256": "dfc5e0509ea8bff61c6c3ddd33f2108e88f4d2a5e814c058beb6cb9e0a0335ba",
+    "url": "https://ww2.arb.ca.gov/sites/default/files/2025-08/Webinar%20and%20Non-Respondent%20Companies%20Announcement_8-19-2025.pdf"
+  },
+  "carb/pfp/2025 PFP-RT_Mac_v1.02.xlsm": {
+    "bytes": 733409,
+    "changed": "2026-11-01",
+    "checked": "2026-11-01",
+    "first_seen": "2026-11-01",
+    "id": "carb-pfp-2025",
+    "sha256": "66e922ebd564ae7e8b9a8044583b155942f944aa0f585ad6cb2b52a93ca59b7b",
+    "url": "https://ww2.arb.ca.gov/sites/default/files/2026-07/2025%20PFP-RT_Mac_v1.02.xlsm"
+  },
+  "carb/pfp/2025 PFP-RT_v1.02.xlsm": {
+    "bytes": 641384,
+    "changed": "2026-11-01",
+    "checked": "2026-11-01",
+    "first_seen": "2026-11-01",
+    "id": "carb-pfp-2025",
+    "sha256": "e01ce0bffdda8700e35db69fa840c3c365898d96987a8a043baf1e75ae739270",
+    "url": "https://ww2.arb.ca.gov/sites/default/files/2026-07/2025%20PFP-RT_v1.02.xlsm"
+  },
+  "carb/pfp/Appendix A _ List of Special Reporting Categories_01_28.pdf": {
+    "bytes": 55188,
+    "changed": "2026-11-01",
+    "checked": "2026-11-01",
+    "first_seen": "2026-11-01",
+    "id": "carb-pfp-2025",
+    "sha256": "f05e9c1c1e028a0a816dadab414f5fc16d8766fb14ec4a185800abef485793e4",
+    "url": "https://ww2.arb.ca.gov/sites/default/files/2026-01/Appendix%20A%20_%20List%20of%20Special%20Reporting%20Categories_01_28.pdf"
+  },
+  "carb/pfp/PFP Letter_webpage_0.pdf": {
+    "bytes": 88365,
+    "changed": "2026-11-01",
+    "checked": "2026-11-01",
+    "first_seen": "2026-11-01",
+    "id": "carb-pfp-2025",
+    "sha256": "b7eff817e20b27954f39290c8a981cb8bfe090f62557f93ad2a11c5e6faded8f",
+    "url": "https://ww2.arb.ca.gov/sites/default/files/2025-12/PFP%20Letter_webpage_0.pdf"
+  },
+  "carb/pfp/PFP-RT Instructions.pdf": {
+    "bytes": 429607,
+    "changed": "2026-11-01",
+    "checked": "2026-11-01",
+    "first_seen": "2026-11-01",
+    "id": "carb-pfp-2025",
+    "sha256": "ba4a07746e38182e4525df57a5c951be41d3698e0166ee1967f2e927a048b2da",
+    "url": "https://ww2.arb.ca.gov/sites/default/files/2026-01/PFP-RT%20Instructions.pdf"
+  },
+  "carb/pfp/PFP-RT_Instructions_2026-01.pdf": {
+    "bytes": 429607,
+    "changed": "2026-11-01",
+    "checked": "2026-11-01",
+    "duplicate_of": "carb/pfp/PFP-RT Instructions.pdf",
+    "first_seen": "2026-11-01",
+    "id": "carb-pfp-tool-instructions",
+    "sha256": "ba4a07746e38182e4525df57a5c951be41d3698e0166ee1967f2e927a048b2da",
+    "url": "https://ww2.arb.ca.gov/sites/default/files/2026-01/PFP-RT%20Instructions.pdf"
+  },
+  "cdph/Reportable_Ingredients_List.xlsx": {
+    "bytes": 233450,
+    "changed": "2026-11-01",
+    "checked": "2026-11-01",
+    "first_seen": "2026-11-01",
+    "id": "cdph-cscp-sb312",
+    "sha256": "0a3950ce5af295a7a8a1bf8ca4f1b479ba0752831b54ad34e6b0f29458087f4f",
+    "url": "https://cscpsubmit.cdph.ca.gov/submission/assets/files/Reportable_Ingredients_List.xlsx"
+  },
+  "cdph/reporting/Reportable_Ingredients_List.xlsx": {
+    "bytes": 233450,
+    "changed": "2026-11-01",
+    "checked": "2026-11-01",
+    "duplicate_of": "cdph/Reportable_Ingredients_List.xlsx",
+    "first_seen": "2026-11-01",
+    "id": "cdph-cscp-reporting-guidance",
+    "sha256": "0a3950ce5af295a7a8a1bf8ca4f1b479ba0752831b54ad34e6b0f29458087f4f",
+    "url": "https://cscpsubmit.cdph.ca.gov/submission/assets/files/Reportable_Ingredients_List.xlsx"
+  },
   "fda/cosmetics/spl_ig_vp_dec_2023.pdf": {
     "bytes": 1920318,
     "changed": "2026-10-15",
@@ -12,7 +95,7 @@
   "fda/esg/esg_nextgen_api_guide_v1.2.1_-_august_2026.pdf": {
     "bytes": 811181,
     "changed": "2026-10-15",
-    "checked": "2026-10-15",
+    "checked": "2026-11-01",
     "duplicate_of": "esg_nextgen_api_guide_v1.2.1_2026-08.pdf",
     "first_seen": "2026-10-15",
     "id": "fda-esg-user-guides",
@@ -22,7 +105,7 @@
   "fda/esg/esg_nextgen_api_specification_v1.2_-_march_2026.pdf": {
     "bytes": 426800,
     "changed": "2026-10-15",
-    "checked": "2026-10-15",
+    "checked": "2026-11-01",
     "duplicate_of": "esg_nextgen_api_specification_v1.2_2026-03.pdf",
     "first_seen": "2026-10-15",
     "id": "fda-esg-user-guides",
@@ -32,7 +115,7 @@
   "fda/esg/esg_nextgen_as2_guide_for_industry_users_v2.2_-_july_2026.pdf": {
     "bytes": 357644,
     "changed": "2026-10-15",
-    "checked": "2026-10-15",
+    "checked": "2026-11-01",
     "first_seen": "2026-10-15",
     "id": "fda-esg-user-guides",
     "sha256": "fa6658702047084d768d9ef769c94261ccad56c78eb7bf1017ffff418d139600",
@@ -41,7 +124,7 @@
   "fda/esg/esg_nextgen_unified_submission_portal_passkey_set-up_quick_guide.pdf": {
     "bytes": 302464,
     "changed": "2026-10-15",
-    "checked": "2026-10-15",
+    "checked": "2026-11-01",
     "first_seen": "2026-10-15",
     "id": "fda-esg-user-guides",
     "sha256": "649aa1b9419111ec29cf4e49dfd78449a050c0a961a760f32f940def453ba9c3",
@@ -50,7 +133,7 @@
   "fda/esg/esg_nextgen_user_guide_for_the_unified_submission_portal_v1.8_-_september_2026.pdf": {
     "bytes": 2647781,
     "changed": "2026-10-15",
-    "checked": "2026-10-15",
+    "checked": "2026-11-01",
     "duplicate_of": "esg_nextgen_usp_user_guide_v1.8_2026-09.pdf",
     "first_seen": "2026-10-15",
     "id": "fda-esg-user-guides",
@@ -60,7 +143,7 @@
   "fda/spl/SPL-Schema-Update.zip": {
     "bytes": 125114,
     "changed": "2026-10-15",
-    "checked": "2026-10-15",
+    "checked": "2026-11-01",
     "first_seen": "2026-10-15",
     "id": "fda-spl-resources",
     "sha256": "03419c6db5b1f391bef030c4abfdc02e4b2c5f24bb2dc9e65cc6da7b48ebaedb",
@@ -69,7 +152,7 @@
   "fda/spl/SPL-Stylesheet-Update.zip": {
     "bytes": 65791,
     "changed": "2026-10-15",
-    "checked": "2026-10-15",
+    "checked": "2026-11-01",
     "first_seen": "2026-10-15",
     "id": "fda-spl-resources",
     "sha256": "cd807832d074da618af91b66a2375e669554b02fbc516b14864bd9be83f5a5ff",
@@ -88,7 +171,7 @@
   "fda/spl/terminology_lists.zip": {
     "bytes": 12561,
     "changed": "2026-10-15",
-    "checked": "2026-10-15",
+    "checked": "2026-11-01",
     "first_seen": "2026-10-15",
     "id": "fda-spl-resources",
     "sha256": "eb0aeaff977ee70b165ce55bea133e4178f076e189e0e694a5f07d0d5d5033fa",
@@ -97,7 +180,7 @@
   "fda/spl_implementation_guide_current.pdf": {
     "bytes": 1920318,
     "changed": "2026-10-15",
-    "checked": "2026-10-15",
+    "checked": "2026-11-01",
     "duplicate_of": "spl_ig_vp_dec_2023.pdf",
     "first_seen": "2026-10-15",
     "id": "fda-spl-ig",
