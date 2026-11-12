@@ -42,7 +42,7 @@ Agents help with steps 1, 2 and with reading FDA error acknowledgments. They nev
   Test submissions by default; production needs an `Approval` naming the person and the exact
   file's SHA-256. Not yet run against FDA: needs a USP account and API keys (see below).
 - **Phase 4: state reporting** (`docs/STATE_REPORTING.md`). California Safe Cosmetics Program
-  fragrance allergens: built (`cscp.py`, rules unverified, CDPH's ingredient list not loaded yet).
+  fragrance allergens: built (`cscp.py`, rules unverified, CDPH's April 2026 ingredient list loaded).
   CARB VOC reporting for personal fragrance and aerosols (including OTC antiperspirants): planned,
   waiting on CARB's regulation text and reporting tool. Both produce data packs for a person to
   enter, not submissions.

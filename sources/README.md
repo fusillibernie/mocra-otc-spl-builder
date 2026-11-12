@@ -21,7 +21,8 @@ Still needed:
 - [x] FDA "Center Submission Types" page, photographed 2026-10-13 (content current as of 2026-09-17): `center_submission_types_2026-09-17/`. Cosmetic SPL route inferred as OC / SPL.
 - [ ] OTC Monograph orders for the monographs in `data/otc_monographs.json`
 - [ ] Check FDA's SPL resources page for a guide newer than December 2023: https://www.fda.gov/industry/fda-resources-data-standards/structured-product-labeling-resources
-- [ ] CDPH CSCP Reportable Ingredients List, reporting instructions, fragrance allergens fact sheet (see `docs/STATE_REPORTING.md`)
+- [x] CDPH CSCP Reportable Ingredients List, April 2026 edition: `cdph_reportable_ingredients_list_2026-04.xlsx` (uploaded 2026-11-12; `scripts/build_cscp_list.py`)
+- [ ] CDPH CSCP reporting guidance page, portal instructions, fragrance allergens fact sheet (see `docs/STATE_REPORTING.md`)
 - [ ] CARB: Consumer Products Regulation (17 CCR 94500-94517), 2021 PFP amendments, PFP Reporting Tool and instructions, any survey notice
 
 Files here are kept current by `scripts/refresh_sources.py` (see `docs/STATE_REPORTING.md`): what it

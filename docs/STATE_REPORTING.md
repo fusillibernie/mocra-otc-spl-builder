@@ -21,8 +21,8 @@ To run one now: GitHub > Actions > "Refresh official source files" > Run workflo
 manifest id, such as `carb-consumer-products`). One-time setting: Settings > Actions > General >
 "Allow GitHub Actions to create and approve pull requests".
 
-Importers are not written yet (`scripts/build_carb_voc_limits.py`, `scripts/build_cscp_list.py`): they
-need to see the real files. After the first refresh PR, read the files from its branch, write the
+`scripts/build_cscp_list.py` is written (against the April 2026 workbook). The CARB importer
+(`scripts/build_carb_voc_limits.py`) is not: it needs to see the real files. After the first refresh PR, read the files from its branch, write the
 importers against them, and from then on they re-run on every update. Until then the report says
 "importer not written yet".
 
@@ -58,7 +58,7 @@ on the `sources/<date>` branch either way.
 | New OTC orders, OMUFA fee notices, MoCRA rules | Federal Register API | monographs, validation | yes |
 | CARB regulation text, final regulation orders, category limits | links crawl | `data/carb_voc_limits.json` | yes; importer to write |
 | CARB PFP reporting tool and instructions, survey notices | links crawl | VOC data pack | yes |
-| CDPH Reportable Ingredients List, guidance, fact sheets | links crawl | `data/cscp_reportable_ingredients.json` | yes; importer to write |
+| CDPH Reportable Ingredients List, guidance, fact sheets | links crawl | `data/cscp_reportable_ingredients.json` (list loaded from the April 2026 workbook by `scripts/build_cscp_list.py`) | yes; the guidance and fact sheets are still to read |
 | eCFR: 21 CFR 701, 201.66; 40 CFR 51.100, 59 | dated XML and the versions API | labeling, VOC exemptions | yes (syntax inferred) |
 | FDA UNII list (active-ingredient UNIIs for OTC listings) | zip, large | OTC listing | not yet: too large to commit monthly; use workflow artifacts |
 | FDA NDC directory (labeler codes, duplicate checks) | zip, large | OTC listing | not yet, same reason |
@@ -83,8 +83,16 @@ field names to be mapped onto the portal or tool. No browser automation of eithe
 | Reportable | Rule used | Status |
 |---|---|---|
 | Fragrance allergens | at or above 0.001% (leave-on) / 0.01% (rinse-off), whatever their function. "At or above", unlike EU labeling's "exceeds" | rules in `data/cscp_rules.json`, **unverified** |
-| Which substances | flagged `eu_26` / `eu_82` in core's allergen data; CDPH's list appears to track the EU's expanded 82 | **unconfirmed** |
-| Other fragrance/flavor ingredients | any concentration, if on CDPH's Reportable Ingredients List (updated twice a year; 6 months to comply) | **list not loaded**; report is never "complete" until it is |
+| Which substances | CDPH list entries coded **FA** (164 CAS numbers on 80 rows, April 2026). Core's `eu_26`/`eu_82` flags are only a fallback with a warning: 31 substances flagged in core (e.g. benzyl acetate, eucalyptol, maltol) are not FA entries on CDPH's list | list **loaded**. Core's allergen data lacks 22 of CDPH's FA CAS numbers and resolves some declared names to a sibling CAS (spearmint oil), so `cscp_report` also totals what the product states under CDPH's own CAS numbers and adds any it finds, as a plain sum with a warning (no rounding check or naturals estimate) |
+| Ingredients coded **Any** | any concentration, whatever the function, in any component with a composition, an allergen declaration or its own CAS number; summed per CAS across components | list loaded; components without a composition are called out |
+| Ingredients coded **FF** | any concentration, if used as a fragrance or flavor ingredient. Listed for fragrance components; for others a warning asks whether it is a flavor (core has no flavor role) | list loaded |
+| Rows with no CAS number (278) | CDPH says they must still be reported; matched by name or synonym, as a warning | loaded |
+
+The list (`data/cscp_reportable_ingredients.json`, 3,151 CAS records, 876 Any / 2,118 FF / 164 FA) is built from
+`sources/cdph_reportable_ingredients_list_2026-04.xlsx`, as supplied by the user (not downloaded: cdph.ca.gov
+failed TLS verification from the build environment). CDPH updates it twice a year. Two CAS numbers are
+published with bad check digits and are kept as published (`source_cas_invalid`); one row has a malformed
+CAS ("122886-55-10") and sits with the no-CAS rows with its raw value.
 
 How it decides, per product:
 - Allergen totals come from core: supplier declarations or full compositions, scaled by dose, naturals
@@ -97,7 +105,7 @@ How it decides, per product:
   expose it (next release) and switch.
 
 Not built (needs documents or decisions):
-1. **Importer for CDPH's Reportable Ingredients List.** Needs the file from CDPH's SB 312 page.
+1. ~~Importer for CDPH's Reportable Ingredients List~~ Done (`scripts/build_cscp_list.py`). Still to do: a newer edition each time CDPH updates it, and reading the reporting guidance page itself.
 2. **Portal field mapping.** Needs CDPH's reporting instructions/template.
 3. **Supplier statements** for list ingredients in a fragrance with no full composition (a place to
    record "supplier certifies none of the list present", with date and who).

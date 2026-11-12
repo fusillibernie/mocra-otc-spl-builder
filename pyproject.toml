@@ -11,7 +11,7 @@ dependencies = []
 core = ["fragrance-reg-core @ git+https://github.com/fusillibernie/fragrance-reg-core@v0.6.0"]
 # Check generated XML against FDA's SPL schema (schema.py)
 schema = ["lxml>=5"]
-dev = ["pytest>=7.4.0", "lxml>=5"]
+dev = ["pytest>=7.4.0", "lxml>=5", "openpyxl>=3.1"]  # openpyxl: scripts/build_cscp_list.py
 
 [build-system]
 requires = ["hatchling"]

@@ -20,11 +20,11 @@
     "reportable_regardless_of_function": true,
     "list_flags": ["eu_26", "eu_82"],
     "accepted_declaration_basis": ["eu_82"],
-    "list_note": "CDPH's fragrance allergen list appears to track the EU's expanded list (Regulation (EU) 2023/1545, 82 substances). Unconfirmed."
+    "list_note": "list_flags is a fallback for when the CDPH list is not loaded. CDPH's FA entries (164 CAS numbers, April 2026) are the real list and differ from core's EU-82 flags."
   },
   "other_fragrance_flavor_ingredients": {
     "reportable_at_any_concentration": true,
-    "list": "CSCP Reportable Ingredients List (updated twice a year; 6 months to comply after each update). Not loaded: see cscp_reportable_ingredients.json."
+    "list": "CSCP Reportable Ingredients List (updated twice a year; 6 months to comply after each update). Loaded from the April 2026 edition: see cscp_reportable_ingredients.json. Its When to Report codes (Any, FF, FA) decide what is reportable."
   },
   "deadlines": {
     "note": "A CDPH FAQ was reported to tie allergen reporting to the EU timelines (2026 for new products, 2028 for existing). Unconfirmed; may already be due for new products."

@@ -32,7 +32,7 @@ def records(doc, key):
     return items if isinstance(items, list) else None
 
 
-def check_list(doc, key, required, checks, unique_cas=True):
+def check_list(doc, key, required, checks, unique_cas=True, cas_key="cas_number", skip_check_if=None):
     errs = []
     items = records(doc, key)
     if items is None:
@@ -48,9 +48,11 @@ def check_list(doc, key, required, checks, unique_cas=True):
             if rec.get(field) in (None, ""):
                 errs.append(f"{tag}: missing {field}")
         for field, test, msg in checks:
+            if skip_check_if and rec.get(skip_check_if):
+                continue  # published that way by the source; the record says so
             if field in rec and rec[field] is not None and not test(rec[field]):
                 errs.append(f"{tag}: {field}={rec[field]!r} {msg}")
-        cas = rec.get("cas_number")
+        cas = rec.get(cas_key)
         if unique_cas and cas:
             if cas in seen:
                 errs.append(f"{tag}: duplicate cas_number {cas} (also [{seen[cas]}])")
@@ -97,7 +99,13 @@ RULES = {
         and d["allergens"]["leave_on_percent"] <= d["allergens"]["rinse_off_percent"]
         else ["allergens: leave_on_percent and rinse_off_percent must be percents 0-100 with leave_on <= rinse_off"]),
     "cscp_reportable_ingredients.json": lambda d: check_list(
-        d, "ingredients", ["name"], [("cas_number", cas_ok, "is not a valid CAS number")]),
+        d, "ingredients", ["name", "cas"],
+        [("cas", cas_ok, "is not a valid CAS number"),
+         ("when", lambda v: isinstance(v, list) and v and all(x in ("Any", "FF", "FA") for x in v), "must be a non-empty list of Any, FF, FA")],
+        cas_key="cas", skip_check_if="source_cas_invalid") + check_list(
+        d, "ingredients_without_cas", ["name", "when"],
+        [("when", lambda v: isinstance(v, list) and v and all(x in ("Any", "FF", "FA") for x in v), "must be a non-empty list of Any, FF, FA")],
+        unique_cas=False),
     "otc_monographs.json": lambda d: check_list(
         d, "monographs", ["id", "title", "order"], [], unique_cas=False),
     "cosmetic_categories.json": lambda d: check_list(
